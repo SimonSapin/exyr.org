@@ -1,0 +1,9 @@
+*.py[co]
+
+*.egg-info
+eggs
+parts
+bin
+develop-eggs
+.installed.cfg
+
