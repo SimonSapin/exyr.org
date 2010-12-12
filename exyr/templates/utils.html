@@ -1,0 +1,5 @@
+
+{% macro html5_date(date, format='%B %d, %Y', pubdate=True) -%}
+    <time{{ ' pubdate' if pubdate }} datetime="{{ date.isoformat() }}">
+        {{- date.strftime(format) }}</time>
+{%- endmacro %}

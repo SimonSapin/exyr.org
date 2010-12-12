@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+{% import 'utils.html' as utils %}
+
+{% block html_title %}{{ page.title }} − {{ super() }}{% endblock %}
+
+{% block content %}
+  <article>
+    <header>
+      <h2>{{ page.title }}</h2>
+      <p>Simon Sapin
+        {%- if page.published|d %}
+          − {{ utils.html5_date(page.published) }}
+        {%- endif -%}
+      </p>
+    </header>
+    {{ page }}
+  </article>
+{% endblock %}

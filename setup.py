@@ -9,6 +9,9 @@ setup(
     include_package_data = True,
     zip_safe=False,
     license="BSD License",
-    install_requires=['Flask'],
+    install_requires=[
+        'Flask',
+        'Flask-FlatPages',
+    ],
     entry_points={'console_scripts': ['run-exyr=exyr:run']},
 )
