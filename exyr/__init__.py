@@ -24,7 +24,3 @@ def page(path):
     return render_template(template, page=page)
     
 
-def run():
-    app.before_request(pages.reset)
-    app.run(debug=True)
-

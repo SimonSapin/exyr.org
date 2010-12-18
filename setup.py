@@ -12,6 +12,9 @@ setup(
     install_requires=[
         'Flask',
         'Flask-FlatPages',
+        'Flask-Script',
     ],
-    entry_points={'console_scripts': ['run-exyr=exyr:run']},
+    entry_points={'console_scripts': [
+        'manage=exyr.manage:manager.run',
+    ]},
 )
