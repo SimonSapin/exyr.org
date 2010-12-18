@@ -17,10 +17,5 @@ def index():
     return render_template('articles.html', articles=latest)
 
 
-@app.route('/<path:path>/')
-def page(path):
-    page = pages.get_or_404(path)
-    template = page.meta.get('template', 'flatpage.html')
-    return render_template(template, page=page)
-    
+app.add_url_rule('/<path:path>/', 'page', pages.render)
 
