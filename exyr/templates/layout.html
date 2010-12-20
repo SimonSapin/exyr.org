@@ -4,6 +4,7 @@
   <meta charset="utf-8">
   <title>{% block html_title %}{{ self.site_title() }}{% endblock %}</title>
   <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <link rel="stylesheet" href="{{ url_for('pygments_css') }}">
 </head>
 
 <body>

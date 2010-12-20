@@ -12,7 +12,9 @@ setup(
     install_requires=[
         'Flask',
         'Flask-FlatPages',
+        'Flask-Static',
         'Flask-Script',
+        'Pygments',
     ],
     entry_points={'console_scripts': [
         'manage=exyr.manage:manager.run',
