@@ -1,0 +1,111 @@
+article, aside, figure, footer, header, hgroup, menu, nav, section {
+    /* Fix HTML5 elements in older browsers */
+    display:block;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background: #fff;
+    color: #333;
+    /* 18px/20px with the default of 16px */
+    font: 1.125em/1.5em serif;
+}
+
+header, footer {
+    text-align: center;
+}
+
+h1 {
+    background: #333;
+    color: #fff;
+    margin: 0;
+    padding: .7em;
+}
+
+nav ul {
+    background: #555;
+    color: #fff;
+    padding: 1em;
+    margin: 0;
+    list-style: none;
+}
+
+nav li {
+    display: inline;
+    margin: 0 .5em;
+}
+
+header a {
+    color: inherit;
+    text-decoration: none;
+}
+
+header a {
+    padding: .2em .5em;
+    -webkit-border-radius: 8px;
+    -moz-border-radius: 8px;
+    border-radius: 8px;
+}
+
+nav a img {
+}
+
+header a:hover {
+    background: #444;
+}
+
+nav img {
+    padding-bottom: 2px;
+    vertical-align: bottom;
+}
+
+#content, footer {
+    max-width: 740px;
+    margin: 0 auto;
+    padding: 0 1em;
+}
+
+footer {
+    font-size: .8em;
+    padding: 0 1em;
+    margin: 3em auto 1em;
+}
+
+footer p:first-child {
+    border-top: thin dotted;
+}
+
+footer p {
+    margin: 0;
+}
+
+header p, time {
+    font-style: italic;
+}
+
+img {
+    border: none;
+}
+
+a {
+    color: #007;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+p {
+    text-align: justify;
+}
+
+header p, footer p {
+    text-align: inherit;
+}
+
+{{ pygments_style_defs('tango') }}
+

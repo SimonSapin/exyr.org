@@ -1,3 +1,5 @@
+import re
+
 import jinja2
 from flask import Flask, render_template
 from flaskext.flatpages import FlatPages, pygments_style_defs
@@ -22,9 +24,20 @@ def index():
 app.add_url_rule('/<path:path>/', 'page', pages.render)
 
 
-@app.route('/pygments.css')
-def pygments_css():
-    return pygments_style_defs(), 200, {'Content-Type': 'text/css'}
+
+def minify_css(css):
+    # Remove comments. *? is the non-greedy version of *
+    css = re.sub(r'/\*.*?\*/', '', css)
+    # Remove redundant whitespace
+    css = re.sub(r'\s+', ' ', css)
+    # Put back line breaks after block so that it's not just one huge line
+    css = re.sub(r'} ?', '}\n', css)
+    return css
+
+@app.route('/style.css')
+def stylesheet():
+    css = render_template('style.css', pygments_style_defs=pygments_style_defs)
+    return app.response_class(minify_css(css), mimetype='text/css')
 
 
 @builder.register_generator
