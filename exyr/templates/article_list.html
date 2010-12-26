@@ -2,12 +2,16 @@
 {% import 'utils.html' as utils %}
 
 {% block content %}
+{% if articles %}
+  <section class=article_list>
   {% for page in articles %}
     <article>
-      <h2><a href="{{ url_for('page', path=page.path) }}">
-          {{ page.title }}</a></h2>
+      <h3><a href="{{ url_for('page', path=page.path) }}">
+          {{ page.title }}</a></h3>
       <p>{{ utils.html5_date(page.published) }}</p>
       {% if page.summary|d %}<p>{{ page.summary }}</p>{% endif %}
     </article>
   {% endfor %}
+  </section>
+{% endif %}
 {% endblock %}

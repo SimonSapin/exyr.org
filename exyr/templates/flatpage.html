@@ -1,9 +1,10 @@
-{% extends "layout.html" %}
+{% extends "article_list.html" %}
 {% import 'utils.html' as utils %}
 
 {% block html_title %}{{ page.title }} − {{ super() }}{% endblock %}
 
 {% block content %}
+{% if page.published|d %}
   <article>
     <header>
       <h2>{{ page.title }}</h2>
@@ -15,4 +16,15 @@
     </header>
     {{ page }}
   </article>
+{% else %}
+  <header>
+    <h2>{{ page.title }}</h2>
+  </header>
+  {% if page.html %}
+  <section>
+    {{ page }}
+  </section>
+  {% endif %}
+{% endif %}
+{{ super() }}
 {% endblock %}
