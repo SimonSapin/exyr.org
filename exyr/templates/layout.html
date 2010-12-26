@@ -4,13 +4,14 @@
   <meta charset=utf-8>
   <title>{% block html_title %}{{ self.site_title() }}{% endblock %}</title>
   <link rel=stylesheet href="{{ url_for('stylesheet') }}">
+  <link href='http://fonts.googleapis.com/css?family=Droid+Serif' rel='stylesheet' type='text/css'>
   <link rel=alternate href="{{ url_for('feed') }}" type="application/atom+xml"
     title="Article Feed">
 </head>
 
 <body>
   <header>
-    <h1><a href="/">{% block site_title %}exyr.org{% endblock %}</a></h1>
+    <h1><a href="/">{% block site_title %}Exyr.org{% endblock %}</a></h1>
     <nav>
       <ul>
       {% for path in [
@@ -20,8 +21,8 @@
         <li><a href="{{ url_for('page', path=path) }}">
           {{- pages.get(path).title }}</a></li>
       {% endfor %}
-        <li><a href="{{ url_for('feed') }}"><span><img title=Subscribe alt=Feed
-          src="{{ url_for('static', filename='feed-icon.png') }}"></span></a></li>
+        <li><a href="{{ url_for('feed') }}">Feed <img alt=""
+          src="{{ url_for('static', filename='feed-icon.png') }}"></a></li>
       </ul>
     </nav>
   </header>

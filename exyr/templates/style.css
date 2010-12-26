@@ -10,9 +10,9 @@ html, body {
 
 body {
     background: #fff;
-    color: #333;
+    color: #222;
     /* 18px/20px with the default of 16px */
-    font: 1.125em/1.5em serif;
+    font: 1.125em/1.5em 'Droid Serif', arial, serif;
 }
 
 header, footer {
@@ -23,13 +23,20 @@ h1 {
     background: #333;
     color: #fff;
     margin: 0;
-    padding: .7em;
+    padding: .8em;
+    text-shadow: #000 2px 2px 5px;
+    font-weight: normal;
+    letter-spacing: .07em;
 }
 
-nav ul {
+nav {
     background: #555;
     color: #fff;
     padding: 1em;
+    text-shadow: #000 1px 1px 3px;
+}
+
+nav ul {
     margin: 0;
     list-style: none;
 }
@@ -51,7 +58,10 @@ header a {
     border-radius: 8px;
 }
 
-nav a img {
+h1 a {
+    -webkit-border-radius: 12px;
+    -moz-border-radius: 12px;
+    border-radius: 12px;
 }
 
 header a:hover {
@@ -59,19 +69,19 @@ header a:hover {
 }
 
 nav img {
-    padding-bottom: 2px;
-    vertical-align: bottom;
+    vertical-align: middle;
+    margin: 0 0 3px .2em;
 }
 
 #content, footer {
     max-width: 740px;
     margin: 0 auto;
-    padding: 0 1em;
+    padding: 0 25px;
 }
 
 footer {
     font-size: .8em;
-    padding: 0 1em;
+    padding: 0 15px;
     margin: 3em auto 1em;
 }
 
@@ -109,3 +119,10 @@ header p, footer p {
 
 {{ pygments_style_defs('tango') }}
 
+.codehilite {
+    background-color: #eee;
+    margin: 0 -20px;
+    padding: 5px 20px 5px 15px;
+    border-left: 5px solid #888;
+    line-height: normal;
+}
