@@ -9,6 +9,8 @@ from flaskext.static import StaticBuilder
 
 app = Flask(__name__)
 app.jinja_env.undefined = jinja2.StrictUndefined
+# Remove any "safe for HTML escaping" mark
+app.jinja_env.filters['unsafe'] = unicode
 
 builder = StaticBuilder(app)
 pages = FlatPages(app)
@@ -25,7 +27,7 @@ def all_articles():
     return (p for p in pages if 'published' in p.meta)
 
 def by_date(articles):
-    return sorted(articles, reverse=True, key=lambda p: p.meta['published'])
+    return sorted(articles, reverse=True, key=lambda p: p['published'])
 
 
 @app.route('/')
@@ -42,6 +44,15 @@ def page(path):
     return render_template('flatpage.html', page=page, articles=sub_pages)
 
 
+@app.route('/feed.atom')
+def feed():
+    articles = by_date(all_articles())[:10]
+    # with `modified`, but defaults to `published`
+    articles = [(a, a.meta.get('modified', a['published'])) for a in articles]
+    feed_updated = max(updated for article, updated in articles)
+    xml = render_template('atom.xml', **locals())
+    return app.response_class(xml, mimetype='application/atom+xml')
+    
 
 def minify_css(css):
     # Remove comments. *? is the non-greedy version of *

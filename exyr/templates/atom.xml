@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>exyr.org</title>
+	<id>{{ url_for('index', _external=True) }}</id>
+	<link href="{{ url_for('feed', _external=True) }}" rel="self" />
+	<link href="{{ url_for('index', _external=True) }}" />
+	<updated>{{ feed_updated.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+	<author>
+		<name>Simon Sapin</name>
+	</author>
+	<rights type="html">
+		{% filter unsafe|escape %}{% include 'copyright.html' %}{% endfilter %}
+	</rights>
+	{% for article, updated in articles %}
+	<entry>
+		<id>{{ url_for('page', path=article.path, _external=True) }}</id>
+		<title>{{ article.title }}</title>
+		<updated>{{ updated.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+		<published>{{ article.published.strftime('%Y-%m-%dT%H:%M:%SZ') }}</published>
+		<author>
+			<name>Simon Sapin</name>
+		</author>
+		<link href="{{ url_for('page', path=article.path, _external=True) }}" />
+		<content type="html">
+			{{ article.html }}
+		</content>
+	</entry>
+	{% endfor %}
+</feed>
+
