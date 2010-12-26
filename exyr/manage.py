@@ -1,3 +1,5 @@
+import subprocess
+
 from flaskext.script import Manager, Server
 from . import app, builder
 
@@ -14,6 +16,14 @@ def build(serve=False):
     print 'Built %i files.' % len(urls)
     if serve:
         builder.serve()
+
+@manager.command
+def up(destination='hako:http/exyr.org/htdocs/'):
+    """Builds and uploads the website."""
+    build()
+    print 'Uploading to', destination
+    subprocess.call(['rsync', '-Pah', '--del', builder.root + '/', destination])
+    
 
 @manager.shell
 def shell_context():
