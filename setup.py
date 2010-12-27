@@ -17,6 +17,6 @@ setup(
         'Pygments',
     ],
     entry_points={'console_scripts': [
-        'manage=exyr.manage:manager.run',
+        'exyr-manage=exyr.manage:manager.run',
     ]},
 )

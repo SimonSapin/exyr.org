@@ -11,8 +11,8 @@ html, body {
 body {
     background: #fff;
     color: #222;
-    /* 18px/20px with the default of 16px */
-    font: 1.125em/1.5em 'Droid Serif', arial, serif;
+    /* 18px/27px with the default of 16px */
+    font: 1.125em/1.5 Palatino, Georgia, serif;
 }
 
 header, footer {
@@ -23,10 +23,10 @@ h1 {
     background: #333;
     color: #fff;
     margin: 0;
-    padding: .8em;
+    padding: .5em;
     text-shadow: #000 2px 2px 5px;
     font-weight: normal;
-    letter-spacing: .07em;
+    letter-spacing: .05em;
 }
 
 nav {
@@ -43,7 +43,7 @@ nav ul {
 
 nav li {
     display: inline;
-    margin: 0 .5em;
+    margin: 0 .3em;
 }
 
 header a {
@@ -70,7 +70,7 @@ header a:hover {
 
 nav img {
     vertical-align: middle;
-    margin: 0 0 3px .2em;
+    margin: 0 0 3px .3em;
 }
 
 #content, footer {
@@ -91,6 +91,7 @@ footer p:first-child {
 
 footer p {
     margin: 0;
+    padding: .5em 0 0;
 }
 
 header p, time {
