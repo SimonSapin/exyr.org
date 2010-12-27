@@ -9,7 +9,9 @@
 		<name>Simon Sapin</name>
 	</author>
 	<rights type="html">
-		{% filter unsafe|escape %}{% include 'copyright.html' %}{% endfilter %}
+		&lt;p&gt;© Copyright 2010 by Simon Sapin.&lt;/p&gt;
+        &lt;p&gt;Content licensed under a Creative Commons
+          Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
 	</rights>
 	{% for article, updated in articles %}
 	<entry>

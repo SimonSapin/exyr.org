@@ -16,11 +16,12 @@
       {% for path in [
         'web-development',
         'electronics',
+        'about',
       ] %}
         <li><a href="{{ url_for('page', path=path) }}">
           {{- pages.get(path).title }}</a></li>
       {% endfor %}
-        <li><a href="{{ url_for('feed') }}">Feed <img alt=""
+        <li><a href="{{ url_for('feed') }}">Subscribe <img alt=""
           src="{{ url_for('static', filename='feed-icon.png') }}"></a></li>
       </ul>
     </nav>
@@ -31,7 +32,11 @@
   </div>
   
   <footer>
-    {% include 'copyright.html' %}
+    {#- See <rights/> in atom.xml too #}
+    <p>© Copyright 2010 by <a href="{{ url_for('page', path='about') 
+        }}">Simon Sapin</a>.</p>
+    <p>Content licensed under a Creative Commons
+      Attribution-NonCommercial-ShareAlike License.</p>
   </footer>
 </body>
 </html>

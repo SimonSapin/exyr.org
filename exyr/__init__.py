@@ -9,8 +9,6 @@ from flaskext.static import StaticBuilder
 
 app = Flask(__name__)
 app.jinja_env.undefined = jinja2.StrictUndefined
-# Remove any "safe for HTML escaping" mark
-app.jinja_env.filters['unsafe'] = unicode
 
 # The atom.xml template uses url_for(..., _external=True)
 app.config['STATIC_BUILDER_BASE_URL'] = 'http://exyr.org/'
