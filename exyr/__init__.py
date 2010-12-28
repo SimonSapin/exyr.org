@@ -1,10 +1,11 @@
 import re
+import posixpath
 
 import markdown
 import jinja2
-from flask import Flask, render_template
+from flask import Flask, render_template, send_from_directory
 from flaskext.flatpages import FlatPages, pygments_style_defs
-from flaskext.static import StaticBuilder
+from flaskext.static import StaticBuilder, walk_directory
 
 
 app = Flask(__name__)
@@ -74,4 +75,20 @@ def stylesheet():
 def pages_urls():
     for page in pages:
         yield 'page', {'path': page.path}
+
+
+IMAGE_EXTENSIONS = ('.jpg', '.png')
+
+# the repr() of a tuple matches the micro-syntax used by `any`
+# http://werkzeug.pocoo.org/documentation/dev/routing.html#werkzeug.routing.AnyConverter
+@app.route('/<path:path><any%r:type>' % (IMAGE_EXTENSIONS,))
+def image(path, type):
+    return send_from_directory(pages.root, path + type)
+
+@builder.register_generator
+def images_urls():
+    for filename in walk_directory(pages.root):
+        path, extension = posixpath.splitext(filename)
+        if extension in IMAGE_EXTENSIONS:
+            yield 'image', {'path': path, 'type': extension}
 
