@@ -3,3 +3,20 @@
     <time{{ ' pubdate' if pubdate }} datetime="{{ date.isoformat() }}">
         {{- date.strftime(format) }}</time>
 {%- endmacro %}
+
+{% macro article_list(articles) %}
+{% if articles %}
+  <section class=article_list>
+  {% for page in articles %}
+    <article>
+      <h3><a href="{{ url_for('page', path=page.path) }}">
+          {{ page.title }}</a></h3>
+      <p>{{ html5_date(page.published) }}</p>
+      {% if page.summary|d %}<p>{{ page.summary }}</p>{% endif %}
+    </article>
+  {% endfor %}
+  </section>
+{% endif %}
+{% endmacro %}
+
+

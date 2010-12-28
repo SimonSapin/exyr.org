@@ -1,4 +1,4 @@
-{% extends "article_list.html" %}
+{% extends "layout.html" %}
 {% import 'utils.html' as utils %}
 
 {% block html_title %}{{ page.title }} − {{ super() }}{% endblock %}
@@ -9,10 +9,10 @@
     <header>
       <h2>{{ page.title }}</h2>
       <p>By Simon Sapin on {{ utils.html5_date(page.published) }}
-        {% if parent|d %}
-          in <a href="{{ url_for('page', path=parent.path) }}">
-            {{ parent.title }} </a>
-        {% endif %}
+        {% for tag in page.tags|d([]) %}
+          {% if loop.first %}in {% else %}, {% endif -%}
+          <a href="{{ url_for('tag', name=tag) }}">{{ tag }} </a>
+        {% endfor %}
       </p>
     </header>
     {{ page }}
@@ -27,5 +27,5 @@
   </section>
   {% endif %}
 {% endif %}
-{{ super() }}
+{{ utils.article_list(sub_pages) }}
 {% endblock %}

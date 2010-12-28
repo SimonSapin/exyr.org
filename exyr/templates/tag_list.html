@@ -1,0 +1,10 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h2>Tags</h2>
+  <ul>
+  {%- for tag in tags %}
+    <li><a href="{{ url_for('tag', name=tag) }}">{{ tag }}</a></li>
+  {%- endfor %}
+  </ul>
+{% endblock %}

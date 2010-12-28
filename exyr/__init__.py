@@ -3,7 +3,7 @@ import posixpath
 
 import markdown
 import jinja2
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_from_directory, abort
 from flaskext.flatpages import FlatPages, pygments_style_defs
 from flaskext.static import StaticBuilder, walk_directory
 
@@ -34,21 +34,32 @@ def by_date(articles):
 
 @app.route('/')
 def index():
-    latest = by_date(all_articles())
-    return render_template('article_list.html', articles=latest)
+    return render_template('all_posts.html', posts=by_date(all_articles()))
+
+
+@app.route('/tags/')
+def tags():
+    return render_template('tag_list.html', tags=sorted(set(
+        tag for a in all_articles() for tag in a.meta.get('tags', [])
+    )))
+
+@app.route('/tags/<name>')
+def tag(name):
+    articles = by_date(
+        a for a in all_articles() if name in a.meta.get('tags', [])
+    )
+    if not articles:
+        abort(404)
+    return render_template('tag.html', tag=name, posts=articles)
 
 
 @app.route('/<path:path>/')
 def page(path):
-    page = pages.get_or_404(path)
-    if '/' in path:
-        # May be None
-        parent = pages.get(path.rsplit('/', 1)[0])
-    else:
-        parent = None
-    articles = by_date(p for p in all_articles()
-                       if p.path.startswith(path + '/'))
-    return render_template('flatpage.html', **locals())
+    return render_template('flatpage.html',
+        page=pages.get_or_404(path),
+        sub_pages=by_date(p for p in all_articles()
+                          if p.path.startswith(path + '/')),
+    )
 
 
 @app.route('/feed.atom')

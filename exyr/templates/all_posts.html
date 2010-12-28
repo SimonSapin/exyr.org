@@ -1,0 +1,7 @@
+{% extends "layout.html" %}
+{% import 'utils.html' as utils %}
+
+{% block content %}
+  <h2>All posts</h2>
+  {{ utils.article_list(posts) }}
+{% endblock %}
