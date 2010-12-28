@@ -41,9 +41,14 @@ def index():
 @app.route('/<path:path>/')
 def page(path):
     page = pages.get_or_404(path)
-    sub_pages = by_date(p for p in all_articles()
-                        if p.path.startswith(path + '/'))
-    return render_template('flatpage.html', page=page, articles=sub_pages)
+    if '/' in path:
+        # May be None
+        parent = pages.get(path.rsplit('/', 1)[0])
+    else:
+        parent = None
+    articles = by_date(p for p in all_articles()
+                       if p.path.startswith(path + '/'))
+    return render_template('flatpage.html', **locals())
 
 
 @app.route('/feed.atom')

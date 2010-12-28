@@ -46,12 +46,9 @@ nav li {
     margin: 0 .3em;
 }
 
-header a {
+h1 a, nav a {
     color: inherit;
     text-decoration: none;
-}
-
-header a {
     padding: .2em .5em;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -64,7 +61,8 @@ h1 a {
     border-radius: 12px;
 }
 
-header a:hover, header a:focus, header a:active {
+nav a:hover, nav a:focus, nav a:active,
+h1 a:hover, h1 a:focus, h1 a:active {
     background: #444;
 }
 
@@ -111,15 +109,14 @@ img {
 }
 
 a {
-    color: #007;
-}
-
-a:hover {
-    text-decoration: none;
+    color: #008;
 }
 
 p {
     text-align: justify;
+}
+header p, footer p {
+    text-align: inherit;
 }
 
 .single_image {
@@ -130,10 +127,6 @@ p {
     -moz-box-shadow: 5px 5px 5px #555;
     -webkit-box-shadow: 5px 5px 5px #000;
     box-shadow: 5px 5px 5px #888;
-}
-
-header p, footer p {
-    text-align: inherit;
 }
 
 {{ pygments_style_defs('tango') }}
