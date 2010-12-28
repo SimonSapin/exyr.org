@@ -122,6 +122,16 @@ p {
     text-align: justify;
 }
 
+.single_image {
+    text-align: center;
+}
+
+.single_image img {
+    -moz-box-shadow: 5px 5px 5px #555;
+    -webkit-box-shadow: 5px 5px 5px #000;
+    box-shadow: 5px 5px 5px #888;
+}
+
 header p, footer p {
     text-align: inherit;
 }
