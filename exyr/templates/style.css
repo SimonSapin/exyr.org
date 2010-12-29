@@ -29,6 +29,12 @@ h1 {
     letter-spacing: .05em;
 }
 
+h1 a, h1 a:hover, h1 a:focus, h1 a:active {
+    color: inherit;
+    background: none;
+    text-decoration: none;
+}
+
 nav {
     background: #555;
     color: #fff;
