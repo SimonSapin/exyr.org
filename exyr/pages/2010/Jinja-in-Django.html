@@ -77,17 +77,13 @@ values in the `env.globals` dict as done above, or filters in `env.filters`.
 See [Jinja’s documentation](http://jinja.pocoo.org/api/#jinja2.Environment)
 for details.
 
-I’ve seen two main differences apart form the syntax: use
+I’ve seen two main differences apart form the syntax:
 
     :::html+jinja
-     {{ url_for('view_name') }}
-     <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
+    Use {{ url_for('view_name') }} and
+    <input type="hidden" name="csrfmiddlewaretoken" value="{{ csrf_token }}">
 
-instead of
-
-    :::html+jinja
-    {% url view_name %}
-    {% csrf_token %}
+    where in Django templates you use {% url view_name %} and {% csrf_token %}
 
 
 
