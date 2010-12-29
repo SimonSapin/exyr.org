@@ -56,7 +56,7 @@ def tags():
         for tag, count in sorted(counts.items())
     ])
 
-@app.route('/tags/<name>')
+@app.route('/tags/<name>/')
 def tag(name):
     articles = by_date(
         a for a in all_articles() if name in a.meta.get('tags', [])
@@ -64,6 +64,12 @@ def tag(name):
     if not articles:
         abort(404)
     return render_template('tag.html', tag=name, posts=articles)
+
+@builder.register_generator
+def tag_urls():
+    for article in all_articles():
+        for tag in article.meta.get('tags', []):
+            yield 'tag', {'name': tag}
 
 
 @app.route('/<path:path>/')
