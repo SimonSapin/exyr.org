@@ -2,9 +2,10 @@
 
 {% block content %}
   <h2>Tags</h2>
-  <ul>
-  {%- for tag in tags %}
-    <li><a href="{{ url_for('tag', name=tag) }}">{{ tag }}</a></li>
+  <ul id=tag_list>
+  {%- for tag, weight in tags %}
+    <li><a href="{{ url_for('tag', name=tag) }}" style="font-size: {{ 
+      weight }}%">{{ tag }}</a></li>
   {%- endfor %}
   </ul>
 {% endblock %}

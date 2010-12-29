@@ -1,5 +1,7 @@
+import math
 import re
 import posixpath
+import collections
 
 import markdown
 import jinja2
@@ -42,9 +44,18 @@ def index():
 
 @app.route('/tags/')
 def tags():
-    return render_template('tag_list.html', tags=sorted(set(
-        tag for a in all_articles() for tag in a.meta.get('tags', [])
-    )))
+    # python 2.7+
+    counts = collections.Counter(
+        tag for article in all_articles() 
+            for tag in article.meta.get('tags', [])
+    )
+            
+    return render_template('tag_list.html', tags=[
+        # count => weight: 1 => 100, 10 => 150, 100 => 200
+        (tag, int(100 + 50 * math.log10(count)))
+        # sorted alphabetically by tag name
+        for tag, count in sorted(counts.items())
+    ])
 
 @app.route('/tags/<name>')
 def tag(name):

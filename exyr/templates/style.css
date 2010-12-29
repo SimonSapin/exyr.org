@@ -15,7 +15,7 @@ body {
     font: 1.125em/1.5 Palatino, Georgia, serif;
 }
 
-header, h2, footer {
+header, h2, header p, footer p {
     text-align: center;
 }
 
@@ -23,7 +23,7 @@ h1 {
     background: #333;
     color: #fff;
     margin: 0;
-    padding: .5em;
+    padding: .2em;
     text-shadow: #000 2px 2px 5px;
     font-weight: normal;
     letter-spacing: .05em;
@@ -70,14 +70,6 @@ nav img {
     padding: 0 25px;
 }
 
-.article_list h3 {
-    margin-bottom: 0;
-}
-
-.article_list h3+p {
-    margin-top: .0em;
-}
-
 footer {
     font-size: .8em;
     padding: 0 15px;
@@ -105,11 +97,12 @@ a {
     color: #008;
 }
 
+a:hover, a:focus, a:active {
+    background: #f2f2f2;
+}
+
 p {
     text-align: justify;
-}
-header p, footer p {
-    text-align: inherit;
 }
 
 .single_image {
@@ -120,6 +113,26 @@ header p, footer p {
     -moz-box-shadow: 5px 5px 5px #555;
     -webkit-box-shadow: 5px 5px 5px #000;
     box-shadow: 5px 5px 5px #888;
+}
+
+.article_list h3 {
+    margin-bottom: 0;
+}
+
+.article_list p {
+    margin: .5em 0;
+}
+
+#tag_list {
+    list-style: none;
+    margin: 1em 0;
+    padding: 0;
+    text-align: center;
+}
+#tag_list li {
+    display: inline;
+    padding: 0;
+    margin: 0 .5em;
 }
 
 {{ pygments_style_defs('tango') }}

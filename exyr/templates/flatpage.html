@@ -9,10 +9,10 @@
     <header>
       <h2>{{ page.title }}</h2>
       <p>By Simon Sapin on {{ utils.html5_date(page.published) }}
-        {% for tag in page.tags|d([]) %}
+        {% for tag in page.tags|d([]) -%}
           {% if loop.first %}in {% else %}, {% endif -%}
-          <a href="{{ url_for('tag', name=tag) }}">{{ tag }} </a>
-        {% endfor %}
+          <a href="{{ url_for('tag', name=tag) }}">{{ tag }}</a>
+        {%- endfor %}
       </p>
     </header>
     {{ page }}
