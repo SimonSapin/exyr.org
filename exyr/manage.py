@@ -20,10 +20,16 @@ def build(serve=False):
 @manager.command
 def up(destination='hako:http/exyr.org/htdocs/'):
     """Builds and uploads the website."""
+    push = subprocess.Popen(['git', 'push'], stdout=subprocess.PIPE,
+                            stderr=subprocess.STDOUT)
+    print '### Building'
     build()
-    print 'Uploading to', destination
+    print '### Uploading to', destination
     subprocess.call(['rsync', '-Pah', '--del', builder.root + '/', destination])
-    subprocess.call(['git', 'push'])
+    print '### Pushing to github'
+    stdout, stderr = push.communicate()
+    # stdout was redirected
+    print stdout
     
 
 @manager.shell
