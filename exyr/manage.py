@@ -23,6 +23,7 @@ def up(destination='hako:http/exyr.org/htdocs/'):
     build()
     print 'Uploading to', destination
     subprocess.call(['rsync', '-Pah', '--del', builder.root + '/', destination])
+    subprocess.call(['git', 'push'])
     
 
 @manager.shell
