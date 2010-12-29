@@ -23,11 +23,10 @@ app.jinja_env.globals['pages'] = pages
 
 @app.template_filter(name='markdown')
 def my_markdown(text):
-    return jinja2.Markup(
-        markdown.markdown(text, ['codehilite'] + 2 * ['downheader'])
-    )
+    return markdown.markdown(text, ['codehilite'] + 2 * ['downheader'])
 
 app.config['FLATPAGES_HTML_RENDERER'] = my_markdown
+
 
 
 def all_articles():
