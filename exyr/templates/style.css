@@ -29,8 +29,9 @@ h1 {
     letter-spacing: .05em;
 }
 
-h1 a, h1 a:hover, h1 a:focus, h1 a:active {
-    color: inherit;
+/* `h1 a:hover` to override `a:hover` */
+h1 a, h1 a:hover, h1 a:focus, h1 a:active, nav a {
+    color: #fff;
     background: none;
     text-decoration: none;
 }
@@ -53,8 +54,6 @@ nav li {
 }
 
 nav a {
-    color: inherit;
-    text-decoration: none;
     padding: .2em .5em;
     -webkit-border-radius: 8px;
     -moz-border-radius: 8px;
@@ -76,6 +75,11 @@ nav img {
     padding: 0 25px;
 }
 
+* html #content, * html footer {
+    /* IE6 does not support max-width */
+    width: 740px;
+}
+
 footer {
     font-size: .8em;
     padding: 0 15px;
@@ -83,7 +87,7 @@ footer {
 }
 
 footer p:first-child {
-    border-top: thin dotted;
+    border-top: 1px dotted;
 }
 
 footer p {
