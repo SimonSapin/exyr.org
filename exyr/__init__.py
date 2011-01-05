@@ -103,7 +103,15 @@ def minify_css(css):
 @app.route('/style.css')
 def stylesheet():
     css = render_template('style.css', pygments_style_defs=pygments_style_defs)
-    return app.response_class(minify_css(css), mimetype='text/css')
+    css = minify_css(css)
+    # Add this after minification, would be removed otherwise.
+    css = (
+        '/*\nNon-minified version is at\n'
+        'https://github.com/SimonSapin/exyr.org'
+        '/blob/master/exyr/templates/style.css\n*/\n'
+         + css
+    )
+    return app.response_class(css, mimetype='text/css')
 
 
 @builder.register_generator
