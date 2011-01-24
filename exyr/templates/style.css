@@ -10,7 +10,7 @@ html, body {
 
 body {
     background: #fff;
-    color: #222;
+    color: #111;
     /* 18px/27px with the default of 16px */
     font: 1.125em/1.5 Palatino, Georgia, serif;
 }
@@ -20,7 +20,7 @@ header, h2, header p, footer p {
 }
 
 h1 {
-    background: #333;
+    background: {% set bg_h1 = '#123A40' %}{{ bg_h1 }};
     color: #fff;
     margin: 0;
     padding: .2em;
@@ -37,7 +37,7 @@ h1 a, h1 a:hover, h1 a:focus, h1 a:active, nav a {
 }
 
 nav {
-    background: #555;
+    background: {% set bg_nav = '#195159' %}{{ bg_nav }};
     color: #fff;
     padding: 1em;
     text-shadow: #000 1px 1px 3px;
@@ -61,7 +61,7 @@ nav a {
 }
 
 nav a:hover, nav a:focus, nav a:active {
-    background: #444;
+    background: {{ bg_h1 }};
 }
 
 nav img {
@@ -99,12 +99,20 @@ header p, time {
     font-style: italic;
 }
 
+h3 {
+    border-bottom: 1px solid {{ bg_nav }};
+}
+
+.article_list h3 {
+    border-bottom: none;
+}
+
 img {
     border: none;
 }
 
 a {
-    color: #008;
+    color: #006;
 }
 
 a:hover, a:focus, a:active {
