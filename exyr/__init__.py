@@ -1,12 +1,10 @@
 import math
 import re
-import posixpath
 
 import markdown
 import jinja2
 from flask import Flask, render_template, send_from_directory, abort
 from flaskext.flatpages import FlatPages, pygments_style_defs
-from flaskext.static import StaticBuilder, walk_directory
 
 
 app = Flask(__name__)
@@ -16,7 +14,6 @@ app.jinja_env.undefined = jinja2.StrictUndefined
 app.config['STATIC_BUILDER_BASE_URL'] = 'http://exyr.org/'
 builder = StaticBuilder(app)
 
-pages = FlatPages(app)
 app.jinja_env.globals['pages'] = pages
 
 
@@ -63,12 +60,6 @@ def tag(name):
         abort(404)
     return render_template('tag.html', tag=name, posts=articles)
 
-@builder.register_generator
-def tag_urls():
-    for article in all_articles():
-        for tag in article.meta.get('tags', []):
-            yield 'tag', {'name': tag}
-
 
 @app.route('/<path:path>/')
 def page(path):
@@ -112,12 +103,6 @@ def stylesheet():
     return app.response_class(css, mimetype='text/css')
 
 
-@builder.register_generator
-def pages_urls():
-    for page in pages:
-        yield 'page', {'path': page.path}
-
-
 IMAGE_EXTENSIONS = ('.jpg', '.png')
 
 # the repr() of a tuple matches the micro-syntax used by `any`
@@ -126,10 +111,4 @@ IMAGE_EXTENSIONS = ('.jpg', '.png')
 def image(path, type):
     return send_from_directory(pages.root, path + type)
 
-@builder.register_generator
-def images_urls():
-    for filename in walk_directory(pages.root):
-        path, extension = posixpath.splitext(filename)
-        if extension in IMAGE_EXTENSIONS:
-            yield 'image', {'path': path, 'type': extension}
 

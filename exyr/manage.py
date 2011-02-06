@@ -1,7 +1,8 @@
 import subprocess
 
 from flaskext.script import Manager, Server
-from . import app, builder
+from . import app
+from .builder import builder
 
 
 manager = Manager(app, with_default_commands=False)
@@ -34,7 +35,8 @@ def up(destination='hako:http/exyr.org/htdocs/'):
 
 @manager.shell
 def shell_context():
-    from . import app, pages, builder
+    from . import app, pages
+    from .builder import builder
     return locals()
 
 
