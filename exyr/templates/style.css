@@ -99,14 +99,6 @@ header p, time {
     font-style: italic;
 }
 
-h3 {
-    border-bottom: 1px solid {{ bg_nav }};
-}
-
-.article_list h3 {
-    border-bottom: none;
-}
-
 img {
     border: none;
 }
