@@ -27,5 +27,5 @@
   </section>
   {% endif %}
 {% endif %}
-{{ utils.article_list(sub_pages) }}
+{{ utils.article_list(sub_pages|d) }}
 {% endblock %}

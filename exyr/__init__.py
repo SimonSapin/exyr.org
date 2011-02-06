@@ -65,9 +65,16 @@ def tag(name):
 def page(path):
     return render_template('flatpage.html',
         page=pages.get_or_404(path),
-        sub_pages=by_date(p for p in all_articles()
-                          if p.path.startswith(path + '/')),
+#        sub_pages=by_date(p for p in all_articles()
+#                          if p.path.startswith(path + '/')),
     )
+
+@app.route('/<int:year>/')
+def archives(year):
+    articles = [p for p in all_articles() if p.path.startswith(str(year) + '/')]
+    if not articles:
+        abort(404)
+    return render_template('archives.html', **locals())
 
 
 @app.route('/feed.atom')
