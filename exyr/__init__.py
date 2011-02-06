@@ -4,7 +4,9 @@ import re
 import markdown
 import jinja2
 from flask import Flask, render_template, send_from_directory, abort
-from flaskext.flatpages import FlatPages, pygments_style_defs
+from flaskext.flatpages import pygments_style_defs
+
+from .public_pages import PublicPages
 
 
 app = Flask(__name__)
@@ -12,8 +14,8 @@ app.jinja_env.undefined = jinja2.StrictUndefined
 
 # The atom.xml template uses url_for(..., _external=True)
 app.config['STATIC_BUILDER_BASE_URL'] = 'http://exyr.org/'
-builder = StaticBuilder(app)
 
+pages = PublicPages(app)
 app.jinja_env.globals['pages'] = pages
 
 
