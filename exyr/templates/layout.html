@@ -41,8 +41,8 @@
   
   <footer>
     {#- See <rights/> in atom.xml too #}
-    <p>© Copyright 2010 by <a href="{{ url_for('page', path='about') 
-        }}">Simon Sapin</a>.</p>
+    <p>© Copyright {{ build_date.year }} by 
+      <a href="{{ url_for('page', path='about') }}">Simon Sapin</a>.</p>
     <p>Content licensed under a Creative Commons
       Attribution-NonCommercial-ShareAlike License.</p>
   </footer>

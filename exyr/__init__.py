@@ -1,5 +1,6 @@
 import math
 import re
+import datetime
 
 import markdown
 import jinja2
@@ -17,6 +18,7 @@ app.config['STATIC_BUILDER_BASE_URL'] = 'http://exyr.org/'
 
 pages = PublicPages(app)
 app.jinja_env.globals['pages'] = pages
+app.jinja_env.globals['build_date'] = datetime.date.today()
 
 
 @app.template_filter(name='markdown')

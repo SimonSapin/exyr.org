@@ -10,7 +10,7 @@
 		<name>Simon Sapin</name>
 	</author>
 	<rights type="html">
-		&lt;p&gt;© Copyright 2010 by Simon Sapin.&lt;/p&gt;
+		&lt;p&gt;© Copyright {{ build_date.year }} by Simon Sapin.&lt;/p&gt;
         &lt;p&gt;Content licensed under a Creative Commons
           Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
 	</rights>
