@@ -23,7 +23,9 @@ template languages into Django’s templating system. (This is even
 Below is the Django 1.2+ template loader for Jinja2.
 
 I had also posted it to
-[djangosnippets.org](http://djangosnippets.org/snippets/2063/) a while ago.
+[djangosnippets.org](http://djangosnippets.org/snippets/2063/) a while ago,
+and more recently on
+[github](https://github.com/SimonSapin/snippets/blob/master/jinja2_for_django.py).
 
     :::python
     from django.template.loader import BaseLoader
@@ -61,7 +63,8 @@ I had also posted it to
             return template, template.filename
 
 
-To use it, add the following to you `settings.py` file:
+To use it, add the following to your `settings.py` file:
+(The comma is important!)
 
     :::python
     TEMPLATE_LOADERS = (
