@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% import 'utils.html' as utils %}
 
-{% block html_title %}{{ page.title }} − {{ super() }}{% endblock %}
+{% block title %}{{ page.title }}{% endblock %}
 
 {% block content %}
 {% if page.published|d %}

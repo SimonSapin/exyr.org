@@ -1,7 +1,9 @@
 {% extends "layout.html" %}
 {% import 'utils.html' as utils %}
 
+{% block title %}Posts tagged <em>{{ tag }}</em>{% endblock %}
+
 {% block content %}
-  <h2>Posts tagged <em>{{ tag }}</em></h2>
+  <h2>{{ self.title() }}</h2>
   {{ utils.article_list(posts) }}
 {% endblock %}

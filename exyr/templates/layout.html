@@ -5,7 +5,12 @@
   <!--
     Looking for the source? See https://github.com/SimonSapin/exyr.org
   -->
-  <title>{% block html_title %}{{ self.site_title() }}{% endblock %}</title>
+  <title>
+    {%- if self.title|d and self.title() -%}
+        {{ self.title()|striptags }} −
+    {% endif -%}
+    {{ self.site_title() -}}
+  </title>
   <link rel=stylesheet href="{{ url_for('stylesheet') }}">
   <link rel=alternate href="{{ url_for('feed') }}" type="application/atom+xml"
     title="Article Feed">
