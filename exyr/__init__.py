@@ -75,7 +75,10 @@ def page(path):
 
 @app.route('/<int:year>/')
 def archives(year):
-    articles = [p for p in all_articles() if p.path.startswith(str(year) + '/')]
+    articles = by_date(
+        article for article in all_articles()
+        if article.path.startswith(str(year) + '/')
+    )
     if not articles:
         abort(404)
     return render_template('archives.html', **locals())
