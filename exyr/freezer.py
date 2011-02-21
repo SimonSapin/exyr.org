@@ -1,26 +1,26 @@
 import posixpath
 
 from . import app, pages, IMAGE_EXTENSIONS, all_articles
-from flaskext.static import StaticBuilder, walk_directory
+from flaskext.frozen import Freezer, walk_directory
 
 
-builder = StaticBuilder(app)
+freezer = Freezer(app)
 
 
-@builder.register_generator
+@freezer.register_generator
 def tags():
     for article in all_articles():
         for tag in article.meta.get('tags', []):
             yield 'tag', {'name': tag}
 
 
-@builder.register_generator
+@freezer.register_generator
 def page_urls():
     for page in pages:
         yield 'page', {'path': page.path}
 
 
-@builder.register_generator
+@freezer.register_generator
 def archives():
     for page in pages:
         if '/' in page.path:
@@ -33,7 +33,7 @@ def archives():
                 yield 'archives', {'year': year}
 
 
-@builder.register_generator
+@freezer.register_generator
 def images():
     for filename in walk_directory(pages.root):
         path, extension = posixpath.splitext(filename)

@@ -12,7 +12,7 @@ setup(
     install_requires=[
         'Flask',
         'Flask-FlatPages',
-        'Flask-Static',
+        'Frozen-Flask',
         'Flask-Script',
         'Pygments',
     ],

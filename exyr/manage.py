@@ -2,7 +2,7 @@ import subprocess
 
 from flaskext.script import Manager, Server
 from . import app
-from .builder import builder
+from .freezer import freezer
 
 
 manager = Manager(app, with_default_commands=False)
@@ -11,22 +11,22 @@ manager = Manager(app, with_default_commands=False)
 manager.add_command('run', Server())
 
 @manager.command
-def build(serve=False):
-    """Builds the static version of the website."""
-    urls = builder.build()
+def freeze(serve=False):
+    """Freezes the static version of the website."""
+    urls = freezer.freeze()
     print 'Built %i files.' % len(urls)
     if serve:
-        builder.serve()
+        freezer.serve()
 
 @manager.command
 def up(destination='hako:http/exyr.org/htdocs/'):
-    """Builds and uploads the website."""
+    """Freezes and uploads the website."""
     push = subprocess.Popen(['git', 'push'], stdout=subprocess.PIPE,
                             stderr=subprocess.STDOUT)
-    print '### Building'
-    build()
+    print '### Freezing'
+    freeze()
     print '### Uploading to', destination
-    subprocess.call(['rsync', '-Pah', '--del', builder.root + '/', destination])
+    subprocess.call(['rsync', '-Pah', '--del', freezer.root + '/', destination])
     print '### Pushing to github'
     stdout, stderr = push.communicate()
     # stdout was redirected
@@ -36,7 +36,7 @@ def up(destination='hako:http/exyr.org/htdocs/'):
 @manager.shell
 def shell_context():
     from . import app, pages
-    from .builder import builder
+    from .freezer import freezer
     return locals()
 
 
