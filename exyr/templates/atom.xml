@@ -14,7 +14,7 @@
         &lt;p&gt;Content licensed under a Creative Commons
           Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
 	</rights>
-	{% for article, updated in articles %}
+	{% for updated, article in articles %}
 	<entry>
 		<id>{{ url_for('page', path=article.path, _external=True) }}</id>
 		<title>{{ article.title }}</title>

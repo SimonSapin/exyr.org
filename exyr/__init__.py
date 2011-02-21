@@ -86,10 +86,15 @@ def archives(year):
 
 @app.route('/feed.atom')
 def feed():
-    articles = by_date(all_articles())[:10]
-    # with `modified`, but defaults to `published`
-    articles = [(a, a.meta.get('modified', a['published'])) for a in articles]
-    feed_updated = max(updated for article, updated in articles)
+    articles = sorted(
+        (
+            # with `modified`, but defaults to `published`
+            (article.meta.get('modified', article['published']), article)
+            for article in all_articles()
+        ),
+        reverse=True
+    )[:10]
+    feed_updated, _ = articles[0]
     xml = render_template('atom.xml', **locals())
     return app.response_class(xml, mimetype='application/atom+xml')
     
