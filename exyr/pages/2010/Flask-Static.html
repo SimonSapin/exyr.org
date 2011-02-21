@@ -1,6 +1,7 @@
 title: "Flask-Static: yet another static website generator"
 public: true
 published: 2010-12-28
+modified: 2011-02-21
 tags:
     - web-development
     - flask
@@ -12,6 +13,8 @@ summary: >
     snapshot of a Flask application as static files.
 
     
+**Update 2011-02-21:** Flask-Static has been renamed *Frozen-Flask*.
+
 # Why static?
 
 The modern way of doing web development is to write an application
@@ -48,6 +51,7 @@ website generator. It comes as two extensions for the
 [Flask](http://flask.pocoo.org/) micro-framework:
 **Flask-Static** and **Flask-FlatPages**.
 
+**Update 2011-02-21:** Flask-Static has been renamed *Frozen-Flask*.
 
 # Why Flask-Static?
 
@@ -55,7 +59,7 @@ So, why not pick one of these existing systems? I have to admit there is a bit
 of NIH here, but there are other reasons:
 
 These systems are frameworks with their own conventions and assumptions.
-They may decide that one text file = one page, or invent new concepts to
+They may decide that one text file equals one page, or invent new concepts to
 give back a bit of flexibility. ([Hyde](http://ringce.com/hyde) has
 “media processors” that allow eg. to minify CSS.)
 
@@ -90,10 +94,10 @@ using [Pygments](http://pygments.org/), but can be configured to something
 else.
 
 
-# Flask-Static
+# <del>Flask-Static</del> <ins>Frozen-Flask</ins>
 
-* [Documentation](http://packages.python.org/Flask-Static/)
-* [Code](https://github.com/SimonSapin/Flask-Static)
+* [Documentation](http://packages.python.org/Frozen-Flask/)
+* [Code](https://github.com/SimonSapin/Frozen-Flask)
 
 Flask-Static builds a static snapshot of a Flask application.
 It takes a list of URLs, simulates requests to the application, and save the
