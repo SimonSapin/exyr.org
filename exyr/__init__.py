@@ -14,7 +14,7 @@ app = Flask(__name__)
 app.jinja_env.undefined = jinja2.StrictUndefined
 
 # The atom.xml template uses url_for(..., _external=True)
-app.config['STATIC_BUILDER_BASE_URL'] = 'http://exyr.org/'
+app.config['FREEZER_BASE_URL'] = 'http://exyr.org/'
 
 pages = PublicPages(app)
 app.jinja_env.globals['pages'] = pages
