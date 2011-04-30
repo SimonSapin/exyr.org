@@ -56,7 +56,8 @@ Of course this is not new. To Unix gurus out there, `select()` is as obvious as
 fresh air and file descriptors. I just happen to have learned about it recently.
 Indeed, if you’re just waiting on two files without timers (or with a contsant
 timeout), plain `select()` is much simpler and thus better. There are also a
-few systems such as the [Twisted framework](http://www.twistedmatrix.com/)
+few systems such as [asynchat](http://docs.python.org/library/asynchat.html)
+or the [Twisted framework](http://www.twistedmatrix.com/)
 built on this kind of techniques, but they often are much more network-oriented
 than what I need for this project.
 

@@ -115,6 +115,10 @@ p {
     text-align: justify;
 }
 
+code {
+    background: #eee;
+}
+
 .single_image {
     text-align: center;
 }
