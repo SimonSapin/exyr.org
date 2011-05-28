@@ -21,7 +21,7 @@ run:
 Now, let’s read the server’s clock across the network with SSH and see how
 much time it takes (the ``time`` command does that.)
 
-    time ssh hako date +%FT%T.%N
+    time ssh hako date +%F\\ %T.%N
 
 This time is the upper bound for the error of this method. Most of it is
 network latency, with several round-trips to establish the SSH connection.
@@ -30,14 +30,16 @@ super-accurate: NTP can do much better but it was designed to compensate for
 network latency, while we’re not compensating at all. Yet this is still much
 better than keeping a one minute drift.
 
-On Linux the system clock is set with ``date -s``. ``+%FT%T.%N`` above is
-the format we want for the date. It was chosen to be standard enough to be
-recognized by ``date -s``, and to include sub-second precision.
+On Linux the system clock is set with ``date -s``. ``+%F\\ %T.%N`` above is
+the format we want for the date. The double slash is transformed into one slash
+by the local shell, and that slash protects the space on the server’s shell.
+The format was chosen to include sub-second precision and be standard enough
+to be recognized by ``date -s``.
 
 Once everything looks good, actually set the system clock:
 
     :::sh
-    sudo date -s $(ssh hako date +%FT%T.%N)
+    sudo date -s "$(ssh hako date +%F\\ %T.%N)"
 
 On Linux the system clock is handled by the kernel and is completely separated
 from the hardware clock. The hardware clock is usually read on boot and set
