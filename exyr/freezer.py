@@ -8,36 +8,32 @@ freezer = Freezer(app)
 
 
 @freezer.register_generator
-def tags():
+def tag():
     for article in all_articles():
         for tag in article.meta.get('tags', []):
-            yield 'tag', {'name': tag}
+            yield {'name': tag}
 
 
 @freezer.register_generator
-def page_urls():
+def page():
     for page in pages:
-        yield 'page', {'path': page.path}
+        yield {'path': page.path}
 
 
 @freezer.register_generator
 def archives():
     for page in pages:
         if '/' in page.path:
-            first = page.path.split('/', 1)[0]
-            try:
-                year = int(first)
-            except ValueError:
-                pass
-            else:
-                yield 'archives', {'year': year}
+            first = page.path.split('/')[0]
+            if first.isdigit():
+                yield {'year': first}
 
 
 @freezer.register_generator
-def images():
+def image():
     for filename in walk_directory(pages.root):
         path, extension = posixpath.splitext(filename)
         if extension in IMAGE_EXTENSIONS:
-            yield 'image', {'path': path, 'type': extension}
+            yield {'path': path, 'type': extension}
 
 
