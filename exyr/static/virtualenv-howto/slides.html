@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+<title>virtualenv HOWTO</title>
+
+<section>
+    <h1>virtualenv HOWTO</h1>
+    <p>
+        An introduction to distutils/pip and virtualenv to manage
+        dependencies in Python.
+    </p>
+    <footer>
+        <a href="http://exyr.org/" target=_blank>Simon Sapin</a>,
+        <time pubdate datetime=2011-06-01>June 2011</time>,
+        <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/"
+           rel=license target=_blank>CC BY-NC-SA</a>.
+    </footer>
+</section>
+
+<section>
+    <h2>Unix basics</h2>
+    <p>
+        The <code>$PATH</code> <em>environment variable</em> contains a list
+        of directories where executable programs are searched for.
+    </p>
+    <pre>
+$ <kbd>ls</kbd>
+<samp>slides.html</samp>
+$ <kbd>echo $PATH</kbd>
+<samp>/usr/local/bin:/usr/bin:<mark>/bin</mark>:<del>…</del></samp>
+$ <kbd>which ls</kbd>
+<samp><mark>/bin</mark>/ls</samp>
+$ <kbd>/bin/ls</kbd>
+<samp>slides.html</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>Unix basics: shebang</h2>
+    <p>
+        When an executable program start with <code>#!</code> (called
+        <em>Shebang</em>) the OS will actually append the program name to
+        the rest of the line and execute that.
+    </p>
+    <pre>
+$ <kbd>which meld</kbd>
+<samp>/usr/bin/meld</samp>
+$ <kbd>head -n 1 /usr/bin/meld</kbd>
+<samp>#!/usr/bin/python</samp>
+$ <kbd>meld &</kbd>
+$ <kbd>pgrep -l meld</kbd>
+<samp>24666 /usr/bin/python /usr/bin/meld</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>Unix basics: shebang, continued</h2>
+    <p>
+        The shebang must be an absolute path to an executable, optionally with
+        parameters.
+    </p>
+    <p>
+        <code>/usr/bin/env</code> can search <code>$PATH</code>
+        like shells do.
+    </p>
+
+    <pre>
+$ <kbd>head -n 1 /usr/bin/ipython</kbd>
+<samp>#!/usr/bin/env python</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>Python basics</h2>
+    <p>
+        <code>sys.path</code> is a list of directories where modules are
+        searched for when importing.
+    </p>
+    <pre>
+>>> <kbd>import sys, <mark class=b>pprint</mark></kbd>
+>>> <kbd>pprint.pprint(sys.path)</kbd>
+<samp>[<mark class=a>''</mark>,
+ '<mark>/usr/lib/python2.6</mark>',
+ '/usr/lib/python2.6/lib-dynload',
+ '/home/simon/.local/lib/python2.6/site-packages',
+ '/usr/lib/python2.6/dist-packages',<del> …</del>]</samp>
+>>> <kbd>pprint.__file__</kbd>
+<samp>'<mark>/usr/lib/python2.6</mark>/<mark class=b>pprint</mark>.pyc'</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>virtualenv</h2>
+    <p>
+        Give the <code>virtualenv</code> command a directory name to create
+        a new environment.
+    </p>
+    <pre>
+$ <kbd>virtualenv ./test-env</kbd>
+<samp>New python executable in ./test-env/bin/python<del>…</del></samp>
+$ <kbd>ls test-env</kbd>
+<samp>bin  include  lib</samp>
+$ <kbd>ls test-env/bin</kbd>
+<samp>activate  easy_install  pip  python</samp><del>  …</del>
+$ <kbd>head -n 1 test-env/bin/pip</kbd>
+<samp>#!/home/simon/test-env/bin/python</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>virtualenv: activate</h2>
+    <pre>
+$ <kbd>echo $PATH</kbd>
+<samp>/usr/local/bin:<mark>/usr/bin</mark>:/bin:<del>…</del></samp>
+$ <kbd>which python</kbd>
+<samp><mark>/usr/bin</mark>/python</samp></pre>
+    <p>
+        Run the <code>activate</code> script with the
+        <code>source</code> command (also <code>.</code>) to add the
+        environment to <code>$PATH</code>.
+    </p>
+    <pre>
+$ <kbd>. test-env/bin/activate</kbd>
+(test-env)$ <kbd>echo $PATH</kbd>
+<samp><mark class=b>/home/simon/test-env/bin</mark>:/usr/local/bin:<mark>/usr/bin</mark>:<del>…</del></samp>
+(test-env)$ <kbd>which python</kbd>
+<samp><mark class=b>/home/simon/test-env/bin</mark>/python</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>pip: installing packages</h2>
+    <p>
+        <code>pip</code> can download and install Python packages and their
+        dependencies in a virtualenv, without polluting the system or being
+        root.
+    </p>
+    <pre>
+(test-env)$ <kbd>pip install Frozen-Flask</kbd>
+<samp>Downloading/unpacking Frozen-Flask<del>…</del>
+Downloading/unpacking Flask (from Frozen-Flask)<del>…</del>
+Downloading/unpacking Werkzeug>=0.6.1 (from Flask→Frozen-Flask)<del>…</del>
+Downloading/unpacking Jinja2>=2.4 (from Flask→Frozen-Flask)<del>…</del>
+Successfully installed Frozen-Flask Flask Werkzeug Jinja2
+</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>virtualenv: <code>sys.path</code></h2>
+    <p>
+        The environment’s <code>python</code> automatically has its
+        <code>sys.path</code> changed:
+    </p>
+    <pre>
+(test-env)$ <kbd>python</kbd>
+>>> <kbd>import sys, pprint</kbd>
+>>> <kbd>pprint.pprint(sys.path)</kbd>
+<samp>['',
+ '/home/simon/test-env/lib/python2.6',
+ '/home/simon/test-env/lib/python2.6/site-packages',
+ '/usr/lib/python2.6',
+ '/usr/lib/python2.6/dist-packages', <del>…</del>]</samp>
+>>> <kbd>import flask</kbd>
+>>> <kbd>flask.__file__</kbd>
+<samp>'/home/simon/test-env/lib/python2.6/site-packages/flask/__init__.pyc'</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>Trick #1: <code>activate</code> and bash history</h2>
+</section>
+
+<section>
+    <h2>Trick #2: <code>/usr/bin/env</code> and virtualenvs</h2>
+</section>
+
+<section>
+    <h2>Trick #3: pip download cache</h2>
+</section>
+
+
+<style>
+  html { background-color: black; }
+  body {background-color: white;}
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section {
+      font-family: sans-serif;
+      font-size: 2em;
+  }
+  h1, h2, h3 {
+      margin: 0 0 .5em;
+      text-align: center;
+  }
+  h1 {
+      margin: 1em 0;
+  }
+  ul {
+      margin-left: 200px;
+  }
+  p { text-align: justify }
+  pre {
+    font-size: .9em;
+    white-space: pre-wrap;
+  }
+  kbd { color: #007020 }
+  samp { color: #333 }
+  pre mark { color: inherit; background: #ffc; }
+  pre mark.a { background: #dfc; }
+  pre mark.b { background: #fdc; }
+  code { background: #eee }
+  del { text-decoration: none; color: red }
+  a { color: #028; }
+  a:hover {text-decoration: none;}
+  footer { position: absolute; bottom: 50px; right: 50px; }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+      -moz-transition: left 300ms linear 0s;
+      -webkit-transition: left 300ms linear 0s;
+      -o-transition: left 300ms linear 0s;
+      -ms-transition: left 300ms linear 0s;
+      transition: left 300ms linear 0s;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150% }
+</style>
+
+
+<!-- {{{{ *****************  DZSlides CORE 2.0b1 *************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+<!-- *********************************************************************** -->
+
+<!-- This block of code is not supposed to be edited, but if you want to change the behavior of the slides, feel free to hack it ;) -->
+
+<!-- Default Style -->
+<style>
+  details {display: none;}
+  html, body {
+    overflow: hidden;
+    margin: 0; padding: 0;
+  }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+  }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 740px;
+    height: 560px;
+    padding: 20px 30px;
+  }
+  section[aria-selected] { pointer-events: auto;}
+  body {display: none}
+  body.loaded {display: block}
+</style>
+
+<script>
+  var friendWindows = [];
+  var idx = 1;
+  var slides;
+
+  /* main() */
+
+  window.onload = function() {
+    slides = document.querySelectorAll("body > section");
+    onhashchange();
+    setSlide();
+    document.body.className = "loaded";
+    onresize();
+  }
+
+  /* Handle keys */
+
+  window.onkeydown = function(e) {
+    // Don't intercept keyboard shortcuts
+    if (e.altKey || e.ctrlKey || e.metaKey || e.shiftKey) {
+      return;
+    }
+    if ( e.keyCode == 37 // left arrow
+      || e.keyCode == 33 // page up
+    ) {
+      e.preventDefault();
+      back();
+    }
+    if ( e.keyCode == 39 // right arrow
+      || e.keyCode == 34 // page down
+    ) {
+      e.preventDefault();
+      forward();
+    }
+
+    if ( e.keyCode == 32) { // space
+        e.preventDefault();
+        toggleContent();
+    }
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  window.onresize = function() {
+    var sx = document.body.clientWidth / window.innerWidth;
+    var sy = document.body.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+    document.body.style.MozTransform = transform;
+    document.body.style.WebkitTransform = transform;
+    document.body.style.OTransform = transform;
+    document.body.style.msTransform = transform;
+    document.body.style.transform = transform;
+  }
+  function getDetails(idx) {
+    var s = document.querySelector("section:nth-of-type("+ idx +")");
+    var d = s.querySelector("details");
+    return d?d.innerHTML:"";
+  }
+  window.onmessage = function(e) {
+    msg = e.data;
+    win = e.source;
+    if (msg === "register") {
+      friendWindows.push(win);
+      win.postMessage(JSON.stringify({method: "registered", title: document.title, count: slides.length}), document.location);
+      win.postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), document.location);
+      return;
+    }
+    if (msg === "back") back();
+    if (msg === "forward") forward();
+    if (msg === "toggleContent") toggleContent();
+    // setSlide(42)
+    var r = /setSlide\((\d+)\)/.exec(msg);
+    if (r) {
+        idx = r[1];
+        setSlide();
+    }
+  }
+
+  /* If a Video is present in this new slide, play it.
+     If a Video is present in the previous slide, stop it. */
+
+  function toggleContent() {
+    var s = document.querySelector("section[aria-selected]");
+    if (s) {
+        var video = s.querySelector("video");
+        if (video) {
+            if (video.ended || video.paused) {
+                video.play();
+            } else {
+                video.pause();
+            }
+        }
+    }
+  }
+
+  /* If the user change the slide number in the URL bar, jump
+     to this slide. */
+
+  window.onhashchange = function(e) {
+    var newidx = ~~window.location.hash.split("#")[1];
+    if (!newidx) newidx = 1;
+    if (newidx == idx) return;
+    idx = newidx;
+    setSlide();
+  }
+
+  /* Slide controls */
+
+  function back() {
+    if (idx == 1) return;
+    idx--;
+    setSlide();
+  }
+  function forward() {
+    if (idx >= slides.length) return;
+    idx++;
+    setSlide();
+  }
+  function setSlide() {
+    var old = document.querySelector("section[aria-selected]");
+    var next = document.querySelector("section:nth-of-type("+ idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.querySelector("video");
+      if (video) { video.pause(); }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      var video = next.querySelector("video");
+      if (video) { video.play(); }
+    } else {
+      console.warn("No such slide: " + idx);
+      idx = 0;
+      for (var i = 0; i < slides.length; i++) {
+          if (slides[i].hasAttribute("aria-selected")) {
+              idx = i + 1;
+          }
+      }
+    }
+    window.location.hash = idx;
+    for (var i = 0; i < friendWindows.length; i++) {
+        friendWindows[i].postMessage(JSON.stringify({method: "newslide", details: getDetails(idx), idx: idx}), document.location);
+    }
+  }
+</script>
+<!-- vim: set fdm=marker: }}} -->
