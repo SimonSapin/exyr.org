@@ -5,7 +5,8 @@
 <section>
     <h1>virtualenv HOWTO</h1>
     <p>
-        An introduction to distutils/pip and virtualenv to manage
+        An introduction to distutils/pip and <a target=_blank
+        href="http://www.virtualenv.org/">virtualenv</a> to manage
         dependencies in Python.
     </p>
     <footer>
@@ -79,10 +80,10 @@
         >>> <kbd>import sys, <mark class=b>pprint</mark></kbd>
         >>> <kbd>pprint.pprint(sys.path)</kbd>
         <samp>[<mark class=a>''</mark>,
-         '<mark>/usr/lib/python2.6</mark>',
-         '/usr/lib/python2.6/lib-dynload',
-         '/home/simon/.local/lib/python2.6/site-packages',
-         '/usr/lib/python2.6/dist-packages',<del> …</del>]</samp>
+         '<mark>/usr/lib/python2.6</mark>',
+         '/usr/lib/python2.6/lib-dynload',
+         '/home/simon/.local/lib/python2.6/site-packages',
+         '/usr/lib/python2.6/dist-packages',<del> …</del>]</samp>
         >>> <kbd>pprint.__file__</kbd>
         <samp>'<mark>/usr/lib/python2.6</mark>/<mark class=b>pprint</mark>.pyc'</samp>
     </pre>
@@ -163,10 +164,10 @@
         >>> <kbd>import sys, pprint</kbd>
         >>> <kbd>pprint.pprint(sys.path)</kbd>
         <samp>['',
-         '/home/simon/test-env/lib/python2.6',
-         '<mark>/home/simon/test-env/lib/python2.6/site-packages</mark>',
-         '/usr/lib/python2.6',
-         '/usr/lib/python2.6/dist-packages', <del>…</del>]</samp>
+         '/home/simon/test-env/lib/python2.6',
+         '<mark>/home/simon/test-env/lib/python2.6/site-packages</mark>',
+         '/usr/lib/python2.6',
+         '/usr/lib/python2.6/dist-packages', <del>…</del>]</samp>
         >>> <kbd>import flask</kbd>
         >>> <kbd>flask.__file__</kbd>
         <samp>'/home/simon/test-env/lib/python2.6/site-packages/flask/__init__.pyc'</samp>
@@ -278,48 +279,84 @@
 <section>
     <h2>Trick #4: virtualenvwrapper</h2>
     <p>
-        virtualenvwrapper manages virtualenvs for you.
+        <a href="http://www.doughellmann.com/projects/virtualenvwrapper/"
+            target=_blank>virtualenvwrapper</a> manages virtualenvs for you.
     </p>
     <ul>
         <li><kbd>mkvirtualenv <em>name</em></kbd> creates and activates a new environment
         <li><kbd>lsvirtualenv</kbd> list available environments
         <li><kbd>workon <em>name</em></kbd> activates
         <li><kbd>rmvirtualenv <em>name</em></kbd> removes
+        <li>Also has hooks to run custom code on any operation, tab-completion
+            on environment names, …
     </ul>
 </section>
 
 
 <style>
-  html { background-color: black; }
-  body {background-color: white;}
+  html { background: black; }
+  body {
+      background: #eef2f2;
+      color: #334;
+      font-family: sans-serif;
+      font-size: 1.8em;
+  }
   /* A section is a slide. It's size is 800x600, and this will never change */
   section {
-      font-family: sans-serif;
-      font-size: 2em;
   }
   h1, h2, h3 {
-      margin: 0 0 .5em;
       text-align: center;
   }
-  h1 {
-      margin: 1em 0;
+  h1, h2 { font-size: 1.3em; }
+  section > *:first-child {
+      margin: 0 -40px 30px;
+      padding: .5em;
+      color: white;
+      background: rgba(56, 58, 71, 0.9);
+      border-bottom: 3px solid #fd9105;
+      border-bottom-right-radius: 200% 15px;
+      border-bottom-left-radius: 200% 15px;
+      box-shadow: #999 0 2px 5px;
   }
+  section > h1:first-child {
+      margin-bottom: 2em;
+  }
+  
+  /* Compensate for smaller monospace text at the same font-size */ 
+  code { font-size: 1.2em }
   p { text-align: justify }
   pre {
-    font-size: .9em;
-    white-space: pre-line;
+      font-size: .9em;
+      white-space: pre-line;
+      background: rgba(56, 58, 71, 0.1);
+      color: #555;
+      border-left: 6px solid #FD9105;
+      box-shadw: 2px 2px 2px rgba(0, 0, 0, 0.4);
+      -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+      -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.4);
+      border-radius: 1em;
+      margin: .5em 0;
+      padding: .5em 1em;
   }
-  kbd { color: #072 }
-  kbd.file { color: #055 }
-  samp { color: #333 }
+  kbd { color: #061 }
+  kbd.file { color: #054 }
+  samp { color: #000 }
   pre mark { color: inherit; background: #ffc; }
   pre mark.a { background: #dfc; }
   pre mark.b { background: #fdc; }
-  code, kbd { background: #eee }
+  code, kbd {
+    background: #fff;
+    font-family: monospace;
+  }
+  section > *:first-child code {
+    background: #333;
+    background: rgba(0, 0, 0, 0.2);
+  }
   pre kbd { background: none }
   del { text-decoration: none; color: red }
   a { color: #028; }
   a:hover {text-decoration: none;}
+  li { margin-bottom: .5em }
   footer { position: absolute; bottom: 50px; right: 50px; }
 
   /* Transition effect */
@@ -328,11 +365,13 @@
      https://developer.mozilla.org/en/CSS/CSS_transitions
      How to use CSS3 Transitions: */
   section {
-      -moz-transition: left 300ms linear 0s;
-      -webkit-transition: left 300ms linear 0s;
-      -o-transition: left 300ms linear 0s;
-      -ms-transition: left 300ms linear 0s;
-      transition: left 300ms linear 0s;
+    /*
+      -moz-transition: left 400ms linear 0s;
+      -webkit-transition: left 400ms linear 0s;
+      -o-transition: left 400ms linear 0s;
+      -ms-transition: left 400ms linear 0s;
+      transition: left 400ms linear 0s;
+    */
   }
 
   /* Before */
@@ -367,9 +406,9 @@
   section {
     position: absolute;
     pointer-events: none;
-    width: 740px;
-    height: 560px;
-    padding: 20px 30px;
+    width: 720px;
+    height: 100%;
+    padding: 0 40px;
   }
   section[aria-selected] { pointer-events: auto;}
   body {display: none}
