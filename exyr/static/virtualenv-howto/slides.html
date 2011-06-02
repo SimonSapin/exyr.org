@@ -23,14 +23,14 @@
         of directories where executable programs are searched for.
     </p>
     <pre>
-$ <kbd>ls</kbd>
-<samp>slides.html</samp>
-$ <kbd>echo $PATH</kbd>
-<samp>/usr/local/bin:/usr/bin:<mark>/bin</mark>:<del>…</del></samp>
-$ <kbd>which ls</kbd>
-<samp><mark>/bin</mark>/ls</samp>
-$ <kbd>/bin/ls</kbd>
-<samp>slides.html</samp>
+        $ <kbd>ls</kbd>
+        <samp>slides.html</samp>
+        $ <kbd>echo $PATH</kbd>
+        <samp>/usr/local/bin:/usr/bin:<mark>/bin</mark>:<del>…</del></samp>
+        $ <kbd>which ls</kbd>
+        <samp><mark>/bin</mark>/ls</samp>
+        $ <kbd>/bin/ls</kbd>
+        <samp>slides.html</samp>
     </pre>
 </section>
 
@@ -42,13 +42,13 @@ $ <kbd>/bin/ls</kbd>
         the rest of the line and execute that.
     </p>
     <pre>
-$ <kbd>which meld</kbd>
-<samp>/usr/bin/meld</samp>
-$ <kbd>head -n 1 /usr/bin/meld</kbd>
-<samp>#!/usr/bin/python</samp>
-$ <kbd>meld &</kbd>
-$ <kbd>pgrep -l meld</kbd>
-<samp>24666 /usr/bin/python /usr/bin/meld</samp>
+        $ <kbd>which meld</kbd>
+        <samp>/usr/bin/meld</samp>
+        $ <kbd>head -n 1 /usr/bin/meld</kbd>
+        <samp>#!/usr/bin/python</samp>
+        $ <kbd>meld &</kbd>
+        $ <kbd>pgrep -l meld</kbd>
+        <samp>24666 <mark>/usr/bin/python /usr/bin/meld</mark></samp>
     </pre>
 </section>
 
@@ -64,8 +64,8 @@ $ <kbd>pgrep -l meld</kbd>
     </p>
 
     <pre>
-$ <kbd>head -n 1 /usr/bin/ipython</kbd>
-<samp>#!/usr/bin/env python</samp>
+        $ <kbd>head -n 1 /usr/bin/ipython</kbd>
+        <samp>#!/usr/bin/env python</samp>
     </pre>
 </section>
 
@@ -76,15 +76,15 @@ $ <kbd>head -n 1 /usr/bin/ipython</kbd>
         searched for when importing.
     </p>
     <pre>
->>> <kbd>import sys, <mark class=b>pprint</mark></kbd>
->>> <kbd>pprint.pprint(sys.path)</kbd>
-<samp>[<mark class=a>''</mark>,
- '<mark>/usr/lib/python2.6</mark>',
- '/usr/lib/python2.6/lib-dynload',
- '/home/simon/.local/lib/python2.6/site-packages',
- '/usr/lib/python2.6/dist-packages',<del> …</del>]</samp>
->>> <kbd>pprint.__file__</kbd>
-<samp>'<mark>/usr/lib/python2.6</mark>/<mark class=b>pprint</mark>.pyc'</samp>
+        >>> <kbd>import sys, <mark class=b>pprint</mark></kbd>
+        >>> <kbd>pprint.pprint(sys.path)</kbd>
+        <samp>[<mark class=a>''</mark>,
+         '<mark>/usr/lib/python2.6</mark>',
+         '/usr/lib/python2.6/lib-dynload',
+         '/home/simon/.local/lib/python2.6/site-packages',
+         '/usr/lib/python2.6/dist-packages',<del> …</del>]</samp>
+        >>> <kbd>pprint.__file__</kbd>
+        <samp>'<mark>/usr/lib/python2.6</mark>/<mark class=b>pprint</mark>.pyc'</samp>
     </pre>
 </section>
 
@@ -95,36 +95,43 @@ $ <kbd>head -n 1 /usr/bin/ipython</kbd>
         a new environment.
     </p>
     <pre>
-$ <kbd>virtualenv ./test-env</kbd>
-<samp>New python executable in ./test-env/bin/python<del>…</del></samp>
-$ <kbd>ls test-env</kbd>
-<samp>bin  include  lib</samp>
-$ <kbd>ls test-env/bin</kbd>
-<samp>activate  easy_install  pip  python</samp><del>  …</del>
-$ <kbd>head -n 1 test-env/bin/pip</kbd>
-<samp>#!/home/simon/test-env/bin/python</samp>
+        $ <kbd>virtualenv ./test-env</kbd>
+        <samp>New python executable in ./test-env/bin/python<del>…</del></samp>
+        $ <kbd>ls test-env</kbd>
+        <samp>bin  include  lib</samp>
+        $ <kbd>ls test-env/bin</kbd>
+        <samp>activate  easy_install  pip  python</samp><del>  …</del>
+        $ <kbd>head -n 1 test-env/bin/pip</kbd>
+        <samp>#!/home/simon/test-env/bin/python</samp>
     </pre>
 </section>
 
 <section>
     <h2>virtualenv: activate</h2>
-    <pre>
-$ <kbd>echo $PATH</kbd>
-<samp>/usr/local/bin:<mark>/usr/bin</mark>:/bin:<del>…</del></samp>
-$ <kbd>which python</kbd>
-<samp><mark>/usr/bin</mark>/python</samp></pre>
+<!--    <pre>-->
+<!--$ <kbd>echo $PATH</kbd>-->
+<!--<samp>/usr/local/bin:<mark>/usr/bin</mark>:/bin:<del>…</del></samp>-->
+<!--$ <kbd>which python</kbd>-->
+<!--<samp><mark>/usr/bin</mark>/python</samp></pre>-->
     <p>
         Run the <code>activate</code> script with the
         <code>source</code> command (also <code>.</code>) to add the
         environment to <code>$PATH</code>.
     </p>
     <pre>
-$ <kbd>. test-env/bin/activate</kbd>
-(test-env)$ <kbd>echo $PATH</kbd>
-<samp><mark class=b>/home/simon/test-env/bin</mark>:/usr/local/bin:<mark>/usr/bin</mark>:<del>…</del></samp>
-(test-env)$ <kbd>which python</kbd>
-<samp><mark class=b>/home/simon/test-env/bin</mark>/python</samp>
+        $ <kbd>. test-env/bin/activate</kbd>
+        (test-env)$ <kbd>echo $PATH</kbd>
+        <samp><mark class=b>/home/simon/test-env/bin</mark>:/usr/local/bin:<mark>/usr/bin</mark>:<del>…</del></samp>
+        (test-env)$ <kbd>which python</kbd>
+        <samp><mark class=b>/home/simon/test-env/bin</mark>/python</samp>
+        (test-env)$ <kbd>deactivate</kbd>
+        $
     </pre>
+    <p>
+        <code>activate</code> is for convenience only. Using
+        <code>test-env/bin/python</code> in a shell or a shebang (like pip does)
+        would Just Work™.
+    </p>
 </section>
 
 <section>
@@ -135,13 +142,13 @@ $ <kbd>. test-env/bin/activate</kbd>
         root.
     </p>
     <pre>
-(test-env)$ <kbd>pip install Frozen-Flask</kbd>
-<samp>Downloading/unpacking Frozen-Flask<del>…</del>
-Downloading/unpacking Flask (from Frozen-Flask)<del>…</del>
-Downloading/unpacking Werkzeug>=0.6.1 (from Flask→Frozen-Flask)<del>…</del>
-Downloading/unpacking Jinja2>=2.4 (from Flask→Frozen-Flask)<del>…</del>
-Successfully installed Frozen-Flask Flask Werkzeug Jinja2
-</samp>
+        (test-env)$ <kbd>pip install Frozen-Flask</kbd>
+        <samp>Downloading/unpacking Frozen-Flask<del>…</del>
+        Downloading/unpacking Flask (from Frozen-Flask)<del>…</del>
+        Downloading/unpacking Werkzeug>=0.6.1 (from Flask→Frozen-Flask)<del>…</del>
+        Downloading/unpacking Jinja2>=2.4 (from Flask→Frozen-Flask)<del>…</del>
+        Successfully installed Frozen-Flask Flask Werkzeug Jinja2
+        </samp>
     </pre>
 </section>
 
@@ -152,30 +159,133 @@ Successfully installed Frozen-Flask Flask Werkzeug Jinja2
         <code>sys.path</code> changed:
     </p>
     <pre>
-(test-env)$ <kbd>python</kbd>
->>> <kbd>import sys, pprint</kbd>
->>> <kbd>pprint.pprint(sys.path)</kbd>
-<samp>['',
- '/home/simon/test-env/lib/python2.6',
- '/home/simon/test-env/lib/python2.6/site-packages',
- '/usr/lib/python2.6',
- '/usr/lib/python2.6/dist-packages', <del>…</del>]</samp>
->>> <kbd>import flask</kbd>
->>> <kbd>flask.__file__</kbd>
-<samp>'/home/simon/test-env/lib/python2.6/site-packages/flask/__init__.pyc'</samp>
+        (test-env)$ <kbd>python</kbd>
+        >>> <kbd>import sys, pprint</kbd>
+        >>> <kbd>pprint.pprint(sys.path)</kbd>
+        <samp>['',
+         '/home/simon/test-env/lib/python2.6',
+         '<mark>/home/simon/test-env/lib/python2.6/site-packages</mark>',
+         '/usr/lib/python2.6',
+         '/usr/lib/python2.6/dist-packages', <del>…</del>]</samp>
+        >>> <kbd>import flask</kbd>
+        >>> <kbd>flask.__file__</kbd>
+        <samp>'/home/simon/test-env/lib/python2.6/site-packages/flask/__init__.pyc'</samp>
     </pre>
 </section>
 
 <section>
+    <h2><code>setup.py</code>: describe your dependencies</h2>
+    <p>
+        Add a <code>setup.py</code> file to your own projects to describe
+        their dependencies:
+    </p>
+    <pre>
+        (test-env)$ <kbd>mkdir -p test-project/myapp</kbd>
+        (test-env)$ <kbd>touch test-project/myapp/__init__.py</kbd>
+        (test-env)$ <kbd>cat > test-project/setup.py</kbd>
+        <kbd class=file>from setuptools import setup, find_packages
+        setup(
+            name='MyApp',
+            packages=find_packages(),
+            <mark>install_requires=["Flask", "docutils"]</mark>)</kbd>
+    </pre>
+</section>
+
+<section>
+    <h2>pip editables</h2>
+    <p>
+        <code>pip install -e</code> or <code>--editable</code> with a directory
+        name installs a package by adding to <code>sys.path</code> instead of
+        copying files, so you don’t need to reinstall for every change.
+    </p>
+    <pre>
+        (test-env)$ <kbd>pip install -e ./test-project/myapp</kbd>
+        <samp><del>…</del>Successfully installed docutils MyApp</samp>
+        (test-env)$ <kbd>python</kbd>
+        >>> <kbd>import sys, myapp</kbd>
+        >>> <kbd>myapp.__file__</kbd>
+        <samp>'/home/simon/test-project/myapp/__init__.pyc'</samp>
+        >>> <kbd>sys.path</kbd>
+        <samp>[<del>…</del> '/home/simon/test-project', <del>…</del>]</samp>
+    </pre>
+</section>
+
+<section>
+    <h2>Wrap up</h2>
+    <ul>
+        <li>Create an environment:
+            <pre>
+                $ <kbd>virtualenv <em>env</em></kbd>
+            </pre>
+        <li>Activate it: 
+            <pre>
+                $ <kbd>. <em>env</em>/bin/activate</kbd>
+                (<em>env</em>)$ 
+            </pre>
+        <li>Describe a project’s dependencies in <code>setup.py</code>
+        <li>Install it:
+            <pre>
+                (<em>env</em>)$ <kbd>cd myproject</kbd>
+                (<em>env</em>)$ <kbd>pip install -e .</kbd>
+            </pre>
+    </ul>
+</section>
+
+<section>
     <h2>Trick #1: <code>activate</code> and bash history</h2>
+    <p>
+        You will re-activate the same virtualenv often (at least for every new
+        terminal you open.)
+        To make that easier, source <code>activate</code> with a path that
+        does not depend on the current directory:
+    </p>
+    <pre>
+        $ <kbd>. ~/test-env/bin/activate</kbd>
+    </pre>
+    <p>
+        Next time, find it with your shell’s command history (often 
+        <kbd>CTRL+R</kbd>.)
+    </p>
 </section>
 
 <section>
     <h2>Trick #2: <code>/usr/bin/env</code> and virtualenvs</h2>
+    <p>
+        When a script uses <code>/usr/bin/env python</code> instead of eg.
+        <code>/usr/bin/python</code> as a shebang, it will use the activated
+        virtualenv’s python.
+    </p>
+    <p>
+        I changed <code>/usr/bin/ipython</code> that way on my system so that
+        I can use it without installing it in every virtualenv.
+    </p>
 </section>
 
 <section>
     <h2>Trick #3: pip download cache</h2>
+    <p>
+        When using more than one virtualenv, you will install the same packages
+        over and over. pip’s download cache can speed things up a bit:
+    </p>
+    <pre>
+        $ <kbd>mkdir -p ~/.pip</kbd>
+        $ <kbd>cat > ~/.pip/pip.conf</kbd>
+        <kbd class=file>[install]
+        download-cache=~/.pip/download-cache</kbd>
+    </pre>
+</section>
+
+<section>
+    <h2>Trick #4: virtualenvwrapper</h2>
+    <p>
+        virtualenvwrapper manages virtualenvs for you.
+    </p>
+    <ul>
+        <li><kbd>mkvirtualenv <em>name</em></kbd> creates and activates a new environment
+        <li><kbd>lsvirtualenv</kbd> list available environments
+        <li><kbd>workon <em>name</em></kbd> activates
+        <li><kbd>rmvirtualenv <em>name</em></kbd> removes
+    </ul>
 </section>
 
 
@@ -194,20 +304,19 @@ Successfully installed Frozen-Flask Flask Werkzeug Jinja2
   h1 {
       margin: 1em 0;
   }
-  ul {
-      margin-left: 200px;
-  }
   p { text-align: justify }
   pre {
     font-size: .9em;
-    white-space: pre-wrap;
+    white-space: pre-line;
   }
-  kbd { color: #007020 }
+  kbd { color: #072 }
+  kbd.file { color: #055 }
   samp { color: #333 }
   pre mark { color: inherit; background: #ffc; }
   pre mark.a { background: #dfc; }
   pre mark.b { background: #fdc; }
-  code { background: #eee }
+  code, kbd { background: #eee }
+  pre kbd { background: none }
   del { text-decoration: none; color: red }
   a { color: #028; }
   a:hover {text-decoration: none;}
