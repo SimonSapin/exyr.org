@@ -16,7 +16,4 @@ setup(
         'Flask-Script',
         'Pygments',
     ],
-    entry_points={'console_scripts': [
-        'exyr-manage=exyr.manage:manager.run',
-    ]},
 )
