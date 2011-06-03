@@ -309,10 +309,11 @@
   }
   h1, h2 { font-size: 1.3em; }
   section > *:first-child {
-      margin: 0 -40px 30px;
-      padding: .5em;
+      margin: 0 -130px 30px;
+      padding: .5em 130px;
       color: white;
-      background: rgba(56, 58, 71, 0.9);
+      text-shadow: #000 1px 1px 5px;
+      background: #4a4d59;
       border-bottom: 3px solid #fd9105;
       border-bottom-right-radius: 200% 15px;
       border-bottom-left-radius: 200% 15px;
@@ -365,21 +366,19 @@
      https://developer.mozilla.org/en/CSS/CSS_transitions
      How to use CSS3 Transitions: */
   section {
-    /*
       -moz-transition: left 400ms linear 0s;
       -webkit-transition: left 400ms linear 0s;
       -o-transition: left 400ms linear 0s;
       -ms-transition: left 400ms linear 0s;
       transition: left 400ms linear 0s;
-    */
   }
 
   /* Before */
-  section { left: -150%; }
+  section { left: -120%; }
   /* Now */
   section[aria-selected] { left: 0; }
   /* After */
-  section[aria-selected] ~ section { left: +150% }
+  section[aria-selected] ~ section { left: +120% }
 </style>
 
 
