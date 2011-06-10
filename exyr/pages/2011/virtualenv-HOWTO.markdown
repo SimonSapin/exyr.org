@@ -13,5 +13,6 @@ They’re made with Paul Rouget’s [DZSlides](http://paulrouget.com/dzslides/).
 It’s a single HTML5 file with some CSS3 and Javascript inlined, [view
 the source](slides.html) to learn more.
 
-<iframe src="dzslides-controls.html#slides.html"
-   width="740" height="620" style="border: none"></iframe>
+<iframe
+  src="http://exyr.org/2011/virtualenv-HOWTO/dzslides-controls.html#slides.html"
+  width="740" height="620" style="border: none"></iframe>
