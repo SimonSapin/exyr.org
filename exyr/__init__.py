@@ -37,7 +37,7 @@ def by_date(articles):
 
 
 @app.route('/')
-def index():
+def home():
     return render_template('all_posts.html', posts=by_date(all_articles()))
 
 

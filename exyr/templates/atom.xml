@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>exyr.org</title>
-	<id>{{ url_for('index', _external=True) }}</id>
+	<id>{{ url_for('home', _external=True) }}</id>
 	<link href="{{ url_for('feed', _external=True) }}" rel="self" />
-	<link href="{{ url_for('index', _external=True) }}" />
+	<link href="{{ url_for('home', _external=True) }}" />
 	<icon>{{ url_for('static', filename='favicon.png', _external=True) }}</icon>
 	<updated>{{ feed_updated.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
 	<author>
