@@ -26,7 +26,7 @@ def my_markdown(text):
     return markdown.markdown(text, ['codehilite'] + 2 * ['downheader'])
 
 app.config['FLATPAGES_HTML_RENDERER'] = my_markdown
-
+app.config['FLATPAGES_EXTENSION'] = '.markdown'
 
 
 def all_articles():
