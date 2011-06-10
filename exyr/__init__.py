@@ -65,14 +65,6 @@ def tag(name):
     return render_template('tag.html', tag=name, posts=articles)
 
 
-@app.route('/<path:path>/')
-def page(path):
-    return render_template('flatpage.html',
-        page=pages.get_or_404(path),
-#        sub_pages=by_date(p for p in all_articles()
-#                          if p.path.startswith(path + '/')),
-    )
-
 @app.route('/<int:year>/')
 def archives(year):
     articles = by_date(
@@ -122,12 +114,20 @@ def stylesheet():
     return app.response_class(css, mimetype='text/css')
 
 
-IMAGE_EXTENSIONS = ('.jpg', '.png')
+STATIC_EXTENSIONS = ('.jpg', '.png', '.html')
 
 # the repr() of a tuple matches the micro-syntax used by `any`
 # http://werkzeug.pocoo.org/documentation/dev/routing.html#werkzeug.routing.AnyConverter
-@app.route('/<path:path><any%r:type>' % (IMAGE_EXTENSIONS,))
-def image(path, type):
+@app.route('/<path:path><any%r:type>' % (STATIC_EXTENSIONS,))
+def static_in_pages(path, type):
     return send_from_directory(pages.root, path + type)
 
+
+@app.route('/<path:path>/')
+def page(path):
+    return render_template('flatpage.html',
+        page=pages.get_or_404(path),
+#        sub_pages=by_date(p for p in all_articles()
+#                          if p.path.startswith(path + '/')),
+    )
 

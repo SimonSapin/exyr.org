@@ -1,7 +1,7 @@
 import posixpath
 import mimetypes
 
-from . import app, pages, IMAGE_EXTENSIONS, all_articles
+from . import app, pages, STATIC_EXTENSIONS, all_articles
 from flaskext.frozen import Freezer, walk_directory
 
 
@@ -35,10 +35,10 @@ def archives():
 
 
 @freezer.register_generator
-def image():
+def static_in_pages():
     for filename in walk_directory(pages.root):
         path, extension = posixpath.splitext(filename)
-        if extension in IMAGE_EXTENSIONS:
+        if extension in STATIC_EXTENSIONS:
             yield {'path': path, 'type': extension}
 
 
