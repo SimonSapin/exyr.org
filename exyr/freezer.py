@@ -1,3 +1,4 @@
+import os
 import posixpath
 import mimetypes
 
@@ -14,11 +15,9 @@ freezer = Freezer(app)
 
 @freezer.register_generator
 def archives():
-    for page in pages:
-        if '/' in page.path:
-            first = page.path.split('/')[0]
-            if first.isdigit():
-                yield {'year': first}
+    for name in os.listdir(pages.root):
+        if name.isdigit():
+            yield {'year': name}
 
 
 @freezer.register_generator

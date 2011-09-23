@@ -31,7 +31,7 @@ def up(destination='hako:http/exyr.org/htdocs/'):
     stdout, stderr = push.communicate()
     # stdout was redirected
     print stdout
-    
+
 
 @manager.shell
 def shell_context():
