@@ -1,7 +1,7 @@
 title: Run a script on file changes with inotify
 public: true
 published: 2011-10-13
-tags: [inotify]
+tags: [inotify, snippets]
 summary:
     Have a script (eg. your test suite) run automatically every time a file
     changes.
