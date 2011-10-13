@@ -47,7 +47,7 @@ def tags():
     for article in all_articles():
         for tag in article.meta.get('tags', []):
             counts[tag] = counts.get(tag, 0) + 1
-            
+
     return render_template('tag_list.html', tags=[
         # count => weight: 1 => 100, 10 => 150, 100 => 200
         (tag, int(100 + 50 * math.log10(count)))
@@ -89,7 +89,7 @@ def feed():
     feed_updated, _ = articles[0]
     xml = render_template('atom.xml', **locals())
     return app.response_class(xml, mimetype='application/atom+xml')
-    
+
 
 def minify_css(css):
     # Remove comments. *? is the non-greedy version of *
@@ -130,4 +130,3 @@ def page(path):
 #        sub_pages=by_date(p for p in all_articles()
 #                          if p.path.startswith(path + '/')),
     )
-
