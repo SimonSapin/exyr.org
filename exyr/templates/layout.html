@@ -16,6 +16,12 @@
     title="Article Feed">
   <link rel="shortcut icon" href="{{
     url_for('static', filename='favicon.png') }}" type="image/png" >
+  <script type="text/javascript">
+    (function() {
+      var d=document,t='script',p=d.createElement(t),s=d.getElementsByTagName(t)[0];
+      p.type='text/javascript';p.async=true;p.src="http://pystil.org/pystil.js";s.parentNode.insertBefore(p,s);
+    })();
+  </script>
   <!--[if lte IE 8]>
   <script>
     (function(){if(!/*@cc_on!@*/0)return; var e =
@@ -43,10 +49,10 @@
   <div id=content>
   {% block content %}{% endblock %}
   </div>
-  
+
   <footer>
     {#- See <rights/> in atom.xml too #}
-    <p>© Copyright {{ build_date.year }} by 
+    <p>© Copyright {{ build_date.year }} by
       <a href="{{ url_for('page', path='about') }}">Simon Sapin</a>.</p>
     <p>Content licensed under a <a rel=license
         href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
