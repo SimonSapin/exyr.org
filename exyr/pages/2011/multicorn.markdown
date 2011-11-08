@@ -32,7 +32,7 @@ but then [Flask](http://flask.pocoo.org/) was released, we switch to it
 and the world got much saner.
 
 However the bigger part of Dyko was Kalamar, a unified data access library.
-All you data are belong to Kalamar. SQL databases, LDAP directories,
+All your data are belong to Kalamar. SQL databases, LDAP directories,
 files in a filesystem, meta-data in these files, entries in RSS feeds,
 you name it. All you had to do to add a new kind of data source was write
 an *access point* in Python. Sounds familiar?
