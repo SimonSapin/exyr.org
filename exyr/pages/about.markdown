@@ -21,3 +21,4 @@ I have contributed to:
 * [Flask](http://flask.pocoo.org/)
 * [Attest](http://packages.python.org/Attest/)
 * [cssutils](http://packages.python.org/cssutils/)
+* [lxml](http://lxml.de/)
