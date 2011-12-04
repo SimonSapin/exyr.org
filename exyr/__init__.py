@@ -130,3 +130,8 @@ def page(path):
 #        sub_pages=by_date(p for p in all_articles()
 #                          if p.path.startswith(path + '/')),
     )
+
+
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html')
