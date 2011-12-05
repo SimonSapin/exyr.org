@@ -122,12 +122,14 @@ code {
 hr {
     border: none;
     margin: 0;
+    height: auto;
 }
 
 hr:before {
     display: block;
     text-align: center;
     font: 2em/1 serif;
+    color: black;
     content: '\21AC';
 
 }
