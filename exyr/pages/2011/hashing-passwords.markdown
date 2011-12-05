@@ -17,6 +17,9 @@ As you already know (or so I hope!), you [should not store passwords in plain te
 http://tea.moertel.com/articles/2006/12/15/never-store-passwords-in-a-database).
 There is plenty already on the *why*, so I’ll focus on the *how*.
 
+The precautions I’m taking here may seem overkill, but they’re really easy
+to implement so there is no reason not to.
+
 The scenario we want to protect from is an attacker getting access to the
 database. Of course you should try to prevent that in the first place,
 but it has happened before.
