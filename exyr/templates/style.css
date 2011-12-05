@@ -119,6 +119,19 @@ code {
     background: #eee;
 }
 
+hr {
+    border: none;
+    margin: 0;
+}
+
+hr:before {
+    display: block;
+    text-align: center;
+    font: 2em/1 serif;
+    content: '\21AC';
+
+}
+
 .single_image {
     text-align: center;
 }
