@@ -3,7 +3,7 @@ import posixpath
 import mimetypes
 
 from . import app, pages, STATIC_EXTENSIONS, all_articles
-from flaskext.frozen import Freezer, walk_directory
+from flask.ext.frozen import Freezer, walk_directory
 
 
 # Seems to be available only on some systems...

@@ -10,13 +10,16 @@ manager = Manager(app, with_default_commands=False)
 # I prefer shorter names
 manager.add_command('run', Server())
 
+
 @manager.command
 def freeze(serve=False):
     """Freezes the static version of the website."""
-    urls = freezer.freeze()
-    print 'Built %i files.' % len(urls)
     if serve:
-        freezer.serve()
+        freezer.run(debug=True)
+    else:
+        urls = freezer.freeze()
+        print 'Built %i files.' % len(urls)
+
 
 @manager.command
 def up(destination='hako:http/exyr.org/htdocs/'):
