@@ -25,7 +25,7 @@ I captured it best in the README, so here it is:
 >
 > * Free software: BSD licensed
 > * Compatible with Python 2.6+ and 3.x
-* Latest documentation [on python.org](http://packages.python.org/tinycss/>)
+* Latest documentation [on python.org](http://packages.python.org/tinycss/)
 > * Source, issues and pull requests
 >   [on Github](https://github.com/SimonSapin/tinycss/)
 > * Releases [on PyPI](http://pypi.python.org/pypi/tinycss)
