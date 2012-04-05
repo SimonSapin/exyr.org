@@ -8,7 +8,7 @@ summary: |
     and fast. It replaces cssutils in both WeasyPrint and CairoSVG.
 
 
-I’m happy to announce the firt release of tinycss!
+I’m happy to announce the first release of tinycss!
 I captured it best in the README, so here it is:
 
 > *tinycss* is a complete yet simple CSS parser for Python. It supports the
@@ -25,7 +25,7 @@ I captured it best in the README, so here it is:
 >
 > * Free software: BSD licensed
 > * Compatible with Python 2.6+ and 3.x
-* Latest documentation [on python.org](http://packages.python.org/tinycss/)
+> * Latest documentation [on python.org](http://packages.python.org/tinycss/)
 > * Source, issues and pull requests
 >   [on Github](https://github.com/SimonSapin/tinycss/)
 > * Releases [on PyPI](http://pypi.python.org/pypi/tinycss)
