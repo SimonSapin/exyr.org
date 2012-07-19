@@ -66,6 +66,15 @@ Let’s combine these with inotify:
 Ta-da! Your browser reloads the current page as soon as you hit *Save* in your
 text editor. Unfortunately though, Firefox doesn’t seem to respond to xdotool.
 
+**Update 2012-07-19**: one day the command above just stopped working for me.
+It turns out it only sends F5 to the *first* window that matches the search.
+Sometimes that happens to be one the reloads on F5, sometimes not.
+The new command below fixes this: `--window %@` sends the key to all matching
+windows.
+
+    xdotool search --name Chromium key --window %@ F5
+
+
 How it works
 ------------
 
