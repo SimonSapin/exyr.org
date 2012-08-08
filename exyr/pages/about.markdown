@@ -4,8 +4,8 @@ public: true
 Hi, I’m Simon Sapin and this is my personal website. I’m a software engineer at
 [Kozea](http://kozea.fr), and I eat [Python](http://python.org/) for breakfast.
 
-You can find me on GitHub as [SimonSapin](https://github.com/SimonSapin),
-on Freenode as *Eftarjin* or send me
+You can find me as *SimonSapin* [on GitHub](https://github.com/SimonSapin)
+and on Freenode (I’m generally in ##kozea and #pocoo), or send me
 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;simon&#64;exyr.org">email</a>.
 
 I hack on free / open source software both in my “day time” job and on my
