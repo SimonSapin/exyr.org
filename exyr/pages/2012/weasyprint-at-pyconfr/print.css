@@ -1,0 +1,30 @@
+/* Navigation and stuff */
+.login, nav, .badges.legend + *, footer,
+/* hyperlink to the same page */
+.container>:nth-child(2),
+/* Wednesday to Friday’s schedule is very simple, no need to print it */
+.container>:nth-child(5),
+.container>:nth-child(6),
+.container>:nth-child(7),
+.container>:nth-child(8),
+.container>:nth-child(9),
+.container>:nth-child(10),
+/* Too many cells because of a bad interaction of rowspan and colspan */
+.container>:nth-child(12) tr:nth-child(7) td:nth-child(3),
+.container>:nth-child(12) tr:nth-child(8) td:nth-child(3),
+/* URLs after links are not needed */
+:link::after
+{ display: none !important}
+
+header .container { height: 0 !important }
+body, .container { background: none !important }
+#body h1 { font-size: 180% !important; margin: 0 0 20px 220px !important }
+.container { width: auto !important }
+.badge { float: left; clear: left; margin-right: 1ex !important }
+h2 { margin-top: 2em !important }
+td:first-child { width: 8em !important }
+td { padding: 2px 4px !important }
+table, td { border: .5px solid #444 !important }
+a { text-decoration: none !important }
+:root { font-size: 12pt !important }
+@page { margin: 1cm 2cm }

@@ -175,3 +175,6 @@ hr:before {
 .codehilite {
     line-height: normal;
 }
+.codehilite pre {
+    white-space: pre-wrap;
+}

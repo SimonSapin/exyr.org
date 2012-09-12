@@ -115,7 +115,7 @@ def stylesheet():
     return app.response_class(css, mimetype='text/css')
 
 
-STATIC_EXTENSIONS = ('.jpg', '.png', '.html')
+STATIC_EXTENSIONS = ('.jpg', '.png', '.html', '.css', '.pdf')
 
 # the repr() of a tuple matches the micro-syntax used by `any`
 # http://werkzeug.pocoo.org/documentation/dev/routing.html#werkzeug.routing.AnyConverter
