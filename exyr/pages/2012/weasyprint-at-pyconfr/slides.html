@@ -8,7 +8,8 @@
         src=images/weasyprint-logo.png style="width: 70%"></h1>
     <p style="text-align: center; margin-top: 0">CSS → PDF</p>
     <footer>
-        Simon Sapin, <img alt=Kozea src=images/kozea-logo.svg
+        Simon Sapin, <span title="Since this week!">W3C Invited Expert</span>,
+        <img alt=Kozea src=images/kozea-logo.svg
             style="height: 1.5em; margin-left: .5em"><br>
         PyConFR 2012
     </footer>
@@ -31,15 +32,17 @@
 <section>
     <h2>Flask</h2>
     <pre><code
-><span style="color: #888">from flask import Flask
-app = Flask(__name__)</span>
+><span style="color: #888">from flask_weasyprint import render_pdf</span>
+from flask import Flask
+app = Flask(__name__)
 
-@app.route("/")
+@app.route("/hello")
 def hello():
     return "Hello World!"
 
-<span style="color: #888">if __name__ == "__main__":
-    app.run()</span></code></pre>
+<span style="color: #888">@app.route("/hello.pdf")
+def hello_pdf():
+    return render_pdf("/hello")</span></code></pre>
     <details>
         You know <a href="http://flask.pocoo.org/">Flask</a>.
         Nice micro-framework for making Python web apps.
@@ -51,13 +54,18 @@ def hello():
 <section>
     <h2>Flask-WeasyPrint</h2>
     <pre><code
-><span style="color: #888">from flask import url_for</span>
-from flask_weasyprint import render_pdf
+>from flask_weasyprint import render_pdf
+<span style="color: #888">from flask import Flask
+app = Flask(__name__)
+
+@app.route("/hello")
+def hello():
+    return "Hello World!"</span>
 
 @app.route("/hello.pdf")
 def hello_pdf():
-    return render_pdf(url_for('hello'))</code></pre>
-    <p><a href="frozen_demo/foo/index.html">Demo</a></p>
+    return render_pdf("/hello")</code></pre>
+<!--  TODO: uncomment  <p><a href="frozen_demo/foo/index.html">Demo</a></p>-->
     <details>
         Once you have that, PDF is easy.<br>
         WeasyPrint: like the <em>print</em> function of your browser, but with
@@ -68,11 +76,10 @@ def hello_pdf():
 <section>
     <h2>Fetching a dynamic image: data flow</h2>
     <dl>
-        <dt>Plain WeasyPrint</dt>
-        <dd>WeasyPrint engine → HTTP client → network
-                    → HTTP server → WSGI  → Flask</dd>
+        <dt>WeasyPrint</dt>
+        <dd>WeasyPrint → HTTP / network → WSGI  → Flask</dd>
         <dt>Flask-WeasyPrint</dt>
-        <dd>WeasyPrint engine → WSGI client → WSGI  → Flask</dd>
+        <dd>WeasyPrint → WSGI  → Flask</dd>
     </dl>
     <details>
         Flask-WeasyPrint: optimization only. Shortcuts the network and
@@ -94,7 +101,7 @@ def hello_pdf():
         <li>PrinceXML</li>
     </ul>
     <details>
-        LaTeX: inflexible stylesheets<br>
+        LaTeX: weak reproducibility, inflexible stylesheets<br>
         ReportLab open-source: imperative, no vector graphics<br>
         LibreOffice: heavyweight, results not great<br>
         WebKit: weak support for Paged Media, average font rendering,
@@ -137,12 +144,14 @@ def hello_pdf():
 <section>
     <h2>Examples</h2>
     <p><a href="PyConFR_2012_schedule.pdf">PyConFR 2012 schedule</a>
-        http://bit.ly/Qoe6F9</p>
-    <p><!-- TODO: switch back to the absolute URL before uploading.
+        <img src=images/schedule-qr.png
+         style="vertical-align: middle"></p>
+    <p><a href="http://www.webstandards.org/files/acid2/test.html">Acid2</a>
+        <img src=images/acid2-small.png
+         style="vertical-align: middle; margin: 0 3em 0 .5em">
+    <!-- TODO: switch back to the absolute URL before uploading.
         <a href="http://weasyprint.org/samples/CSS21-intro.pdf">-->
-        <a href="CSS21-intro.pdf">CSS 2.1 intro</a>
-        http://bit.ly/URYCMp</p>
-    <p><img src=images/acid2-small.png></p>
+        <a href="CSS21-intro.pdf">CSS 2.1 intro</a></p>
     <details>
         Schedule: from the website + a custom stylesheet.<br>
         CSS intro: Internal and external hyperlinks, bookmarks, page numbers,
@@ -155,14 +164,15 @@ def hello_pdf():
     <h2>Using WeasyPrint</h2>
     <ul>
         <li>HTML & CSS in, PDF or PNG out</li>
-        <li>Docs:
-            <a href="http://weasyprint.org/install/">weasyprint.org/install</a>
-            <a href="http://weasyprint.org/using/">weasyprint.org/using</a>
+        <li>Docs
+            <ul>
+                <li><a href="http://weasyprint.org/install/">weasyprint.org/install</a></li>
+                <li><a href="http://weasyprint.org/using/">weasyprint.org/using</a></li>
+            </ul>
         </li>
         <li>Command-line API</li>
         <li>Python API
             <ul>
-                <li><code>base_url</code></li>
                 <li><code>url_fetcher</code></li>
             </ul>
         </li>
@@ -174,76 +184,65 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>CSS for print</h2>
+    <h2>CSS for Paged Media</h2>
     <pre><code class=language-css
 >h1 { page-break-before: right }
 h1, h2, h3 {
     page-break-after: avoid }
-table { page-break-inside: avoid }
-p { orphans: 3; widows: 3 }
-    </code></pre>
-    <details>
-        Just an overview, not a complete tutorial. Not much of this is
-        implemented in web browsers, so there is little doc around
-        besides the spec.<br>
-        Some "normal" CSS properties control page breaks.
-    </details>
-</section>
-
-<section>
-    <h2>CSS Paged Media Module</h2>
-    <p><a href="http://dev.w3.org/csswg/css3-page/">dev.w3.org/csswg/css3-page</a></p>
-    <p style="text-align: center"><img src=images/RightMarginBoxes.png
-        style="width: 30%"></p>
-    <details>
-        Pages can have margin, padding, borders, background, …<br>
-        Each page has up to 16 page-margin boxes (headers, footers, …)
-    </details>
-</section>
-
-<section>
-    <h2>CSS Paged Media Module</h2>
-    <pre><code class=language-css
->@page { size: A4 landscape;
+@page { size: A4 landscape;
         margin: 2cm }
 @page :left { @bottom-right {
     content: counter(page) } }
 @media print { nav { display: none } }
-@media screen { /*...*/ }
     </code></pre>
     <details>
-        <code>@page</code> styles the page itself,
-        and <code>@bottom-right</code> is one of the 16 page-margin boxes.
-        <code>@media</code> can apply rules conditionally.
+        Not much of this is implemented in web browsers, so there is little
+        docs on the web besides the spec.<br>
+        Some properties control page breaks,
+        <code>@page</code> for the page and its headers/footers,
+        <code>@media</code> for conditinals.<br>
+        Units: 96 CSS <code>px</code> / CSS inch, for historical reasons.
+        <code>px</code> may not match device pixels. Meaningless in print
+        anyway, use <code>cm</code>, <code>mm</code>, <code>pt</code>, etc.
     </details>
 </section>
 
-<section>
-    <h2>CSS length units</h2>
-    <p>Relative units: <code>%</code>, <code>em</code> and <code>ex</code>.</p>
-    <p>Absolute units: <code>1in = 2.54cm = 25.4mm = 72pt = 6pc
-       <strong>= 96px</strong></code>.</p>
-    <details>
-        CSS3 has more units, but the idea is the same.
-        Relative units are ultimately based on absolute units.
-        The ratios among absolute units is set in stone:
-        A CSS pixel is always one 96th of a CSS inch.
-        The scale needs to be anchored somehow. In PDF WeasyPrint anchors
-        on physical units, in PNG it defaults to 1 PNG pixel = 1 CSS px.
-    </details>
-</section>
-
-<section>
+<section id=architecture-slide>
+    <style>
+        #architecture-slide img { vertical-align: middle}
+        #architecture-slide p { font-size: 20px}
+        #architecture .overlay { opacity: 0;
+            -webkit-transition: opacity .3s;
+               -moz-transition: opacity .3s;
+                -ms-transition: opacity .3s;
+                 -o-transition: opacity .3s;
+                    transition: opacity .3s;
+            }
+        #architecture:hover .overlay { opacity: .7 }
+        .overlay div { background: white; position: absolute;
+            box-shadow: 0 0 5px 5px white }
+    </style>
     <h2>Architecture</h2>
-    <p>
-        <img src=images/Architecture.svg
-            style="width: 40%; float: left; margin: -1em 3em 0">
-        <img src=images/python.png style="width: 10%"><br>
-        <img src=images/lxml.png
-            style="width: 15%; position: relative; right: 2.5%"><br>
-        <img src=images/GTK.png style="width: 10%"><br>
-        <img src=images/cairo.png style="width: 10%">
-    </p>
+    <div style="float: left; margin: -1em 2em 0 1em; position: relative;
+                width: 300px" id=architecture>
+        <img src=images/Architecture.svg style="width: 100%">
+        <div class=overlay>
+            <div style="top: 205px; height: 180px; width: 150px"></div>
+            <div style="top: 250px; height: 80px; left: 150px; width: 150px"></div>
+        </div>
+    </div>
+    <p style="margin-bottom: 2em">
+        <img src=images/python.png style="width: 40px">
+        Of course.</p>
+    <p>tinycss: CSS parser</p>
+    <p>cssselect: CSS 3 Selectors → XPath 1.0</p>
+    <p><img src=images/lxml.png style="width: 60px">
+        lxml: HTML parser, XPath engine</p>
+    <p><img src=images/pango-name.png style="width: 80px">
+        Pango: text & fonts</p>
+    <p>CairoSVG: renders SVG … to cairo</p>
+    <p><img src=images/cairo.png style="width: 40px">
+        cairo: Painting surface, PDF output</p>
     <details>
         Let’s open the box. The engine is of course in Python.
         HTML is parsed with <a href="lxml.de/">lxml</a>, CSS with
@@ -260,31 +259,20 @@ p { orphans: 3; widows: 3 }
 </section>
 
 <section style="text-align: center">
-    <h2>CSS box model…</h2>
-    <p><img src=images/box_model.png
-        style="width: 70%; margin: -1em 0"></p>
-    <p>It’s complicated.</p>
+    <figure><img src=images/box_model.png>
+        <figcaption style="text-align: left; line-height: 1">
+            <p><span style="background: rgba(255, 255, 255, 0.9)">
+                CSS box model…</span></p>
+            <p style="margin-top: 430px; foont-size: 70%">
+            <span style="background: rgba(255, 255, 255, 0.9)">
+                It’s complicated.</span></p>
+        </figcaption>
+    </figure>
     <details>
         No need to read this in details.<br>
         The CSS 2.1 spec has dozen of pages describing this in details.
         I had to read it many times, with a pen and paper. This is
         what I got after many iterations.
-    </details>
-</section>
-
-<section>
-    <h2>Associated projects</h2>
-    <dl>
-        <dt>CairoSVG</dt>
-        <dd>Render SVG … to cairo. (PNG, PDF, …)</dd>
-        <dt>tinycss</dt>
-        <dd>CSS parser</dd>
-        <dt>cssselect</dt>
-        <dd>CSS 3 selectors → XPath 1.0 (lxml)</dd>
-    </dl>
-    <details>
-        Other projects of ours, used by WeasyPrint but can be used
-        independently.
     </details>
 </section>
 
@@ -334,14 +322,14 @@ p { orphans: 3; widows: 3 }
 
   h1, h2 {
     text-align: center;
-    font-size: 1.33em;
+    font-size: 40px;
   }
 
   ul {
       margin: 50px 180px;
   }
   ul ul {
-    margin: 0 0 0 1em;
+    margin: .2em 0 .2em 1em;
     line-height: 1.2;
   }
   p, h1, h2, h3, pre, dl {
@@ -385,6 +373,9 @@ p { orphans: 3; widows: 3 }
     width: 100%;
     height: 100%;
   }
+  figure img {
+    border-radius: 15px;
+  }
   figure > * {
     position: absolute;
   }
@@ -392,8 +383,11 @@ p { orphans: 3; widows: 3 }
     width: 100%; height: 100%;
   }
   figcaption {
-    margin: 70px;
+    margin: 30px 50px;
     font-size: 50px;
+  }
+  figcaption p {
+    margin: 0;
   }
 
   footer {
@@ -406,6 +400,7 @@ p { orphans: 3; widows: 3 }
     border-top: 1px solid #CCC;
     border-radius: 0 0 12px 12px;
   }
+  sup { vertical-align: .5em }
 
   /* Transition effect */
   /* Feel free to change the transition effect for original
