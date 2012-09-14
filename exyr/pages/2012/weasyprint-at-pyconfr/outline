@@ -1,0 +1,8 @@
+
+WeasyPrint est un outil open-source en Python qui convertit des documents web (HTML, CSS, SVG, …) en PDF. Il n’est pas basé sur WebKit ou Gecko mais a son propre moteur conçu pour la pagination.
+
+En plus d’une introduction au projet (objectifs, comparaison aux alternatives) seront présentés :
+
+Point de vue utilisateur : CSS pour le print (@media, centimètres vs pixels, contrôle des sauts de page, …); intégration de WeasyPrint avec d’autres outils tels que Flask ou docutils.
+
+De l’autre côté du miroir : vue générale du fonctionnement interne (parsing, cascade, modèle de boites, retours à la ligne et sauts de page, dessin); comment contribuer au projet.
