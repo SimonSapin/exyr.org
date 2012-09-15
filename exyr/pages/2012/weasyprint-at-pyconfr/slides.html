@@ -8,9 +8,10 @@
         src=images/weasyprint-logo.png style="width: 70%"></h1>
     <p style="text-align: center; margin-top: 0">CSS → PDF</p>
     <footer>
-        Simon Sapin, <span title="Since this week!">W3C Invited Expert</span>,
+        Simon Sapin,
         <img alt=Kozea src=images/kozea-logo.svg
-            style="height: 1.5em; margin-left: .5em"><br>
+            style="height: 1.5em; margin: 0 .2em">,
+        <em title="Depuis cette semaine!">Expert invité</em> au CSSWG<br>
         PyConFR 2012
     </footer>
     <details>
@@ -21,8 +22,8 @@
 
 <section>
     <h2>PDF</h2>
-    <p>Hi-Fi documents for printing, archiving, …</p>
-    <p>How to generate them dynamically?</p>
+    <p>Documents <em>Hi-Fi</em> pour imprimer, archiver, …</p>
+    <p>Comment les générer dynamiquement?</p>
     <details>
         Best document format for many use cases<br>
         Invoices, expert reports, business cards, …
@@ -74,10 +75,10 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Fetching a dynamic image: data flow</h2>
+    <h2>Récupérer une image</h2>
     <dl>
         <dt>WeasyPrint</dt>
-        <dd>WeasyPrint → HTTP / network → WSGI  → Flask</dd>
+        <dd>WeasyPrint → HTTP / réseau → WSGI  → Flask</dd>
         <dt>Flask-WeasyPrint</dt>
         <dd>WeasyPrint → WSGI  → Flask</dd>
     </dl>
@@ -90,7 +91,7 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Generating PDF</h2>
+    <h2>Générer du PDF</h2>
     <ul>
         <li>LaTeX</li>
         <li>ReportLab</li>
@@ -113,11 +114,11 @@ def hello_pdf():
 <section>
     <h2>NIH</h2>
     <ul>
-        <li>2011-04: Let’s build a browser engine!</li>
+        <li>2011-04: On va faire un navigateur !</li>
         <li>2011-10: v0.1</li>
         <li>2012-02: v0.6, stable API</li>
-        <li>Today: v0.14</li>
-        <li>Real Soon<sup>®</sup>: v1.0</li>
+        <li>Aujourd’hui: v0.14</li>
+        <li>Bientôt<sup>®</sup>: v1.0</li>
     </ul>
     <details>
         0.14 is very stable already. There are only a few details I want
@@ -126,9 +127,9 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Features</h2>
+    <h2>Fonctionnalités</h2>
     <p><a href="http://weasyprint.org/features/">weasyprint.org/features</a></p>
-    <p>Raster and vector (SVG) images, PDF bookmarks, hyperlinks</p>
+    <p>Images pixels et vecteurs (SVG), marque-pages PDF, hyperliens</p>
     <p>CSS 2.1: 95%<sup>*</sup><br>
        CSS 3: selectors, colors, 2D transforms, <strong>paged media</strong><br>
     </p>
@@ -142,8 +143,8 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Examples</h2>
-    <p><a href="PyConFR_2012_schedule.pdf">PyConFR 2012 schedule</a>
+    <h2>Exemples</h2>
+    <p><a href="PyConFR_2012_schedule.pdf">Agenda PyConFR 2012</a>
         <img src=images/schedule-qr.png
          style="vertical-align: middle"></p>
     <p><a href="http://www.webstandards.org/files/acid2/test.html">Acid2</a>
@@ -161,17 +162,17 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Using WeasyPrint</h2>
+    <h2>Utiliser WeasyPrint</h2>
     <ul>
-        <li>HTML & CSS in, PDF or PNG out</li>
+        <li>HTML & CSS → PDF ou PNG</li>
         <li>Docs
             <ul>
                 <li><a href="http://weasyprint.org/install/">weasyprint.org/install</a></li>
                 <li><a href="http://weasyprint.org/using/">weasyprint.org/using</a></li>
             </ul>
         </li>
-        <li>Command-line API</li>
-        <li>Python API
+        <li>API ligne de commande</li>
+        <li>API Python
             <ul>
                 <li><code>url_fetcher</code></li>
             </ul>
@@ -243,15 +244,15 @@ h1, h2, h3 {
         Of course.</p>
 
     <ul>
-        <li><span>tinycss</span> CSS parser</li>
-        <li><span>cssselect</span> CSS 3 Selectors → XPath 1.0</li>
+        <li><span>tinycss</span> Parseur CSS</li>
+        <li><span>cssselect</span> Sélécteurs CSS 3 → XPath 1.0</li>
         <li><span><img src=images/lxml.png style="width: 60px">
-            lxml</span> HTML parser, XPath engine</li>
+            lxml</span> Parseur HTML, moteur XPath</li>
         <li><span><img src=images/pango-name.png style="width: 80px">
-            Pango</span> Text & fonts</li>
-        <li><span>CairoSVG</span> Renders SVG … to cairo</li>
+            Pango</span> Texte & polices</li>
+        <li><span>CairoSVG</span> Rendu de SVG … vers cairo</li>
         <li><span><img src=images/cairo.png style="width: 40px">
-            cairo</span> Painting surface, PDF output</li>
+            cairo</span> Surface de dessin, sortie PDF</li>
     </ul>
 
     <details>
@@ -273,10 +274,10 @@ h1, h2, h3 {
     <figure><img src=images/box_model.png>
         <figcaption style="text-align: left; line-height: 1">
             <p><span style="background: rgba(255, 255, 255, 0.9)">
-                CSS box model…</span></p>
+                Modèle de boîtes CSS …</span></p>
             <p style="margin-top: 430px; foont-size: 70%">
             <span style="background: rgba(255, 255, 255, 0.9)">
-                It’s complicated.</span></p>
+                C’est compliqué.</span></p>
         </figcaption>
     </figure>
     <details>
@@ -288,7 +289,7 @@ h1, h2, h3 {
 </section>
 
 <section style="text-align: center">
-    <h2>Thanks.</h2>
+    <h2>Merci.</h2>
     <h2>Questions?</h2>
     <footer>
         <a href="http://weasyprint.org">weasyprint.org</a><br>
@@ -338,7 +339,7 @@ h1, h2, h3 {
   }
 
   ul {
-      margin: 50px 180px;
+      margin: 50px 150px;
   }
   ul ul {
     margin: .2em 0 .2em 1em;
