@@ -196,8 +196,7 @@ h1, h2, h3 {
 @media print { nav { display: none } }
     </code></pre>
     <details>
-        Not much of this is implemented in web browsers, so there is little
-        docs on the web besides the spec.<br>
+        Keyword for finding docs: CSS Paged Media.<br>
         Some properties control page breaks,
         <code>@page</code> for the page and its headers/footers,
         <code>@media</code> for conditinals.<br>
@@ -210,39 +209,51 @@ h1, h2, h3 {
 <section id=architecture-slide>
     <style>
         #architecture-slide img { vertical-align: middle}
-        #architecture-slide p { font-size: 20px}
+        #architecture-slide p { font-size: 22px}
         #architecture .overlay { opacity: 0;
-            -webkit-transition: opacity .3s;
-               -moz-transition: opacity .3s;
-                -ms-transition: opacity .3s;
-                 -o-transition: opacity .3s;
-                    transition: opacity .3s;
+            -webkit-transition: opacity .4s;
+               -moz-transition: opacity .4s;
+                -ms-transition: opacity .4s;
+                 -o-transition: opacity .4s;
+                    transition: opacity .4s;
             }
-        #architecture:hover .overlay { opacity: .7 }
+        #architecture:hover .overlay { opacity: .8 }
         .overlay div { background: white; position: absolute;
-            box-shadow: 0 0 5px 5px white }
+            box-shadow: 0 0 5px 5px white; right: 0; left: 0 }
+        #architecture-slide ul { margin: 0 30px 0 0; line-height: 1.2;
+            display: table; table-collapse: separate; border-spacing: .5em .4em }
+        #architecture-slide li span { display: table-cell;
+            vertical-align: middle;
+            width: 175px }
+        #architecture-slide li { display: table-row; font-size: 22px }
     </style>
     <h2>Architecture</h2>
-    <div style="float: left; margin: -1em 2em 0 1em; position: relative;
+    <div style="float: left; margin: -1em 1em 0 1em; position: relative;
                 width: 300px" id=architecture>
         <img src=images/Architecture.svg style="width: 100%">
         <div class=overlay>
-            <div style="top: 205px; height: 180px; width: 150px"></div>
-            <div style="top: 250px; height: 80px; left: 150px; width: 150px"></div>
+            <div style="top: 90px; height: 110px; right: 180px"></div>
+            <div style="top: 90px; height: 110px; left: 160px"></div>
+            <div style="top: 200px; height: 50px; left: 90px"></div>
+            <div style="top: 330px; height: 180px; left: 150px"></div>
         </div>
     </div>
-    <p style="margin-bottom: 2em">
+    <p style="">
         <img src=images/python.png style="width: 40px">
         Of course.</p>
-    <p>tinycss: CSS parser</p>
-    <p>cssselect: CSS 3 Selectors → XPath 1.0</p>
-    <p><img src=images/lxml.png style="width: 60px">
-        lxml: HTML parser, XPath engine</p>
-    <p><img src=images/pango-name.png style="width: 80px">
-        Pango: text & fonts</p>
-    <p>CairoSVG: renders SVG … to cairo</p>
-    <p><img src=images/cairo.png style="width: 40px">
-        cairo: Painting surface, PDF output</p>
+
+    <ul>
+        <li><span>tinycss</span> CSS parser</li>
+        <li><span>cssselect</span> CSS 3 Selectors → XPath 1.0</li>
+        <li><span><img src=images/lxml.png style="width: 60px">
+            lxml</span> HTML parser, XPath engine</li>
+        <li><span><img src=images/pango-name.png style="width: 80px">
+            Pango</span> Text & fonts</li>
+        <li><span>CairoSVG</span> Renders SVG … to cairo</li>
+        <li><span><img src=images/cairo.png style="width: 40px">
+            cairo</span> Painting surface, PDF output</li>
+    </ul>
+
     <details>
         Let’s open the box. The engine is of course in Python.
         HTML is parsed with <a href="lxml.de/">lxml</a>, CSS with
