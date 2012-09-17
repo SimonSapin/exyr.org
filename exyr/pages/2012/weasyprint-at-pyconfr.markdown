@@ -29,6 +29,8 @@ make it look nice on A4. You can regenerate the same PDF with:
 I think the talk was a success although I forgot a few details. The slides
 are below (or <a href="embedder.html#slides.html">fullscreen</a>), with notes
 paraphrasing what I said “on stage”.
+The talk and slides were in French (this is PyCon<strong>FR</strong>,
+after all) but you, dear international reader, get the English ones.
 
 <iframe
   src="embedder.html#slides.html"
