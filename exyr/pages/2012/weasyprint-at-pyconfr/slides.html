@@ -53,7 +53,7 @@ def hello_pdf():
 </section>
 
 <section>
-    <h2>Flask-WeasyPrint</h2>
+    <h2>Flask-WeasyPrint (<a href="frozen_demo/foo/index.html">demo</a>)</h2>
     <pre><code
 >from flask_weasyprint import render_pdf
 <span style="color: #888">from flask import Flask
@@ -66,7 +66,6 @@ def hello():
 @app.route("/hello.pdf")
 def hello_pdf():
     return render_pdf("/hello")</code></pre>
-<!--  TODO: uncomment  <p><a href="frozen_demo/foo/index.html">Demo</a></p>-->
     <details>
         Once you have that, PDF is easy.<br>
         WeasyPrint: like the <em>print</em> function of your browser, but with
@@ -145,11 +144,9 @@ def hello_pdf():
 <section>
     <h2>Examples</h2>
     <p><a href="PyConFR_2012_schedule.pdf">PyConFR 2012 schedule</a></p>
-    <p>
-    <!-- TODO: switch back to the absolute URL before uploading.
-        <a href="http://weasyprint.org/samples/CSS21-intro.pdf">-->
-        <a href="CSS21-intro.pdf">CSS 2.1 intro</a></p>
-    <p><a href="http://www.webstandards.org/files/acid2/test.html">Acid2</a>
+    <p><a href="http://weasyprint.org/samples/CSS21-intro.pdf">
+            CSS 2.1 intro</a></p>
+    <p><a href="http://weasyprint.org/#acid2">Acid2</a>
         <img src=images/acid2-small.png
          style="vertical-align: middle; margin: 0 3em 0 .5em"></p>
     <details>
@@ -295,6 +292,12 @@ h1, h2, h3 {
         <li>BSD license</li>
     </ul>
     <details>
+        In spite of CSS’s inherent complexity, we try to keep the engine
+        simple. (Especially compared to a Gecko or a WebKit.)<br>
+        Python 2 & 3 with the same code base. Not using
+            <a href="http://pypi.python.org/pypi/six">six</a>,
+            but a custom 100-lines <code>compat.py</code> file.<br>
+        It’s open source and free software.
     </details>
 </section>
 
@@ -307,6 +310,9 @@ h1, h2, h3 {
         <a href="http://community.kozea.fr/">community.kozea.fr</a><br>
         IRC: ##kozea @ Freenode
     </footer>
+    <details>
+        Come and chat with us!
+    </details>
 </section>
 
 <script src="prism.js"></script>
