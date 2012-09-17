@@ -7,11 +7,11 @@
     <h1 style="margin-bottom: 0"><img alt=WeasyPrint
         src=images/weasyprint-logo.png style="width: 70%"></h1>
     <p style="text-align: center; margin-top: 0">CSS → PDF</p>
-    <footer>
+    <footer style="font-size: 90%">
         Simon Sapin,
         <img alt=Kozea src=images/kozea-logo.svg
             style="height: 1.5em; margin: 0 .2em">,
-        <em title="Depuis cette semaine!">Expert invité</em> au CSSWG<br>
+        <em title="Depuis cette semaine!">Expert invité</em> au CSSWG/W3C<br>
         PyConFR 2012
     </footer>
     <details>
@@ -144,15 +144,14 @@ def hello_pdf():
 
 <section>
     <h2>Exemples</h2>
-    <p><a href="PyConFR_2012_schedule.pdf">Agenda PyConFR 2012</a>
-        <img src=images/schedule-qr.png
-         style="vertical-align: middle"></p>
-    <p><a href="http://www.webstandards.org/files/acid2/test.html">Acid2</a>
-        <img src=images/acid2-small.png
-         style="vertical-align: middle; margin: 0 3em 0 .5em">
+    <p><a href="PyConFR_2012_schedule.pdf">Agenda PyConFR 2012</a></p>
+    <p>
     <!-- TODO: switch back to the absolute URL before uploading.
         <a href="http://weasyprint.org/samples/CSS21-intro.pdf">-->
         <a href="CSS21-intro.pdf">CSS 2.1 intro</a></p>
+    <p><a href="http://www.webstandards.org/files/acid2/test.html">Acid2</a>
+        <img src=images/acid2-small.png
+         style="vertical-align: middle; margin: 0 3em 0 .5em"></p>
     <details>
         Schedule: from the website + a custom stylesheet.<br>
         CSS intro: Internal and external hyperlinks, bookmarks, page numbers,
@@ -240,7 +239,7 @@ h1, h2, h3 {
         </div>
     </div>
     <p style="">
-        <img src=images/python.png style="width: 40px">
+        <img src=images/python.png style="width: 40px" alt="Python.">
         Of course.</p>
 
     <ul>
@@ -285,6 +284,17 @@ h1, h2, h3 {
         The CSS 2.1 spec has dozen of pages describing this in details.
         I had to read it many times, with a pen and paper. This is
         what I got after many iterations.
+    </details>
+</section>
+
+<section>
+    <h2><code>import weasyprint</code></h2>
+    <ul>
+        <li>7500 lignes de code + 8200 de tests</li>
+        <li>Python 2.6+ et 3.x</li>
+        <li>License BSD</li>
+    </ul>
+    <details>
     </details>
 </section>
 
@@ -458,7 +468,7 @@ h1, h2, h3 {
   /* The progressbar, at the bottom of the slides, show the global
      progress of the presentation. */
   #progress-bar div {
-    height: 2px;
+    height: 4px;
     background: #AAA;
   }
 </style>
