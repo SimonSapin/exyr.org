@@ -2,7 +2,9 @@ title: About
 public: true
 
 Hi, I’m Simon Sapin and this is my personal website. I’m a software engineer at
-[Kozea](http://kozea.fr), and I eat [Python](http://python.org/) for breakfast.
+[Kozea](http://kozea.fr), a member of [W3C’s CSS Working Group](
+http://www.w3.org/Style/CSS/),
+and I eat [Python](http://python.org/) for breakfast.
 
 You can find me as *SimonSapin* [on GitHub](https://github.com/SimonSapin)
 and on Freenode (I’m generally in ##kozea and #pocoo), or send me
