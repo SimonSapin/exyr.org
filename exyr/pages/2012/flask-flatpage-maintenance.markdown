@@ -35,5 +35,5 @@ But apparently some people do use Flask-FlatPages, and actually like it!
 I don’t really want to work on it anymore, but I won’t throw it away either.
 If anyone wants to take over and maintain the project, please let me know and
 I will gladly give them PyPI and Github access. Otherwise I guess the project
-will continue stagnating. I will be discussing this on the
-[Flask mailing-list](http://flask.pocoo.org/mailinglist/).
+will continue stagnating. I will be discussing this
+[on Github](https://github.com/SimonSapin/Flask-FlatPages/issues/8).
