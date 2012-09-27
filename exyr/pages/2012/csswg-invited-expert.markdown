@@ -1,7 +1,6 @@
 title: Invited Expert at W3C’s CSSWG
 published: 2012-09-17
 tags: [weasyprint, W3C]
-public: true
 summary: |
     I just joined [W3C’s *CSS Working Group*](http://www.w3.org/Style/CSS/)
     as an *Invited Expert*.

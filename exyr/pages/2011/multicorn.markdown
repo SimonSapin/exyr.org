@@ -1,5 +1,4 @@
 title: "Multicorn: Access foreign data in PostgreSQL with Python"
-public: true
 published: 2011-11-07
 tags: [kozea]
 summary:

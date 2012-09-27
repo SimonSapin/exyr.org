@@ -1,5 +1,4 @@
 title: "Flask-Static: yet another static website generator"
-public: true
 published: 2010-12-28
 modified: 2011-02-21
 tags:

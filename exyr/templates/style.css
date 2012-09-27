@@ -164,7 +164,7 @@ hr:before {
     margin: 0 .5em;
 }
 
-{{ pygments_style_defs('tango') }}
+{{ pygments_css }}
 
 .codehilite, blockquote {
     background-color: #eee;

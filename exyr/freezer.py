@@ -1,8 +1,7 @@
 import os
-import posixpath
 import mimetypes
 
-from . import app, pages, STATIC_EXTENSIONS, all_articles
+from . import app, Page
 from flask.ext.frozen import Freezer, walk_directory
 
 
@@ -15,14 +14,15 @@ freezer = Freezer(app)
 
 @freezer.register_generator
 def archives():
-    for name in os.listdir(pages.root):
-        if name.isdigit():
-            yield {'year': name}
+    for year in Page.years():
+        yield {'year': int(year)}
 
 
 @freezer.register_generator
 def static_in_pages():
-    for filename in walk_directory(pages.root):
-        path, extension = posixpath.splitext(filename)
-        if extension in STATIC_EXTENSIONS:
-            yield {'path': path, 'type': extension}
+    for year in Page.years():
+        for name in os.listdir(os.path.join(Page.root, year)):
+            directory = os.path.join(Page.root, year, name)
+            if os.path.isdir(directory):
+                for path in walk_directory(directory):
+                    yield {'year': int(year), 'name': name, 'path': path}

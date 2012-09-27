@@ -1,5 +1,4 @@
 title: Two Gedit 3 plugins packaged for Arch Linux
-public: true
 published: 2011-07-03
 tags: [gedit, packaging, archlinux]
 summary:

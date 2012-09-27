@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?> 
+<?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 	<title>exyr.org</title>
 	<id>{{ url_for('home', _external=True) }}</id>
@@ -10,24 +10,23 @@
 		<name>Simon Sapin</name>
 	</author>
 	<rights type="html">
-		&lt;p&gt;© Copyright {{ build_date.year }} by Simon Sapin.&lt;/p&gt;
+		&lt;p&gt;© Copyright {{ today().year }} by Simon Sapin.&lt;/p&gt;
         &lt;p&gt;Content licensed under a Creative Commons
           Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
 	</rights>
 	{% for updated, article in articles %}
-	<entry>
-		<id>{{ url_for('page', path=article.path, _external=True) }}</id>
+	<entry>{% set url = article.url(_external=True) %}
+		<id>{{ url }}</id>
 		<title>{{ article.title }}</title>
 		<updated>{{ updated.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
 		<published>{{ article.published.strftime('%Y-%m-%dT%H:%M:%SZ') }}</published>
 		<author>
 			<name>Simon Sapin</name>
 		</author>
-		<link href="{{ url_for('page', path=article.path, _external=True) }}" />
+		<link href="{{ url }}" />
 		<content type="html">
 			{{ article.html }}
 		</content>
 	</entry>
 	{% endfor %}
 </feed>
-

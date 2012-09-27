@@ -1,5 +1,4 @@
 title: Hashing passwords the Right Way
-public: true
 published: 2011-12-05
 tags: [passwords, web-development, snippets]
 summary:

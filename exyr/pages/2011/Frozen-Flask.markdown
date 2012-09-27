@@ -1,5 +1,4 @@
 title: Flask-Static is dead, long live Frozen-Flask!
-public: true
 published: 2011-02-21
 tags: [web-development, flask]
 summary: Just because the new name is so much cooler.

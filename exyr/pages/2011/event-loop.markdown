@@ -1,7 +1,6 @@
 title: Single-threaded event loop for file input and timers
 published: 2011-02-27
 tags: [snippets]
-public: true
 summary: |
     To wait for various events and without polling, a blocking threads for each
     event is the obvious solution. However, multi-threading comes with its

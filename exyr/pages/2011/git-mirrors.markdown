@@ -1,7 +1,6 @@
 title: Mirroring a Gitorious repository to GitHub
 published: 2011-04-30
 tags: [git, backups]
-public: yes
 summary: |
     You can not make Gitorious or GitHub push to somewhere else, so mirroring
     them requires a few more steps.

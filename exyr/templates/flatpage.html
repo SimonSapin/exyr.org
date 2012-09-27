@@ -15,7 +15,7 @@
         {%- endfor %}
       </p>
     </header>
-    {{ page }}
+    {{ page.html|safe }}
   </article>
 {% else %}
   <header>
@@ -23,7 +23,7 @@
   </header>
   {% if page.html %}
   <section>
-    {{ page }}
+    {{ page.html|safe }}
   </section>
   {% endif %}
 {% endif %}

@@ -11,9 +11,10 @@ setup(
     license="BSD License",
     install_requires=[
         'Flask',
-        'Flask-FlatPages',
         'Frozen-Flask>=0.9',
         'Flask-Script',
         'Pygments',
+        'PyYAML',
+        'Markdown',
     ],
 )

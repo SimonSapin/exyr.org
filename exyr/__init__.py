@@ -1,37 +1,96 @@
 import os
+import io
 import re
 import math
 import datetime
+import itertools
 
-import markdown
+import markdown as markdown_module
+import pygments.formatters
+import yaml
 import jinja2
-from flask import Flask, render_template, send_from_directory, abort
-from flaskext.flatpages import pygments_style_defs
-
-from .public_pages import PublicPages
+import werkzeug
+from flask import Flask, render_template, send_from_directory, abort, url_for
 
 
 app = Flask(__name__)
 app.jinja_env.undefined = jinja2.StrictUndefined
+app.jinja_env.globals['today'] = datetime.date.today
 
 # The atom.xml template uses url_for(..., _external=True)
 app.config['FREEZER_BASE_URL'] = 'http://exyr.org/'
 
-pages = PublicPages(app)
-app.jinja_env.globals['pages'] = pages
-app.jinja_env.globals['build_date'] = datetime.date.today()
+PYGMENTS_CSS = (pygments.formatters.HtmlFormatter(style='tango')
+                .get_style_defs('.codehilite'))
 
 
-@app.template_filter(name='markdown')
-def my_markdown(text):
-    return markdown.markdown(text, ['codehilite'] + 2 * ['downheader'])
-
-app.config['FLATPAGES_HTML_RENDERER'] = my_markdown
-app.config['FLATPAGES_EXTENSION'] = '.markdown'
+@app.template_filter()
+def markdown(text):
+    return markdown_module.markdown(text, ['codehilite'] + 2 * ['downheader'])
 
 
-def all_articles():
-    return (p for p in pages if 'published' in p.meta)
+class Page(object):
+    root = os.path.join(app.root_path, u'pages')
+    suffix = '.markdown'
+    _cache = {}
+
+    @classmethod
+    def load(cls, year, name):
+        filename = os.path.join(cls.root, year, name) + cls.suffix
+        if not os.path.isfile(filename):
+            abort(404)
+        mtime = os.path.getmtime(filename)
+        page, old_mtime = cls._cache.get(filename, (None, None))
+        if not page or mtime != old_mtime:
+            with io.open(filename, encoding='utf8') as fd:
+                head = ''.join(itertools.takewhile(unicode.strip, fd))
+                body = fd.read()
+            page = cls(year, name, head, body)
+            cls._cache[filename] = (page, mtime)
+        return page
+
+    @classmethod
+    def years(cls):
+        for year in os.listdir(cls.root):
+            if year.isdigit():
+                yield year
+
+    @classmethod
+    def articles_by_year(cls, year):
+        directory = os.path.join(cls.root, year)
+        if not os.path.isdir(directory):
+            abort(404)
+        for name in os.listdir(directory):
+            if name.endswith(cls.suffix):
+                yield cls.load(year, name[:-len(cls.suffix)])
+
+    @classmethod
+    def all_articles(cls):
+        for year in cls.years():
+            for article in cls.articles_by_year(year):
+                yield article
+
+    def __init__(self, year, name, head, body):
+        self.year = year
+        self.name = name
+        self.head = head
+        self.body = body
+
+    @werkzeug.cached_property
+    def meta(self):
+        return yaml.safe_load(self.head) or {}
+
+    def __getitem__(self, name):
+        return self.meta[name]
+
+    @werkzeug.cached_property
+    def html(self):
+        return markdown(self.body)
+
+    def url(self, **kwargs):
+        return url_for(
+            'article', year=int(self.year), name=self.name, **kwargs)
+
 
 def by_date(articles):
     return sorted(articles, reverse=True, key=lambda p: p['published'])
@@ -39,13 +98,19 @@ def by_date(articles):
 
 @app.route('/')
 def home():
-    return render_template('all_posts.html', posts=by_date(all_articles()))
+    return render_template(
+        'all_posts.html', posts=by_date(Page.all_articles()))
+
+
+@app.route('/about/')
+def about():
+    return render_template('flatpage.html', page=Page.load('', 'about'))
 
 
 @app.route('/tags/')
 def tags():
     counts = {}
-    for article in all_articles():
+    for article in Page.all_articles():
         for tag in article.meta.get('tags', []):
             counts[tag] = counts.get(tag, 0) + 1
 
@@ -59,7 +124,7 @@ def tags():
 @app.route('/tags/<name>/')
 def tag(name):
     articles = by_date(
-        a for a in all_articles() if name in a.meta.get('tags', [])
+        a for a in Page.all_articles() if name in a.meta.get('tags', [])
     )
     if not articles:
         abort(404)
@@ -68,13 +133,18 @@ def tag(name):
 
 @app.route('/<int:year>/')
 def archives(year):
-    articles = by_date(
-        article for article in all_articles()
-        if article.path.startswith(str(year) + '/')
-    )
-    if not articles:
-        abort(404)
+    articles = by_date(Page.articles_by_year(str(year)))
     return render_template('archives.html', **locals())
+
+
+@app.route('/<int:year>/<name>/')
+def article(year, name):
+    return render_template('flatpage.html', page=Page.load(str(year), name))
+
+
+@app.route('/<int:year>/<name>/<path:path>')
+def static_in_pages(year, name, path):
+    return send_from_directory(Page.root, '%i/%s/%s' % (year, name, path))
 
 
 @app.route('/feed.atom')
@@ -83,7 +153,7 @@ def feed():
         (
             # with `modified`, but defaults to `published`
             (article.meta.get('modified', article['published']), article)
-            for article in all_articles()
+            for article in Page.all_articles()
         ),
         reverse=True
     )[:10]
@@ -103,7 +173,7 @@ def minify_css(css):
 
 @app.route('/style.css')
 def stylesheet():
-    css = render_template('style.css', pygments_style_defs=pygments_style_defs)
+    css = render_template('style.css', pygments_css=PYGMENTS_CSS)
     css = minify_css(css)
     # Add this after minification, would be removed otherwise.
     css = (
@@ -113,24 +183,6 @@ def stylesheet():
          + css
     )
     return app.response_class(css, mimetype='text/css')
-
-
-STATIC_EXTENSIONS = ('.jpg', '.png', '.svg', '.html', '.css', '.pdf')
-
-# the repr() of a tuple matches the micro-syntax used by `any`
-# http://werkzeug.pocoo.org/documentation/dev/routing.html#werkzeug.routing.AnyConverter
-@app.route('/<path:path><any%r:type>' % (STATIC_EXTENSIONS,))
-def static_in_pages(path, type):
-    return send_from_directory(pages.root, path + type)
-
-
-@app.route('/<path:path>/')
-def page(path):
-    return render_template('flatpage.html',
-        page=pages.get_or_404(path),
-#        sub_pages=by_date(p for p in all_articles()
-#                          if p.path.startswith(path + '/')),
-    )
 
 
 @app.errorhandler(404)

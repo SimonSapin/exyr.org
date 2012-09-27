@@ -1,6 +1,5 @@
 title: Random pronounceable passwords
 published: 2011-02-11
-public: yes
 tags: [passwords, snippets]
 summary: |
     Using a sample text for statistics and Markov chains, we can generate

@@ -1,5 +1,4 @@
 title: About
-public: true
 
 Hi, I’m Simon Sapin and this is my personal website. I’m a software engineer at
 [Kozea](http://kozea.fr), a member of [W3C’s CSS Working Group](

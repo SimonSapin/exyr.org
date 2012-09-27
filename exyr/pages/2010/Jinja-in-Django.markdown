@@ -1,5 +1,4 @@
 title: Using Jinja2 in Django
-public: true
 published: 2010-12-29
 tags:
     - web-development

@@ -1,5 +1,4 @@
 title: WeasyPrint renders HTML+CSS to PDF
-public: true
 published: 2011-11-02
 tags: [kozea, weasyprint]
 summary:

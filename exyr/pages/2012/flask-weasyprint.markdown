@@ -1,7 +1,6 @@
 title: Flask-WeasyPrint
 published: 2012-07-19
 tags: [kozea, weasyprint]
-public: true
 summary: |
     I just released [Flask-WeasyPrint](http://packages.python.org/Flask-WeasyPrint/)
 

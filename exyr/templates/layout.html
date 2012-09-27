@@ -41,7 +41,7 @@
       <ul>
         <li><a href="{{ url_for('home') }}">Posts</a></li>
         <li><a href="{{ url_for('tags') }}">Tags</a></li>
-        <li><a href="{{ url_for('page', path='about') }}">About</a></li>
+        <li><a href="{{ url_for('about') }}">About</a></li>
         <li><a href="{{ url_for('feed') }}">Subscribe <img alt=""
           src="{{ url_for('static', filename='feed-icon.png') }}"></a></li>
       </ul>
@@ -54,8 +54,8 @@
 
   <footer>
     {#- See <rights/> in atom.xml too #}
-    <p>© Copyright {{ build_date.year }} by
-      <a href="{{ url_for('page', path='about') }}">Simon Sapin</a>.</p>
+    <p>© Copyright {{ today().year }} by
+      <a href="{{ url_for('about') }}">Simon Sapin</a>.</p>
     <p>Content licensed under <a rel=license
         href="http://creativecommons.org/licenses/by-nc-sa/3.0/">
           Creative Commons BY-NC-SA</a>.</p>

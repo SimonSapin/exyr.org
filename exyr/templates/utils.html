@@ -9,15 +9,13 @@
   <section class=article_list>
   {% for page in articles %}
     <article>
-      <h3><a href="{{ url_for('page', path=page.path) }}">
+      <h3><a href="{{ page.url() }}">
           {{ page.title }}</a></h3>
       <p>{{ html5_date(page.published) }}</p>
       {{ page.summary|markdown|safe }}
-      <p><a href="{{ url_for('page', path=page.path) }}">Read more…</a></p>
+      <p><a href="{{ page.url() }}">Read more…</a></p>
     </article>
   {% endfor %}
   </section>
 {% endif %}
 {% endmacro %}
-
-

@@ -1,5 +1,4 @@
 title: virtualenv HOWTO
-public: true
 published: 2011-06-10
 tags: [packaging]
 summary: Slides for an introduction to virtualenv and pip I gave recently.

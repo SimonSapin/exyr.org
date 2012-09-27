@@ -1,5 +1,4 @@
 title: Poor man’s NTP
-public: true
 published: 2011-05-28
 tags: [ntp]
 summary: How to synchronize a Linux computer’s clock when NTP doesn’t work.
