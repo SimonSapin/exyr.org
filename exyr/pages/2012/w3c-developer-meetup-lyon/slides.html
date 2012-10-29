@@ -1,0 +1,901 @@
+<!DOCTYPE html>
+
+<meta charset="utf-8">
+<title>WeasyPrint: bring the web to PDF and paper</title>
+
+<section>
+    <h1 style="margin-bottom: 0"><img alt=WeasyPrint
+        src=images/make/weasyprint-logo.png style="width: 70%"></h1>
+    <p style="text-align: center; margin-top: 0">
+        Bring the web to PDF and paper</p>
+    <footer style="font-size: 100%">
+        Simon Sapin,
+        <img alt=Kozea src=images/kozea-logo.svg
+            style="height: 1.5em; margin-left: .5em">,  
+        CSS Working Group<br>
+        W3C Developer Meetup − 29th October 2012
+    </footer>
+    <details>
+        Recently joined the WG
+    </details>
+</section>
+
+<section>
+    <h2>Kozea</h2>
+    <ul>
+        <li>Software company</li>
+        <li>10 persons</li>
+        <li>In Vaulx-en-Velin (Lyon area)</li>
+        <li>Builds custom web applications for businesses</li>
+        <li>Recent W3C member</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section class=oss>
+    <style>
+        .oss img { height: 120px; margin: 20px 20px 0 }
+        .oss p { text-align: center }
+    </style>
+    <h2>Open-source</h2>
+    <p>
+        <img src=images/use/Tux.svg>
+        <img src=images/use/Lighttpd_logo.svg>
+        <img src=images/use/python.png>
+        <img src=images/use/lxml.png>
+        <img src=images/use/pango-name.png style="height: 90px">
+        <img src=images/use/pocoo.png>
+        <img src=images/use/flask.svg>
+    </p>
+    <details>
+        We use open-source stuff a lot. (Lower-level bricks.)<br>
+        You may have had a similar experience: you just use it,
+        start reporting issues, start looking at the code,
+        start fixing issues yourself and send pull requests …
+    </details>
+</section>
+
+<section class=oss>
+    <h2>Making open-source</h2>
+    <p>
+        <img src=images/make/multicorn.png>
+        <img src=images/make/radicale.svg>
+        <img src=images/make/Frozen-Flask.svg>
+        <img src=images/make/logo-pynuts.png style="height: 90px">
+        <img src=images/make/weasyprint-logo.png>
+        <img src=images/make/cairosvg.png>
+    </p>
+    <p style="font-size: 1.2em"><a
+        href="http://community.kozea.org/">community.kozea.org</a></p>
+    <details>
+        And at some point you may start your own open-source project.
+        Find ours at <a href="http://community.kozea.org/">
+            community.kozea.org</a>
+        and <a href="https://github.com/Kozea">on GitHub</a>.
+    </details>
+</section>
+
+<section>
+    <h2>Kozea: expertise</h2>
+    <ul>
+        <li>Software industrialization</li>
+        <li>HTML5/CSS3-based e-learning</li>
+        <li>Semi-automated reporting both for the web
+            and for printing (PDF)</li>
+    </ul>
+    <details>
+        Industrialization example: 2000 customized pharmacy websites
+        on the same code base.<br>
+        e-learning: stylesheets rather than PowerPoint-style slides.<br>
+        Reporting through CSS and SVG, including vector graphs of data
+        aggregated on the fly.
+    </details>
+</section>
+
+<section>
+    <h2>PDF</h2>
+    <ul>
+        <li>Pages</li>
+        <li><em>Hi-Fi</em> layout (set in stone)</li>
+        <li>For printing, archiving …</li>
+        <li>Tools? Automation?</li>
+        <li>Example: hundreds of invoices / month</li>
+    </ul>
+    <details>
+        Flexible web documents are great but sometimes you need PDF.
+        We want to generate them automatically as much as possible.
+    </details>
+</section>
+
+<section>
+    <h2>LaTeX → PDF</h2>
+    <ul>
+        <li>Great typography, but …</li>
+        <li>Rigid stylesheets</li>
+        <li>Not (always) reproducible</li>
+        <li>Gloablly painful</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section>
+    <h2>SVG → PDF</h2>
+    <ul>
+        <li>Viable for small, fixed form documents</li>
+        <li>No ”flow” (automatic line breaking…)</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section>
+    <h2>CairoSVG</h2>
+    <ul>
+        <li><a href="http://cairosvg.org/">cairosvg.org</a></li>
+        <li>SVG 1.1 renderer</li>
+        <li>PDF, PS and PNG output</li>
+        <li>Has a non-standard hack for multi-page</li>
+        <li>Open-source</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section>
+    <h2>HTML+CSS → PDF</h2>
+    <ul>
+        <li>We want this!</li>
+        <li>Reuse all server-side tools that generate HTML</li>
+        <li>Reuse our designer’s CSS skills</li>
+        <li>Profit from the web’s flexibility</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section>
+    <h2>CSS for Paged Media</h2>
+    <pre><code class=language-css
+>h1 { page-break-before: right }
+h1, h2, h3 {
+    page-break-after: avoid }
+@page { size: A4 landscape;
+        margin: 2cm }
+@page :left { @bottom-right {
+    content: counter(page) } }
+@media print { nav { display: none } }
+    </code></pre>
+    <details>
+        Keyword for finding docs: CSS Paged Media.<br>
+        Some properties control page breaks,
+        <code>@page</code> for the page and its headers/footers,
+        <code>@media</code> for conditinals.<br>
+        Units: 96 CSS <code>px</code> / CSS inch, for historical reasons.
+        <code>px</code> may not match device pixels. Meaningless in print
+        anyway, use <code>cm</code>, <code>mm</code>, <code>pt</code>, etc.
+    </details>
+</section>
+
+<section>
+    <h2>HTML+CSS → PDF</h2>
+    <ul>
+        <li>Browser engines: not great at pagination, little or no
+            Paged Media CSS.
+        </li>
+        <li>Print-specific engines: great document quality
+            but not open-source</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section>
+    <h2>WeasyPrint</h2>
+    <ul>
+        <li>1.5y ago: “Let’s make a new layout engine!”</li>
+        <li><a href="http://weasyprint.org/">weasyprint.org</a></li>
+        <li>HTML, CSS, SVG, … → PDF</li>
+        <li>Command-line API, Python API</li>
+        <li>Open-source</li>
+    </ul>
+<!--    <p></p>-->
+<!--    <p><a href="http://weasyprint.org/#acid2">Acid2</a>-->
+<!--        <img src=images/acid2-small.png-->
+<!--         style="vertical-align: middle; margin: 0 3em 0 .5em"></p>-->
+    <details>
+    </details>
+</section>
+
+<section style="text-align: center">
+    <figure><img src=images/box_model.png>
+        <figcaption style="text-align: left; line-height: 1">
+            <p><span style="background: rgba(255, 255, 255, 0.9)">
+                CSS box model…</span></p>
+            <p style="margin-top: 430px; foont-size: 70%">
+            <span style="background: rgba(255, 255, 255, 0.9)">
+                It’s complicated.</span></p>
+        </figcaption>
+    </figure>
+    <details>
+        No need to read this in details.<br>
+        The CSS 2.1 spec has dozen of pages describing this in details.
+        I had to read it many times, with a pen and paper. This is
+        what I got after many iterations.
+    </details>
+</section>
+
+<section>
+    <h2>W3C, CSS Working Group</h2>
+    <ul>
+        <li>Reading specs</li>
+        <li>Asking clarifications on the mailing list</li>
+        <li>Reporting issues</li>
+        <li>Invited Experts</li>
+        <li>Joining W3C as a Member company</li>
+    </ul>
+    <details>
+    </details>
+</section>
+
+<section style="text-align: center">
+    <h2>Thank you.</h2>
+    <footer>
+        <p style="float: left; margin-top: 0">Come and talk to us!</p>
+        <a href="http://weasyprint.org">weasyprint.org</a><br>
+        <a href="https://github.com/Kozea">github.com/Kozea</a><br>
+        <a href="http://community.kozea.fr/">community.kozea.fr</a><br>
+        IRC: ##kozea @ Freenode
+    </footer>
+    <details>
+        Come and chat with us!
+    </details>
+</section>
+
+<script src="prism.js"></script>
+<link rel=stylesheet href="prism.css">
+<!-- Your Style -->
+<!-- Define the style of your presentation -->
+
+<!-- Maybe a font from http://www.google.com/webfonts ? -->
+<!--<link href='http://fonts.googleapis.com/css?family=Oswald' rel='stylesheet'>-->
+<link href='font/font.css' rel='stylesheet'>
+
+<style>
+  html, .view body { background-color: black; counter-reset: slideidx; }
+  body, .view section { background-color: white; border-radius: 12px; }
+  /* A section is a slide. It's size is 800x600, and this will never change */
+  section, .view head > title {
+      /* The font from Google */
+      font-family: 'Oswald', arial, serif;
+      font-size: 35px;
+      line-height: 1.5;
+  }
+
+  .view section:after {
+    counter-increment: slideidx;
+    content: counter(slideidx, decimal-leading-zero);
+    position: absolute; bottom: -80px; right: 100px;
+    color: white;
+  }
+
+  .view head > title {
+    color: white;
+    text-align: center;
+    margin: 1em 0 1em 0;
+  }
+
+
+  h1, h2 {
+    text-align: center;
+    font-size: 40px;
+  }
+
+  ul {
+      margin: 50px 180px;
+  }
+  ul ul {
+    margin: .2em 0 .2em 1em;
+    line-height: 1.2;
+  }
+  li {
+    margin-bottom: .2em;
+  }
+  p, h1, h2, h3, pre, dl {
+    margin: 1em;
+  }
+  a {
+    color: #00a !important;
+  }
+  pre {
+    font-size: 90%;
+    line-height: 1.2;
+  }
+  dd {
+    margin: 0 0 1em 1em;
+  }
+  dt {
+    color: #333;
+  }
+  dt::after {
+    content: ':';
+  }
+
+  blockquote {
+    height: 100%;
+    background-color: black;
+    color: white;
+    font-size: 60px;
+    padding: 50px;
+  }
+  blockquote:before {
+    content: open-quote;
+  }
+  blockquote:after {
+    content: close-quote;
+  }
+
+  /* Figures are displayed full-page, with the caption
+     on top of the image/video */
+  figure {
+    background-color: black;
+    width: 100%;
+    height: 100%;
+  }
+  figure img {
+    border-radius: 15px;
+  }
+  figure > * {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  figure > img, figure > video {
+    width: 100%; height: 100%;
+  }
+  figcaption {
+    margin: 30px 50px;
+    font-size: 50px;
+  }
+  figcaption p {
+    margin: 0;
+  }
+
+  footer {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 40px;
+    text-align: right;
+    background-color: #F3F4F8;
+    border-top: 1px solid #CCC;
+    border-radius: 0 0 12px 12px;
+  }
+  sup { vertical-align: .5em }
+
+  /* Transition effect */
+  /* Feel free to change the transition effect for original
+     animations. See here:
+     https://developer.mozilla.org/en/CSS/CSS_transitions
+     How to use CSS3 Transitions: */
+  section {
+    -moz-transition: left 400ms linear 0s;
+    -webkit-transition: left 400ms linear 0s;
+    -ms-transition: left 400ms linear 0s;
+    transition: left 400ms linear 0s;
+  }
+  .view section {
+    -moz-transition: none;
+    -webkit-transition: none;
+    -ms-transition: none;
+    transition: none;
+  }
+
+  .view section[aria-selected] {
+    border: 5px red solid;
+  }
+
+  /* Before */
+  section { left: -150%; }
+  /* Now */
+  section[aria-selected] { left: 0; }
+  /* After */
+  section[aria-selected] ~ section { left: +150%; }
+
+  /* Incremental elements */
+
+  /* By default, visible */
+  .incremental > * { opacity: 1; }
+
+  /* The current item */
+  .incremental > *[aria-selected] { opacity: 1; }
+
+  /* The items to-be-selected */
+  .incremental > *[aria-selected] ~ * { opacity: 0; }
+
+  /* The progressbar, at the bottom of the slides, show the global
+     progress of the presentation. */
+  #progress-bar div {
+    height: 4px;
+    background: #AAA;
+  }
+</style>
+
+<!-- {{{{ dzslides core
+#
+#
+#     __  __  __       .  __   ___  __
+#    |  \  / /__` |    | |  \ |__  /__`
+#    |__/ /_ .__/ |___ | |__/ |___ .__/ core :€
+#
+#
+# The following block of code is not supposed to be edited.
+# But if you want to change the behavior of these slides,
+# feel free to hack it!
+#
+-->
+<div id="progress-bar"><div></div></div>
+
+<!-- Default Style -->
+<style>
+  * { margin: 0; padding: 0; -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+  details { display: none; }
+  body {
+    width: 800px; height: 600px;
+    margin-left: -400px; margin-top: -300px;
+    position: absolute; top: 50%; left: 50%;
+    overflow: hidden;
+    display: none;
+  }
+  .view body {
+    position: static;
+    margin: 0; padding: 0;
+    width: 100%; height: 100%;
+    display: inline-block;
+    overflow: visible; overflow-x: hidden;
+    /* undo Dz.onresize */
+    transform: none !important;
+    -moz-transform: none !important;
+    -webkit-transform: none !important;
+    -o-transform: none !important;
+    -ms-transform: none !important;
+  }
+  .view head, .view head > title { display: block }
+  section {
+    position: absolute;
+    pointer-events: none;
+    width: 100%; height: 100%;
+  }
+  .view section {
+    pointer-events: auto;
+    position: static;
+    width: 800px; height: 600px;
+    margin: -150px -200px;
+    float: left;
+
+    transform: scale(.4);
+    -moz-transform: scale(.4);
+    -webkit-transform: scale(.4);
+    -o-transform: scale(.4);
+    -ms-transform: scale(.4);
+  }
+  .view section > * { pointer-events: none; }
+  section[aria-selected] { pointer-events: auto; }
+  html { overflow: hidden; }
+  html.view { overflow: visible; }
+  body.loaded { display: block; }
+  .incremental {visibility: hidden; }
+  .incremental[active] {visibility: visible; }
+  #progress-bar{
+    bottom: 0;
+    position: absolute;
+    left: 15px;
+    right: 15px;
+    -moz-transition: width 400ms linear 0s;
+    -webkit-transition: width 400ms linear 0s;
+    -ms-transition: width 400ms linear 0s;
+    transition: width 400ms linear 0s;
+  }
+  .view #progress-bar {
+    display: none;
+  }
+</style>
+
+<script>
+  var Dz = {
+    remoteWindows: [],
+    idx: -1,
+    step: 0,
+    html: null,
+    slides: null,
+    progressBar : null,
+    params: {
+      autoplay: "1"
+    }
+  };
+
+  Dz.init = function() {
+    document.body.className = "loaded";
+    this.slides = Array.prototype.slice.call($$("body > section"));
+    this.progressBar = $("#progress-bar div");
+    this.html = document.body.parentNode;
+    this.setupParams();
+    this.onhashchange();
+    this.setupTouchEvents();
+    this.onresize();
+    this.setupView();
+  }
+
+  Dz.setupParams = function() {
+    var p = window.location.search.substr(1).split('&');
+    p.forEach(function(e, i, a) {
+      var keyVal = e.split('=');
+      Dz.params[keyVal[0]] = decodeURIComponent(keyVal[1]);
+    });
+  // Specific params handling
+    if (!+this.params.autoplay)
+      $$.forEach($$("video"), function(v){ v.controls = true });
+  }
+
+  Dz.onkeydown = function(aEvent) {
+    // Don't intercept keyboard shortcuts
+    if (aEvent.altKey
+      || aEvent.ctrlKey
+      || aEvent.metaKey
+      || aEvent.shiftKey) {
+      return;
+    }
+    if ( aEvent.keyCode == 37 // left arrow
+      || aEvent.keyCode == 38 // up arrow
+      || aEvent.keyCode == 33 // page up
+    ) {
+      aEvent.preventDefault();
+      this.back();
+    }
+    if ( aEvent.keyCode == 39 // right arrow
+      || aEvent.keyCode == 40 // down arrow
+      || aEvent.keyCode == 34 // page down
+    ) {
+      aEvent.preventDefault();
+      this.forward();
+    }
+    if (aEvent.keyCode == 35) { // end
+      aEvent.preventDefault();
+      this.goEnd();
+    }
+    if (aEvent.keyCode == 36) { // home
+      aEvent.preventDefault();
+      this.goStart();
+    }
+    if (aEvent.keyCode == 32) { // space
+      aEvent.preventDefault();
+      this.toggleContent();
+    }
+    if (aEvent.keyCode == 70) { // f
+      aEvent.preventDefault();
+      this.goFullscreen();
+    }
+    if (aEvent.keyCode == 79) { // o
+      aEvent.preventDefault();
+      this.toggleView();
+    }
+  }
+
+  /* Touch Events */
+
+  Dz.setupTouchEvents = function() {
+    var orgX, newX;
+    var tracking = false;
+
+    var db = document.body;
+    db.addEventListener("touchstart", start.bind(this), false);
+    db.addEventListener("touchmove", move.bind(this), false);
+
+    function start(aEvent) {
+      aEvent.preventDefault();
+      tracking = true;
+      orgX = aEvent.changedTouches[0].pageX;
+    }
+
+    function move(aEvent) {
+      if (!tracking) return;
+      newX = aEvent.changedTouches[0].pageX;
+      if (orgX - newX > 100) {
+        tracking = false;
+        this.forward();
+      } else {
+        if (orgX - newX < -100) {
+          tracking = false;
+          this.back();
+        }
+      }
+    }
+  }
+
+  Dz.setupView = function() {
+    document.body.addEventListener("click", function ( e ) {
+      if (!Dz.html.classList.contains("view")) return;
+      if (!e.target || e.target.nodeName != "SECTION") return;
+
+      Dz.html.classList.remove("view");
+      Dz.setCursor(Dz.slides.indexOf(e.target) + 1);
+    }, false);
+  }
+
+  /* Adapt the size of the slides to the window */
+
+  Dz.onresize = function() {
+    var db = document.body;
+    var sx = db.clientWidth / window.innerWidth;
+    var sy = db.clientHeight / window.innerHeight;
+    var transform = "scale(" + (1/Math.max(sx, sy)) + ")";
+
+    db.style.MozTransform = transform;
+    db.style.WebkitTransform = transform;
+    db.style.OTransform = transform;
+    db.style.msTransform = transform;
+    db.style.transform = transform;
+  }
+
+
+  Dz.getDetails = function(aIdx) {
+    var s = $("section:nth-of-type(" + aIdx + ")");
+    var d = s.$("details");
+    return d ? d.innerHTML : "";
+  }
+
+  Dz.onmessage = function(aEvent) {
+    var argv = aEvent.data.split(" "), argc = argv.length;
+    argv.forEach(function(e, i, a) { a[i] = decodeURIComponent(e) });
+    var win = aEvent.source;
+    if (argv[0] === "REGISTER" && argc === 1) {
+      this.remoteWindows.push(win);
+      this.postMsg(win, "REGISTERED", document.title, this.slides.length);
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+      return;
+    }
+    if (argv[0] === "BACK" && argc === 1)
+      this.back();
+    if (argv[0] === "FORWARD" && argc === 1)
+      this.forward();
+    if (argv[0] === "START" && argc === 1)
+      this.goStart();
+    if (argv[0] === "END" && argc === 1)
+      this.goEnd();
+    if (argv[0] === "TOGGLE_CONTENT" && argc === 1)
+      this.toggleContent();
+    if (argv[0] === "SET_CURSOR" && argc === 2)
+      window.location.hash = "#" + argv[1];
+    if (argv[0] === "GET_CURSOR" && argc === 1)
+      this.postMsg(win, "CURSOR", this.idx + "." + this.step);
+    if (argv[0] === "GET_NOTES" && argc === 1)
+      this.postMsg(win, "NOTES", this.getDetails(this.idx));
+  }
+
+  Dz.toggleContent = function() {
+    // If a Video is present in this new slide, play it.
+    // If a Video is present in the previous slide, stop it.
+    var s = $("section[aria-selected]");
+    if (s) {
+      var video = s.$("video");
+      if (video) {
+        if (video.ended || video.paused) {
+          video.play();
+        } else {
+          video.pause();
+        }
+      }
+    }
+  }
+
+  Dz.setCursor = function(aIdx, aStep) {
+    // If the user change the slide number in the URL bar, jump
+    // to this slide.
+    aStep = (aStep != 0 && typeof aStep !== "undefined") ? "." + aStep : ".0";
+    window.location.hash = "#" + aIdx + aStep;
+  }
+
+  Dz.onhashchange = function() {
+    var cursor = window.location.hash.split("#"),
+        newidx = 1,
+        newstep = 0;
+    if (cursor.length == 2) {
+      newidx = ~~cursor[1].split(".")[0];
+      newstep = ~~cursor[1].split(".")[1];
+      if (newstep > Dz.slides[newidx - 1].$$('.incremental > *').length) {
+        newstep = 0;
+        newidx++;
+      }
+    }
+    this.setProgress(newidx, newstep);
+    if (newidx != this.idx) {
+      this.setSlide(newidx);
+    }
+    if (newstep != this.step) {
+      this.setIncremental(newstep);
+    }
+    for (var i = 0; i < this.remoteWindows.length; i++) {
+      this.postMsg(this.remoteWindows[i], "CURSOR", this.idx + "." + this.step);
+    }
+  }
+
+  Dz.back = function() {
+    if (this.idx == 1 && this.step == 0) {
+      return;
+    }
+    if (this.step == 0) {
+      this.setCursor(this.idx - 1,
+                     this.slides[this.idx - 2].$$('.incremental > *').length);
+    } else {
+      this.setCursor(this.idx, this.step - 1);
+    }
+  }
+
+  Dz.forward = function() {
+    if (this.idx >= this.slides.length &&
+        this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+        return;
+    }
+    if (this.step >= this.slides[this.idx - 1].$$('.incremental > *').length) {
+      this.setCursor(this.idx + 1, 0);
+    } else {
+      this.setCursor(this.idx, this.step + 1);
+    }
+  }
+
+  Dz.goStart = function() {
+    this.setCursor(1, 0);
+  }
+
+  Dz.goEnd = function() {
+    var lastIdx = this.slides.length;
+    var lastStep = this.slides[lastIdx - 1].$$('.incremental > *').length;
+    this.setCursor(lastIdx, lastStep);
+  }
+
+  Dz.toggleView = function() {
+    this.html.classList.toggle("view");
+
+    if (this.html.classList.contains("view")) {
+      $("section[aria-selected]").scrollIntoView(true);
+    }
+  }
+
+  Dz.setSlide = function(aIdx) {
+    this.idx = aIdx;
+    var old = $("section[aria-selected]");
+    var next = $("section:nth-of-type("+ this.idx +")");
+    if (old) {
+      old.removeAttribute("aria-selected");
+      var video = old.$("video");
+      if (video) {
+        video.pause();
+      }
+    }
+    if (next) {
+      next.setAttribute("aria-selected", "true");
+      if (this.html.classList.contains("view")) {
+        next.scrollIntoView();
+      }
+      var video = next.$("video");
+      if (video && !!+this.params.autoplay) {
+        video.play();
+      }
+    } else {
+      // That should not happen
+      this.idx = -1;
+      // console.warn("Slide doesn't exist.");
+    }
+  }
+
+  Dz.setIncremental = function(aStep) {
+    this.step = aStep;
+    var old = this.slides[this.idx - 1].$('.incremental > *[aria-selected]');
+    if (old) {
+      old.removeAttribute('aria-selected');
+    }
+    var incrementals = $$('.incremental');
+    if (this.step <= 0) {
+      $$.forEach(incrementals, function(aNode) {
+        aNode.removeAttribute('active');
+      });
+      return;
+    }
+    var next = this.slides[this.idx - 1].$$('.incremental > *')[this.step - 1];
+    if (next) {
+      next.setAttribute('aria-selected', true);
+      next.parentNode.setAttribute('active', true);
+      var found = false;
+      $$.forEach(incrementals, function(aNode) {
+        if (aNode != next.parentNode)
+          if (found)
+            aNode.removeAttribute('active');
+          else
+            aNode.setAttribute('active', true);
+        else
+          found = true;
+      });
+    } else {
+      setCursor(this.idx, 0);
+    }
+    return next;
+  }
+
+  Dz.goFullscreen = function() {
+    var html = $('html'),
+        requestFullscreen = html.requestFullscreen || html.requestFullScreen || html.mozRequestFullScreen || html.webkitRequestFullScreen;
+    if (requestFullscreen) {
+      requestFullscreen.apply(html);
+    }
+  }
+
+  Dz.setProgress = function(aIdx, aStep) {
+    var slide = $("section:nth-of-type("+ aIdx +")");
+    if (!slide)
+      return;
+    var steps = slide.$$('.incremental > *').length + 1,
+        slideSize = 100 / (this.slides.length - 1),
+        stepSize = slideSize / steps;
+    this.progressBar.style.width = ((aIdx - 1) * slideSize + aStep * stepSize) + '%';
+  }
+
+  Dz.postMsg = function(aWin, aMsg) { // [arg0, [arg1...]]
+    aMsg = [aMsg];
+    for (var i = 2; i < arguments.length; i++)
+      aMsg.push(encodeURIComponent(arguments[i]));
+    aWin.postMessage(aMsg.join(" "), "*");
+  }
+
+  function init() {
+    Dz.init();
+    window.onkeydown = Dz.onkeydown.bind(Dz);
+    window.onresize = Dz.onresize.bind(Dz);
+    window.onhashchange = Dz.onhashchange.bind(Dz);
+    window.onmessage = Dz.onmessage.bind(Dz);
+  }
+
+  window.onload = init;
+</script>
+
+
+<script> // Helpers
+  if (!Function.prototype.bind) {
+    Function.prototype.bind = function (oThis) {
+
+      // closest thing possible to the ECMAScript 5 internal IsCallable
+      // function
+      if (typeof this !== "function")
+      throw new TypeError(
+        "Function.prototype.bind - what is trying to be fBound is not callable"
+      );
+
+      var aArgs = Array.prototype.slice.call(arguments, 1),
+          fToBind = this,
+          fNOP = function () {},
+          fBound = function () {
+            return fToBind.apply( this instanceof fNOP ? this : oThis || window,
+                   aArgs.concat(Array.prototype.slice.call(arguments)));
+          };
+
+      fNOP.prototype = this.prototype;
+      fBound.prototype = new fNOP();
+
+      return fBound;
+    };
+  }
+
+  var $ = (HTMLElement.prototype.$ = function(aQuery) {
+    return this.querySelector(aQuery);
+  }).bind(document);
+
+  var $$ = (HTMLElement.prototype.$$ = function(aQuery) {
+    return this.querySelectorAll(aQuery);
+  }).bind(document);
+
+  $$.forEach = function(nodeList, fun) {
+    Array.prototype.forEach.call(nodeList, fun);
+  }
+
+</script>
+<!-- vim: set fdm=marker: }}} -->
