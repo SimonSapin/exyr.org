@@ -13,3 +13,11 @@ The title is ”<em>WeasyPrint: bring the web to PDF and paper</em>” but
 (spoiler!) it’s also about W3C and how we got there.
 
 See you tonight!
+
+**Update 2012-10-30**
+
+Here are the slides:
+
+<iframe
+  src="embedder.html#slides.html"
+  width="736" height="750" style="border: 2px solid black"></iframe>

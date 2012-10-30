@@ -16,20 +16,28 @@
         W3C Developer Meetup − 29th October 2012
     </footer>
     <details>
-        Recently joined the WG
     </details>
 </section>
 
 <section>
     <h2>Kozea</h2>
     <ul>
-        <li>Software company</li>
-        <li>10 persons</li>
-        <li>In Vaulx-en-Velin (Lyon area)</li>
-        <li>Builds custom web applications for businesses</li>
+        <li>Software company, 10 persons, Lyon area</li>
+        <li>Builds custom web applications for businesses
+            <ul>
+                <li>Industrialization</li>
+                <li>HTML5/CSS3 e-learning</li>
+                <li>Semi-automated reporting</li>
+            </ul>
+        </li>
         <li>Recent W3C member</li>
     </ul>
     <details>
+        Industrialization example: 2000 customized pharmacy websites
+        on the same code base.<br>
+        e-learning: stylesheets rather than PowerPoint-style slides.<br>
+        Reporting through CSS and SVG, including vector graphs of data
+        aggregated on the fly, producing PDF.
     </details>
 </section>
 
@@ -49,9 +57,9 @@
         <img src=images/use/flask.svg>
     </p>
     <details>
-        We use open-source stuff a lot. (Lower-level bricks.)<br>
+        We use lower-level open-source bricks a lot.<br>
         You may have had a similar experience: you just use it,
-        start reporting issues, start looking at the code,
+        then start reporting issues, start looking at the code,
         start fixing issues yourself and send pull requests …
     </details>
 </section>
@@ -73,23 +81,6 @@
         Find ours at <a href="http://community.kozea.org/">
             community.kozea.org</a>
         and <a href="https://github.com/Kozea">on GitHub</a>.
-    </details>
-</section>
-
-<section>
-    <h2>Kozea: expertise</h2>
-    <ul>
-        <li>Software industrialization</li>
-        <li>HTML5/CSS3-based e-learning</li>
-        <li>Semi-automated reporting both for the web
-            and for printing (PDF)</li>
-    </ul>
-    <details>
-        Industrialization example: 2000 customized pharmacy websites
-        on the same code base.<br>
-        e-learning: stylesheets rather than PowerPoint-style slides.<br>
-        Reporting through CSS and SVG, including vector graphs of data
-        aggregated on the fly.
     </details>
 </section>
 
@@ -117,16 +108,18 @@
         <li>Gloablly painful</li>
     </ul>
     <details>
+        Painful, in one word.
     </details>
 </section>
 
 <section>
     <h2>SVG → PDF</h2>
     <ul>
-        <li>Viable for small, fixed form documents</li>
+        <li>Viable for small, fixed form documents (eg. invoices)</li>
         <li>No ”flow” (automatic line breaking…)</li>
     </ul>
     <details>
+        More pleasant but hack-ish.
     </details>
 </section>
 
@@ -140,6 +133,7 @@
         <li>Open-source</li>
     </ul>
     <details>
+        By the way, we made our own SVG implementation in Python.
     </details>
 </section>
 
@@ -152,6 +146,8 @@
         <li>Profit from the web’s flexibility</li>
     </ul>
     <details>
+        <em>This</em> is what we really want.
+        It makes sense however we think of it.
     </details>
 </section>
 
@@ -168,13 +164,8 @@ h1, h2, h3 {
 @media print { nav { display: none } }
     </code></pre>
     <details>
-        Keyword for finding docs: CSS Paged Media.<br>
-        Some properties control page breaks,
-        <code>@page</code> for the page and its headers/footers,
-        <code>@media</code> for conditinals.<br>
-        Units: 96 CSS <code>px</code> / CSS inch, for historical reasons.
-        <code>px</code> may not match device pixels. Meaningless in print
-        anyway, use <code>cm</code>, <code>mm</code>, <code>pt</code>, etc.
+        Actually, CSS does have a lot for Paged Media:
+        page break control, page sizing, headers and footers, …
     </details>
 </section>
 
@@ -188,6 +179,8 @@ h1, h2, h3 {
             but not open-source</li>
     </ul>
     <details>
+        … but Gecko and Webkit do not really implement these parts of CSS.<br>
+        Specialized engines do, but didn’t fit for various reasons.
     </details>
 </section>
 
@@ -200,11 +193,30 @@ h1, h2, h3 {
         <li>Command-line API, Python API</li>
         <li>Open-source</li>
     </ul>
-<!--    <p></p>-->
-<!--    <p><a href="http://weasyprint.org/#acid2">Acid2</a>-->
-<!--        <img src=images/acid2-small.png-->
-<!--         style="vertical-align: middle; margin: 0 3em 0 .5em"></p>-->
     <details>
+        I said “No, it’s a bad I idea, we’re not gonna do that.”
+        But we still did.<br>
+        We’ve now been using WeasyPrint in production in multiple
+        applications for 8+ months.<br>
+        There are regular stable releases, you can use it.
+    </details>
+</section>
+
+<section>
+    <h2>W3C, CSS Working Group</h2>
+    <ul>
+        <li>Reading specs</li>
+        <li>Asking clarifications on the mailing list</li>
+        <li>Reporting issues</li>
+        <li>Invited Experts</li>
+        <li>Joining W3C as a Member company</li>
+    </ul>
+    <details>
+        Getting involved is a gradual process, even small contributions
+        (like feedback on specs) are greatly appreciated.<br>
+        But still, here I am today although one year ago
+        I didn’t even consider this could ever happen!<br>
+        My point is: you can do this too, at whatever scale you like.
     </details>
 </section>
 
@@ -219,23 +231,9 @@ h1, h2, h3 {
         </figcaption>
     </figure>
     <details>
-        No need to read this in details.<br>
-        The CSS 2.1 spec has dozen of pages describing this in details.
-        I had to read it many times, with a pen and paper. This is
-        what I got after many iterations.
-    </details>
-</section>
-
-<section>
-    <h2>W3C, CSS Working Group</h2>
-    <ul>
-        <li>Reading specs</li>
-        <li>Asking clarifications on the mailing list</li>
-        <li>Reporting issues</li>
-        <li>Invited Experts</li>
-        <li>Joining W3C as a Member company</li>
-    </ul>
-    <details>
+        The CSS 2.1 spec has some “dark corners”…
+        but don’t worry about those, we figured them out for you :)<br>
+        There is plenty more that is easier to approach.
     </details>
 </section>
 
