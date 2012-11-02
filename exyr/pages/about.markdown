@@ -5,7 +5,8 @@ Hi, I’m Simon Sapin and this is my personal website. I’m a software engineer
 http://www.w3.org/Style/CSS/),
 and I eat [Python](http://python.org/) for breakfast.
 
-You can find me as *SimonSapin* [on GitHub](https://github.com/SimonSapin)
+You can find me as *SimonSapin* [on GitHub](https://github.com/SimonSapin),
+[on Twitter](https://twitter.com/SimonSapin)
 and on Freenode (I’m generally in ##kozea and #pocoo), or send me
 <a href="&#109;&#97;&#105;&#108;&#116;&#111;&#58;simon&#64;exyr.org">email</a>.
 
