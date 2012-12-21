@@ -111,10 +111,6 @@ a:hover, a:focus, a:active {
     background: #f2f2f2;
 }
 
-p {
-    text-align: justify;
-}
-
 code {
     background: #eee;
 }
