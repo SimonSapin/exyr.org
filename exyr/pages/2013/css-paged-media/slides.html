@@ -1,0 +1,210 @@
+<!doctype html>
+<meta charset=utf-8>
+<title>Web technologies on PDF & paper</title>
+<style>
+  body {
+    font: 30px/1.3 Fontin;
+    margin: 0;
+  }
+  @page {
+    size: 800px 600px;
+    margin: 0;
+  }
+  @media screen {
+    body {
+      background: hsl(0, 0%, 20%);
+      color: white;
+    }
+    section {
+      margin: 50px auto;
+      border-radius: 20px;
+    }
+  }
+  section {
+    page-break-after: always;
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
+    background: white;
+    color: black;
+    padding: 60px;
+    position: relative;
+    overflow: hidden;
+  }
+  code {
+    font-size: 90%;  /* yeah, we don’t have font-size-adjust yet. */
+  }
+  code, pre {
+    background: hsl(220, 15%, 95%);
+  }
+  h1 {
+    text-align: center;
+    margin-top: .5em;
+  }
+  li {
+    margin: .5em 0;
+  }
+  #intro {
+    padding: 40px;
+  }
+  #intro p {
+    text-align: center;
+  }
+  footer {
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: hsl(220, 15%, 92%);
+    color: black;
+  }
+
+</style>
+<body>
+
+<section id=intro>
+  <h1>Web technologies on PDF & paper</h1>
+  <p><img src=img/weasyprint.png alt="" style="width: 400px"></p>
+  <footer>
+    Simon Sapin, <img src=img/kozea.svg alt=Kozea style="width: 120px;"><br>
+    W3C CSS Working Group, Tucson, 2013-03-05
+  </footer>
+</section>
+
+<!--
+<section>
+  <p>Stuff about fluid/responsive layout (CSS)
+    vs. reproducible (PDF)
+  <p>WeasyPrint
+</section>
+-->
+
+<section id=lengths>
+  <h1>Length units</h1>
+  <style>
+    #lengths dd {
+      word-spacing: 1em; font-family: monospace;
+      margin: 0 2em 1em;
+    }
+  </style>
+  <dl>
+    <dt>Relative:
+    <dd>% em ex ch rem<br> vw vh vwin vmax
+    <dt>Absolute:
+    <dd>in cm mm pt pc px
+  </dl>
+  <!--
+    Proportional to something else.
+    => absolute unit ,ultimately
+
+    Early days of CSS
+      1px = pixel on monitor
+      1in, 1cm physical
+  -->
+</section>
+
+<section id=absolute>
+  <style>
+    #absolute ul {
+      margin-left: 150px; list-style: none; font: 35px monospace;
+    }
+    #absolute span {
+      display: inline-block; border-bottom: solid; vertical-align: middle
+    }
+  </style>
+  <h1>Absolute length units</h1>
+  <ul>
+    <li><span style="width: 1in"></span> 1in</li>
+    <li><span style="width: 2.54cm"></span> 2.54cm</li>
+    <li><span style="width: 25.4mm"></span> 25.4mm</li>
+    <li><span style="width: 72pt"></span> 72pt</li>
+    <li><span style="width: 6pc"></span> 6pc</li>
+    <li><span style="width: 96px"></span> 96px</li>
+  </ul>
+  <!--
+    Computers configured for 96dpi
+    Legacy content
+    => Fixed ratio today
+  -->
+</section>
+
+<section>
+  <h1>Reference pixel</h1>
+  <p style="text-align: center">
+    <img src=img/reference-pixel.png style="width: 400px">
+  </p>
+  <!--
+    Proportional to viewing distance
+    Projector vs. phone
+    HiDPI
+    Paper: anchored on physical units. (WeasyPrint’s default)
+  -->
+</section>
+
+<section>
+  <h1>High-resolution images</h1>
+  <ul>
+    <li>Default: <code>image-resolution: 1dppx</code></li>
+    <li>Specify <code>width</code>,
+        <code>height: auto</code> (the default)
+        preserves the aspect ratio</li>
+  </ul>
+  <!--
+    dppx = dot (image pixel) per CSS pixel
+    Alternatively, set the `width` property
+  -->
+</section>
+
+<section id=vectors>
+  <style>
+    #vectors { text-align: center; }
+    #vectors p { margin-top: 0 }
+    #vectors table { border-spacing: 40px; margin: -40px auto; }
+    #vectors td { width: 300px; height: 150px; overflow: hidden;
+                  text-align: left; }
+    #vectors td img { width: 2000px; margin: -180px -500px -250px -1200px; }
+  </style>
+  <p><img src=img/kozea.svg style="width: 200px;"><br>zoomed 10×</p>
+  <table>
+    <tr>
+      <th>PNG (450×150px)</th>
+      <th>SVG</th>
+    </tr>
+    <tr>
+      <td><img src=img/kozea.png></td>
+      <td><img src=img/kozea.svg></td>
+    </tr>
+  </table>
+  <!--
+      Vectors FTW
+      PDF vectors
+      <object> with PNG fallback for old browsers.
+  -->
+</section>
+
+<section>
+  <h1>SVG with PNG and text fallback</h1>
+  <pre>
+  &lt;object data=<b>kozea-logo.svg</b>>
+    &lt;img src=<b>kozea-logo.png</b>
+         alt=<b>Kozea</b>>
+  &lt;/object>
+  </pre>
+  <!--
+    For old browsers without SVG
+    Same HTML in WeasyPrint & browsers
+  -->
+</pre>
+
+<!--
+
+WeasyPrint
+Issues (similar to mobile)
+  Length units
+  Image resolution, SVG
+Page breaks
+Page headers and footers
+
+-->
