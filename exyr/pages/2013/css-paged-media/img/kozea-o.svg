@@ -1,0 +1,5 @@
+<?xml version="1.0"?>
+<svg id="logo" xmlns="http://www.w3.org/2000/svg" width="80mm" height="80mm" viewBox="25 5 37 37" fill="#383a47" fill-rule="evenodd">
+  <path id="o" d="M 54,33 C 62,25 54,12 33,13 C 32,34 46,42 54,33 Z M 43,6 C 19,6 22,40 44,40 C 66,40 66,6 43,6 Z" fill="#5c8182"/>
+  <circle id="dot" cx="46" cy="26" r="7" fill="#fd9105"/>
+</svg>

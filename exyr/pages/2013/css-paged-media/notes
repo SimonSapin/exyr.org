@@ -1,0 +1,108 @@
+Web technologies on PDF & paper
+===============================
+
+CSS: not just for the Web
+
+
+WeasyPrint
+==========
+
+HTML, CSS, SVG
+    Flexible
+    Automatic layout, reflow
+
+→ PDF
+    Looks same everywhere
+    Pages (vs. contiuous scroll)
+
+
+Page breaks
+===========
+
+Decide where to break
+Automatic, but some author control
+
+Presentation made with WeasyPrint
+
+
+Page layout
+===========
+
+Some properties
+    margin, borders, background, …
+    size
+        keywords, width/height
+        2 equivalent declarations
+
+Page selectors
+
+
+Named pages
+===========
+
+Change page layout within a document
+
+2 equivalent declarations
+
+
+Headers and footers
+===================
+
+In the margin area
+Text, images, counters
+
+
+Length units
+============
+
+cm?
+
+Size & position
+
+Proportional to something else.
+    => absolute unit, ultimately
+
+Early days of CSS
+  1px = pixel on monitor
+  1in, 1cm physical
+
+
+
+
+
+Absolute length units
+=====================
+
+Legacy content
+Computers configured for 96dpi
+=> Fixed ratio today
+
+
+Reference pixel
+===============
+
+Proportional to viewing distance
+Projector vs. phone
+HiDPI
+Paper: anchored on physical units. (WeasyPrint’s default)
+
+
+Vectors graphics
+================
+
+Vectors FTW
+PDF vectors
+
+
+SVG with PNG fallback
+=====================
+
+For old browsers without SVG
+Same HTML in WeasyPrint & browsers
+
+
+Images sizing
+=============
+
+dppx = dot (image pixel) per CSS pixel
+!= device pixel

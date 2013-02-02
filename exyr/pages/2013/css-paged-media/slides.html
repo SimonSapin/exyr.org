@@ -2,13 +2,23 @@
 <meta charset=utf-8>
 <title>Web technologies on PDF & paper</title>
 <style>
-  body {
+  html, body {
     font: 30px/1.3 Fontin;
     margin: 0;
   }
   @page {
     size: 800px 600px;
     margin: 0;
+    @bottom-center {
+        content: counter(page) ' / ' counter(pages);
+        font-size: 70%;
+        margin-top: -3em;
+    }
+  }
+  @page :first {
+    @bottom-center {
+        content: none;
+    }
   }
   @media screen {
     body {
@@ -31,15 +41,16 @@
     position: relative;
     overflow: hidden;
   }
-  code {
-    font-size: 90%;  /* yeah, we don’t have font-size-adjust yet. */
-  }
   code, pre {
+    font-size: 90%;  /* yeah, we don’t have font-size-adjust yet. */
     background: hsl(220, 15%, 95%);
   }
-  h1 {
+  pre {
+    padding: .5em;
+  }
+  h1, h2 {
     text-align: center;
-    margin-top: .5em;
+    margin-top: 0;
   }
   li {
     margin: .5em 0;
@@ -73,20 +84,70 @@
   </footer>
 </section>
 
-<!--
-<section>
-  <p>Stuff about fluid/responsive layout (CSS)
-    vs. reproducible (PDF)
-  <p>WeasyPrint
+<section id=intro>
+  <h1> </h1><!-- Dirty hacks yay! -->
+  <p><img src=img/weasyprint.png alt="" style="width: 400px"></p>
+  <h2>HTML, CSS, SVG → PDF</h2>
 </section>
--->
+
+<section>
+  <h1>Page breaks</h1>
+  <pre>h1, h2 { page-break-after: avoid }
+pre { page-break-inside: avoid }</pre>
+
+  <pre>.slide { page-break-after: always }</pre>
+</section>
+
+<section>
+  <h1>Page layout</h1>
+  <pre>@page {
+    size: A4 portrait;
+    size: 210mm 297mm;
+    margin: 2cm;
+}
+@page :left { margin-right: 4cm }
+@page :right { margin-left: 4cm }</pre>
+</section>
+
+<section>
+  <h1>Named pages</h1>
+  <pre>table {
+    page: landscape-table
+}
+@page landscape-table {
+    size: A4 landscape;
+    size: 297mm 210mm;
+}</pre>
+</section>
+
+<section>
+  <h1>Headers & footers:<br><em>page-margin boxes</em></h1>
+  <pre>@page {
+    @top-center {
+        content: 'Awesome title'
+    }
+}</pre>
+</section>
+
+<section>
+  <h1>Headers & footers:<br><em>page-margin boxes</em></h1>
+  <pre>@page {
+    @bottom-center {
+        content: counter(page) ' / '
+                 counter(pages)
+    }
+}
+@page :first {
+  @bottom-center { content: none }
+}</pre>
+</section>
 
 <section id=lengths>
   <h1>Length units</h1>
   <style>
     #lengths dd {
-      word-spacing: 1em; font-family: monospace;
-      margin: 0 2em 1em;
+      word-spacing: 1em; font: 1em/2 monospace;
+      margin: 0 2em 1em; text-align: center;
     }
   </style>
   <dl>
@@ -95,14 +156,6 @@
     <dt>Absolute:
     <dd>in cm mm pt pc px
   </dl>
-  <!--
-    Proportional to something else.
-    => absolute unit ,ultimately
-
-    Early days of CSS
-      1px = pixel on monitor
-      1in, 1cm physical
-  -->
 </section>
 
 <section id=absolute>
@@ -111,7 +164,7 @@
       margin-left: 150px; list-style: none; font: 35px monospace;
     }
     #absolute span {
-      display: inline-block; border-bottom: solid; vertical-align: middle
+      display: inline-block; border-bottom: solid; vertical-align: middle;
     }
   </style>
   <h1>Absolute length units</h1>
@@ -119,42 +172,17 @@
     <li><span style="width: 1in"></span> 1in</li>
     <li><span style="width: 2.54cm"></span> 2.54cm</li>
     <li><span style="width: 25.4mm"></span> 25.4mm</li>
-    <li><span style="width: 72pt"></span> 72pt</li>
     <li><span style="width: 6pc"></span> 6pc</li>
+    <li><span style="width: 72pt"></span> 72pt</li>
     <li><span style="width: 96px"></span> 96px</li>
   </ul>
-  <!--
-    Computers configured for 96dpi
-    Legacy content
-    => Fixed ratio today
-  -->
 </section>
 
 <section>
   <h1>Reference pixel</h1>
   <p style="text-align: center">
-    <img src=img/reference-pixel.png style="width: 400px">
+    <img src=img/reference-pixel.svg style="width: 500px">
   </p>
-  <!--
-    Proportional to viewing distance
-    Projector vs. phone
-    HiDPI
-    Paper: anchored on physical units. (WeasyPrint’s default)
-  -->
-</section>
-
-<section>
-  <h1>High-resolution images</h1>
-  <ul>
-    <li>Default: <code>image-resolution: 1dppx</code></li>
-    <li>Specify <code>width</code>,
-        <code>height: auto</code> (the default)
-        preserves the aspect ratio</li>
-  </ul>
-  <!--
-    dppx = dot (image pixel) per CSS pixel
-    Alternatively, set the `width` property
-  -->
 </section>
 
 <section id=vectors>
@@ -164,47 +192,34 @@
     #vectors table { border-spacing: 40px; margin: -40px auto; }
     #vectors td { width: 300px; height: 150px; overflow: hidden;
                   text-align: left; }
-    #vectors td img { width: 2000px; margin: -180px -500px -250px -1200px; }
+    #vectors td img { width: 2000px; margin: -400px -1030px -760px -670px; }
   </style>
-  <p><img src=img/kozea.svg style="width: 200px;"><br>zoomed 10×</p>
+  <h1>Vectors graphics</h1>
   <table>
     <tr>
-      <th>PNG (450×150px)</th>
+      <th>PNG (500×360px)</th>
       <th>SVG</th>
     </tr>
     <tr>
-      <td><img src=img/kozea.png></td>
-      <td><img src=img/kozea.svg></td>
+      <td><img src=img/reference-pixel.png></td>
+      <td><img src=img/reference-pixel.svg></td>
     </tr>
   </table>
-  <!--
-      Vectors FTW
-      PDF vectors
-      <object> with PNG fallback for old browsers.
-  -->
 </section>
 
 <section>
-  <h1>SVG with PNG and text fallback</h1>
-  <pre>
-  &lt;object data=<b>kozea-logo.svg</b>>
-    &lt;img src=<b>kozea-logo.png</b>
-         alt=<b>Kozea</b>>
-  &lt;/object>
-  </pre>
-  <!--
-    For old browsers without SVG
-    Same HTML in WeasyPrint & browsers
-  -->
-</pre>
+  <h1 style="margin-bottom: 2em">SVG with PNG fallback</h1>
+  <pre>&lt;object data=<b>kozea-logo.svg</b>>
+  &lt;img src=<b>kozea-logo.png</b>
+       alt=<b>Kozea</b>>
+&lt;/object></pre>
+</section>
 
-<!--
-
-WeasyPrint
-Issues (similar to mobile)
-  Length units
-  Image resolution, SVG
-Page breaks
-Page headers and footers
-
--->
+<section>
+  <h1 style="margin-bottom: 2em">Images sizing</h1>
+  <ul>
+    <li>Specify <code>width</code> and <code>height</code>
+    <li>Specify only <code>width</code>, aspect ratio is preserved.
+    <li>Default: <code>image-resolution: 1dppx</code>
+  </ul>
+</section>
