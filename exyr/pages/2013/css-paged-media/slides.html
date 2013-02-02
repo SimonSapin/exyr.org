@@ -37,13 +37,14 @@
     height: 600px;
     background: white;
     color: black;
-    padding: 60px;
+    padding: 50px;
     position: relative;
     overflow: hidden;
+    background: url(img/kozea-o.svg) no-repeat bottom right;
   }
   code, pre {
     font-size: 90%;  /* yeah, we don’t have font-size-adjust yet. */
-    background: hsl(220, 15%, 95%);
+    background: hsla(220, 15%, 80%, 0.5);
   }
   pre {
     padding: .5em;
@@ -52,13 +53,17 @@
     text-align: center;
     margin-top: 0;
   }
+  h2 {
+    font-weight: normal;
+  }
   li {
     margin: .5em 0;
   }
   #intro {
-    padding: 40px;
+    padding-left: 40px;
+    padding-right: 40px;
   }
-  #intro p {
+  #intro p, #weasyprint, p {
     text-align: center;
   }
   footer {
@@ -68,7 +73,7 @@
     left: 0;
     right: 0;
     padding: 40px;
-    background: hsl(220, 15%, 92%);
+    background: hsla(220, 15%, 80%, 0.5);
     color: black;
   }
 
@@ -84,10 +89,13 @@
   </footer>
 </section>
 
-<section id=intro>
+<section id=weasyprint>
   <h1> </h1><!-- Dirty hacks yay! -->
   <p><img src=img/weasyprint.png alt="" style="width: 400px"></p>
-  <h2>HTML, CSS, SVG → PDF</h2>
+  <h2>
+    HTML, CSS, SVG → PDF<br>
+    Open source
+  </h2>
 </section>
 
 <section>
@@ -112,7 +120,7 @@ pre { page-break-inside: avoid }</pre>
 <section>
   <h1>Named pages</h1>
   <pre>table {
-    page: landscape-table
+    page: landscape-table;
 }
 @page landscape-table {
     size: A4 landscape;
@@ -124,7 +132,7 @@ pre { page-break-inside: avoid }</pre>
   <h1>Headers & footers:<br><em>page-margin boxes</em></h1>
   <pre>@page {
     @top-center {
-        content: 'Awesome title'
+        content: 'Awesome title';
     }
 }</pre>
 </section>
@@ -134,7 +142,7 @@ pre { page-break-inside: avoid }</pre>
   <pre>@page {
     @bottom-center {
         content: counter(page) ' / '
-                 counter(pages)
+                 counter(pages);
     }
 }
 @page :first {
