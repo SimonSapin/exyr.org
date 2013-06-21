@@ -14,11 +14,11 @@
         &lt;p&gt;Content licensed under a Creative Commons
           Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
 	</rights>
-	{% for updated, article in articles %}
+	{% for article in articles %}
 	<entry>{% set url = article.url(_external=True) %}
 		<id>{{ url }}</id>
 		<title>{{ article.title }}</title>
-		<updated>{{ updated.strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
+		<updated>{{ article.updated().strftime('%Y-%m-%dT%H:%M:%SZ') }}</updated>
 		<published>{{ article.published.strftime('%Y-%m-%dT%H:%M:%SZ') }}</published>
 		<author>
 			<name>Simon Sapin</name>

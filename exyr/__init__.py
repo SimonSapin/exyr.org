@@ -43,7 +43,7 @@ class Page(object):
         page, old_mtime = cls._cache.get(filename, (None, None))
         if not page or mtime != old_mtime:
             with io.open(filename, encoding='utf8') as fd:
-                head = ''.join(itertools.takewhile(unicode.strip, fd))
+                head = ''.join(itertools.takewhile(str.strip, fd))
                 body = fd.read()
             page = cls(year, name, head, body)
             cls._cache[filename] = (page, mtime)
@@ -91,6 +91,9 @@ class Page(object):
         return url_for(
             'article', year=int(self.year), name=self.name, **kwargs)
 
+    def updated(self):
+        return self.meta.get('modified', self['published'])
+
 
 def by_date(articles):
     return sorted(articles, reverse=True, key=lambda p: p['published'])
@@ -121,6 +124,7 @@ def tags():
         for tag, count in sorted(counts.items())
     ])
 
+
 @app.route('/tags/<name>/')
 def tag(name):
     articles = by_date(
@@ -149,15 +153,8 @@ def static_in_pages(year, name, path):
 
 @app.route('/feed.atom')
 def feed():
-    articles = sorted(
-        (
-            # with `modified`, but defaults to `published`
-            (article.meta.get('modified', article['published']), article)
-            for article in Page.all_articles()
-        ),
-        reverse=True
-    )[:10]
-    feed_updated, _ = articles[0]
+    articles = sorted(Page.all_articles(), key=lambda a: a.updated())
+    feed_updated = articles[0].updated()
     xml = render_template('atom.xml', **locals())
     return app.response_class(xml, mimetype='application/atom+xml')
 
@@ -171,6 +168,7 @@ def minify_css(css):
     css = re.sub(r'} ?', '}\n', css)
     return css
 
+
 @app.route('/style.css')
 def stylesheet():
     css = render_template('style.css', pygments_css=PYGMENTS_CSS)
@@ -180,7 +178,7 @@ def stylesheet():
         '/*\nNon-minified version is at\n'
         'https://github.com/SimonSapin/exyr.org'
         '/blob/master/exyr/templates/style.css\n*/\n'
-         + css
+        + css
     )
     return app.response_class(css, mimetype='text/css')
 
