@@ -11,7 +11,6 @@ summary: >
     content with metadata stored in text files, and *Flask-Static* takes a
     snapshot of a Flask application as static files.
 
-    
 **Update 2011-02-21:** Flask-Static has been renamed *Frozen-Flask*.
 
 # Why static?
