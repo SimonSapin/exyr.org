@@ -18,7 +18,7 @@ I’m the main developer of
 [WeasyPrint](http://weasyprint.org),
 [tinycss](http://packages.python.org/tinycss/),
 [cssselect](http://packages.python.org/cssselect/) and
-[Frozen-Flask](http://packages.pyton.org/Frozen-Flask/).
+[Frozen-Flask](https://pypi.python.org/pypi/Frozen-Flask).
 Among others, I have patches in
 [Multicorn](http://multicorn.org/),
 [CairoSVG](http://cairosvg.org/),
