@@ -16,12 +16,12 @@ I hack on free / open source software both in my “day time” job and on my
 own time.
 I’m the main developer of
 [WeasyPrint](http://weasyprint.org),
-[tinycss](http://packages.python.org/tinycss/),
-[cssselect](http://packages.python.org/cssselect/) and
-[Frozen-Flask](https://pypi.python.org/pypi/Frozen-Flask).
+[tinycss](http://pythonhosted.org/tinycss/),
+[cssselect](http://pythonhosted.org/cssselect/) and
+[Frozen-Flask](http://pythonhosted.org/Frozen-Flask/).
 Among others, I have patches in
 [Multicorn](http://multicorn.org/),
 [CairoSVG](http://cairosvg.org/),
 [Flask](http://flask.pocoo.org/),
-[cssutils](http://packages.python.org/cssutils/) and
+[cssutils](http://pythonhosted.org/cssutils/) and
 [lxml](http://lxml.de/).
