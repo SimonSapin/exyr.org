@@ -1,3 +1,4 @@
+import sys
 import subprocess
 
 from flask_script import Manager
@@ -28,7 +29,7 @@ def freeze(serve=False):
 def up(destination='hako:http/exyr.org/htdocs/'):
     """Freezes and uploads the website."""
     push = subprocess.Popen(['git', 'push'], stdout=subprocess.PIPE,
-                            stderr=subprocess.STDOUT)
+                            stderr=subprocess.PIPE)
     print('### Freezing')
     freeze()
     print('### Uploading to', destination)
@@ -37,7 +38,8 @@ def up(destination='hako:http/exyr.org/htdocs/'):
     print('### Pushing to github')
     stdout, stderr = push.communicate()
     # stdout was redirected
-    print(stdout)
+    sys.stdout.buffer.write(stdout)
+    sys.stderr.buffer.write(stderr)
 
 
 @manager.shell
