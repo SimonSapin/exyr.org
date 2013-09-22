@@ -1,0 +1,233 @@
+<!doctype html>
+<meta charset=utf8>
+<title>Algebraic Sum Types in Python</title>
+<style>
+  html, body {
+    font: 40px/1.3 Fontin;
+    margin: 0;
+  }
+  @page {
+    size: 800px 900px;
+    margin: 0;
+    @bottom-center {
+        content: counter(page) ' / ' counter(pages);
+        font-size: 70%;
+        margin-top: -3em;
+    }
+  }
+  /*@page :first {
+    @bottom-center {
+        content: none;
+    }
+  }*/
+  @media screen {
+    body {
+      background: hsl(0, 0%, 20%);
+      color: white;
+    }
+    section {
+      margin: 50px auto;
+      border-radius: 20px;
+    }
+  }
+  section {
+    box-sizing: border-box;
+    width: 800px;
+    height: 600px;
+    color: black;
+    padding: 40px 60px;
+    position: relative;
+    overflow: hidden;
+    background: white;
+  }
+  aside {
+    border-top: solid 2px #888;
+    font-size: 60%;
+    page-break-after: always;
+    padding: 0 20px;
+  }
+  code, pre {
+    font-size: 70%;
+    background: hsla(220, 15%, 80%, 0.5);
+  }
+  code {
+    padding: .1em;
+  }
+  pre {
+    padding: .5em;
+  }
+  h1, h2 {
+    text-align: center;
+    margin-top: 0;
+  }
+  h1 {
+      font-size: 60px;
+  }
+  h2 {
+      font-size: 40px;
+  }
+  footer {
+    text-align: right;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 40px;
+    background: hsla(220, 15%, 80%, 0.5);
+    color: black;
+  }
+  img {
+    vertical-align: middle;
+  }
+</style>
+<body>
+
+<section>
+  <h1 style="margin: 1.5em .5em">Algebraic sum types in Python</h1>
+  <footer>
+    Simon Sapin<br>
+    PyCon UK, 2013-09-22
+  </footer>
+</section>
+<aside>
+  <p>Hi! I’m Simon.
+  <p>(These notes expand a bit more than the actual five minutes lightning talk.)
+</aside>
+
+<section>
+  <h1><img src=mozilla-rust-logo.png style="height: 300px"><br>rust-lang.org</h1>
+  <p>It’s nice!
+</section>
+<aside>
+  <p>I recently joined Mozilla, and I’m not doing as much Python anymore.
+  I do Rust!
+  <p>One of Rust’s features that I miss in Python is its <code>enum</code> types.
+</aside>
+
+<section>
+  <h1>Type theory</h1>
+  <pre>int
+float
+str
+NoneType
+</section>
+<aside>
+  <p>Let’s take a step back and talk about type theory for a minute.
+  <p>Assuming you have some “basic” data types,
+     one thing you can do is <em>compose</em> them into more complex types.
+</aside>
+
+<section>
+  <h1>Composition</h1>
+  <p>Product: <code>A × B</code>
+  <p>C, Rust:<br><code>struct Point { x: float, y: float }</code>
+  <p>Python: tuple, namedtuple, objects, …
+</section>
+<aside>
+  <p>There are two fundamental ways to compose types.
+     One of them is the <em>product,</em>
+     which basically means that you take two (or more) things
+     and put them together.
+  <p>To do this C and Rust have structs,
+     Rust and Python have tuples,
+     and Python also has namedtuple, objects with attributes, etc.
+     This is all well understood.
+</aside>
+
+
+<section>
+  <h1>Composition</h1>
+  <p>Sum: <code>A + B</code> a.k.a. <em>enumerated data type</em>
+  <p>Type algebra:
+  <pre>NoneType = 1
+A × 1 = A
+bool = 1 + 1 = 2
+A + A = A × 2
+</section>
+<aside>
+  <p>The other way to compose things is the <em>sum type</em>.
+    This means that your thing is one of several things,
+    and only one at a time.
+    (E.g. either a string or <code>None</code>.)
+  <p>This product and sum for an <em>algebra</em> on types,
+    much like the one you know on numbers
+    even though these are not numbers at all.
+    Algebraic types are fun but we don’t have much time :)
+</aside>
+
+
+<section>
+  <h1>C: <em>tagged union</em></h1>
+  <pre>enum ShapeKind { Circle, Rectangle };
+struct Shape {
+  enum ShapeKind kind;
+  union {
+    struct {Point center; float radius}
+      circle;
+    struct {Point tl; Point br}
+      rectangle
+}};
+</section>
+<aside>
+  <p>C’s <em>enum</em> types a special case of sum types
+  where each term is <code>1</code>,
+  the unit type (which only has one value.)
+  <p>C’s pattern for doing “real” sum types is the <em>tagged union</em>. It’s not pretty.
+</aside>
+
+<section>
+  <h1>Rust: enum</h1>
+<pre>enum Shape {
+    Circle(Point, float),
+    Rectangle(Point, Point)
+}</pre>
+<pre>match shape {
+  Circle(center, 0) => {...},
+  Circle(center, radius) => {...},
+  Rectangle(tl, br) => {...},
+}
+</pre>
+</section>
+<aside>
+  <p>Rust on the other hand has built-in sum types, and calls them <code>enum</code>.
+    Note how unlike in a C <code>enum</code>,
+    each variant here can contain stuff.
+  <p>Quite importantly, Rust also has a <code>match</code> pattern
+    that does pattern matching,
+    dispatching to different code branches (like C’s <code>switch ... case</code>),
+    and desconstruction (assigning fields to new local variables)
+    all at once. This is very pleasant to use.
+</aside>
+
+<section>
+<h1>Python?</h1>
+<ul>
+  <li>PEP 435 Enum: like C, not like Rust
+  <li>Dynamic typing
+  <li>Object oriented: class hierachy, <code>isinstance()</code>, <code>.type</code> class attr
+  <li>Tuples: <code>('circle', x, y, r)</code> <code>('rectangle', x1, y1, x2, y2)</code>
+</ul>
+</section>
+<aside>
+  <p>We have a few options in Python,
+    but none of them are quite as nice and general as Rust’s <code>enum</code> with <code>match</code>.
+  <p>Dymanic typing (eg. “pass either a string or a list”) only helps when your variants are represented by different types,
+    while series of <code>elif isinstance(…):</code> statements are just a pain to write.
+</aside>
+
+<section>
+  <h1>Can we do better?</h1>
+  <p>Another pattern in current Python? Adding a <code>match</code> statement?
+  <p>Discuss :)
+  <p>Twitter: <em>@SimonSapin</em><br>
+    Email: <em>simon@exyr.org</em>
+</section>
+<aside>
+  <p>The point of this talk is to ask you, dear audience/reader:
+    is there a better way?
+  <p>Is there another (better) pattern in current Python?
+    Or is it worth adding a new <code>match</code> statement
+    in future versions of Python,
+    possibly with a generalized Enum types?
+</aside>
+
