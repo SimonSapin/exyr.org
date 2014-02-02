@@ -18,11 +18,15 @@ I’m the main developer of
 [WeasyPrint](http://weasyprint.org),
 [cairocffi](http://pythonhosted.org/cairocffi/),
 [tinycss](http://pythonhosted.org/tinycss/),
-[cssselect](http://pythonhosted.org/cssselect/) and
-[Frozen-Flask](http://pythonhosted.org/Frozen-Flask/).
-Among others, I have patches in
+[cssselect](http://pythonhosted.org/cssselect/),
+[Frozen-Flask](http://pythonhosted.org/Frozen-Flask/), and
+[rust-cssparser](https://github.com/mozilla-servo/rust-cssparser).
+Among others, I have worked on
 [Multicorn](http://multicorn.org/),
 [CairoSVG](http://cairosvg.org/),
 [Flask](http://flask.pocoo.org/),
-[cssutils](http://pythonhosted.org/cssutils/) and
-[lxml](http://lxml.de/).
+[cssutils](http://pythonhosted.org/cssutils/),
+[lxml](http://lxml.de/),
+[Rust](http://www.rust-lang.org/),
+[servo](https://github.com/mozilla/servo/), and
+[Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko).
