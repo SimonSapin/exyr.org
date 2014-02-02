@@ -16,6 +16,7 @@ I hack on free / open source software both in my “day time” job and on my
 own time.
 I’m the main developer of
 [WeasyPrint](http://weasyprint.org),
+[cairocffi](http://pythonhosted.org/cairocffi/),
 [tinycss](http://pythonhosted.org/tinycss/),
 [cssselect](http://pythonhosted.org/cssselect/) and
 [Frozen-Flask](http://pythonhosted.org/Frozen-Flask/).
