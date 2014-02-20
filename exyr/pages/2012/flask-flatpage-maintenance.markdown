@@ -28,7 +28,7 @@ like it. So I [refactored this site](https://github.com/SimonSapin/exyr.org/comm
 to not use it anymore. I have ~50 lines of app-specific code that does
 what it needs to and no more, instead of a ~200 lines lib that needs to
 be tested, packaged and maintained. I am very satisfied with the result.
-I did added caching (invalidated by the files’s modification time) because
+I did add caching (invalidated by the files’s modification time) because
 it was easy, but even that is overkill.
 
 But apparently some people do use Flask-FlatPages, and actually like it!
