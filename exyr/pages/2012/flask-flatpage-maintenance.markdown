@@ -37,3 +37,7 @@ If anyone wants to take over and maintain the project, please let me know and
 I will gladly give them PyPI and Github access. Otherwise I guess the project
 will continue stagnating. I will be discussing this
 [on Github](https://github.com/SimonSapin/Flask-FlatPages/issues/8).
+
+**Update:**
+[Igor Davydenko a.k.a @playpauseandstop](https://github.com/playpauseandstop)
+took over.
