@@ -114,8 +114,8 @@ def about():
 @app.route('/.htaccess')
 def htaccess():
     return '''
-        RedirectMatch /tags(/.*)?  /
-        RedirectMatch /(\d+)/?     /#$1
+        RedirectMatch /tags(/.*)?   /
+        RedirectMatch /(\d+)/?$     /#$1
     ''', 200, {'Content-Type': 'application/octet-stream'}
 
 
