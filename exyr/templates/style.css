@@ -142,13 +142,14 @@ hr:before {
 
 .article_list h3 {
     margin: 2em 0 0;
-    font-size: 1.15em;
+    font-weight: normal;
+    font-size: 1em;
 }
 
-.article_list h3 time {
-    margin-left: .5em;
-    font-weight: normal;
-    font-size: 90%;
+.article_list h3 a {
+    font-size: 1.15em;
+    font-weight: bold;
+    margin-right: .2em;
 }
 
 .article_list p {

@@ -8,7 +8,7 @@
       <article>
         <h3>
           <a href="{{ page.url() }}">{{ page.title }}</a>
-          <time pubdate datetime="{{ page.published.isoformat() }}">{{
+          − <time pubdate datetime="{{ page.published.isoformat() }}">{{
             page.published.isoformat() }}</time>
         </h3>
         {{ page.summary|markdown|safe }}
