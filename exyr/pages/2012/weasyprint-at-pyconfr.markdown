@@ -1,6 +1,5 @@
 title: WeasyPrint at PyConFR 2012
 published: 2012-09-10
-tags: [kozea, weasyprint]
 summary: |
     I’ll be [giving a talk](http://www.pycon.fr/2012/schedule/presentation/16/)
     about WeasyPrint at PyConFR on Sunday.

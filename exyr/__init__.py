@@ -110,31 +110,6 @@ def about():
     return render_template('flatpage.html', page=Page.load('', 'about'))
 
 
-@app.route('/tags/')
-def tags():
-    counts = {}
-    for article in Page.all_articles():
-        for tag in article.meta.get('tags', []):
-            counts[tag] = counts.get(tag, 0) + 1
-
-    return render_template('tag_list.html', tags=[
-        # count => weight: 1 => 100, 10 => 150, 100 => 200
-        (tag, int(100 + 50 * math.log10(count)))
-        # sorted alphabetically by tag name
-        for tag, count in sorted(counts.items())
-    ])
-
-
-@app.route('/tags/<name>/')
-def tag(name):
-    articles = by_date(
-        a for a in Page.all_articles() if name in a.meta.get('tags', [])
-    )
-    if not articles:
-        abort(404)
-    return render_template('tag.html', tag=name, posts=articles)
-
-
 @app.route('/<int:year>/')
 def archives(year):
     articles = by_date(Page.articles_by_year(str(year)))

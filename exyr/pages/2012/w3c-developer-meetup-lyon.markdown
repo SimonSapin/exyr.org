@@ -1,6 +1,5 @@
 title: W3C Developer Meetup in Lyon
 published: 2012-10-29
-tags: [kozea, weasyprint, W3C]
 summary: |
     This is a  bit last minute, but I’m giving a talk tonight in the Lyon
     city hall for the

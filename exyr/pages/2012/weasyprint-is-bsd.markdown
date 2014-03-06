@@ -1,6 +1,5 @@
 title: WeasyPrint is now BSD-licensed
 published: 2012-03-22
-tags: [kozea, weasyprint]
 summary: |
     We just changed [WeasyPrint](http://weasyprint.org/)’s license from
     AGPL to BSD.

@@ -1,9 +1,6 @@
 title: "Flask-Static: yet another static website generator"
 published: 2010-12-28
 modified: 2011-02-21
-tags:
-    - web-development
-    - flask
 summary: >
     I’ve been working on re-launching my personal website (you’re looking
     at the result), and wrote a static website generator in the process.

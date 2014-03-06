@@ -1,6 +1,5 @@
 title: Who wants to maintain Flask-FlatPages?
 published: 2012-09-27
-tags: [web-development, flask]
 summary: >
     I stopped using Flask-FlatPages on this site and I most likely won’t
     work on it anymore. Anyone wants to take over and maintain the project?

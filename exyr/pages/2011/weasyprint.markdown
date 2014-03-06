@@ -1,6 +1,5 @@
 title: WeasyPrint renders HTML+CSS to PDF
 published: 2011-11-02
-tags: [kozea, weasyprint]
 summary:
     The project I’ve been working on in the past few months has finally
     reached an usable state and has gotten a public release!

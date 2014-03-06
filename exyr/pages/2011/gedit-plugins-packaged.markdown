@@ -1,6 +1,5 @@
 title: Two Gedit 3 plugins packaged for Arch Linux
 published: 2011-07-03
-tags: [gedit, packaging, archlinux]
 summary:
     I just packaged for Arch Linux the *Gedit Whitespace Terminator* and
     *Gedit Source Code Browser* plugins for Gedit 3. You can find them in

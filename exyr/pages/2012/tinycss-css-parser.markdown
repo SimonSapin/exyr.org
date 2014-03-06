@@ -1,6 +1,5 @@
 title: "tinycss: a new CSS parser for Python"
 published: 2012-04-05
-tags: [kozea, weasyprint]
 summary: |
     I made [tinycss](http://packages.python.org/tinycss/), a new free software
     CSS parser for Python. It is extensible, well-documented, well-tested

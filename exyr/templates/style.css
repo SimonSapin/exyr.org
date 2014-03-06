@@ -148,18 +148,6 @@ hr:before {
     margin: .5em 0;
 }
 
-#tag_list {
-    list-style: none;
-    margin: 1em 0;
-    padding: 0;
-    text-align: center;
-}
-#tag_list li {
-    display: inline;
-    padding: 0;
-    margin: 0 .5em;
-}
-
 {{ pygments_css }}
 
 .codehilite, blockquote {

@@ -1,6 +1,5 @@
 title: Programatically open multiple GNOME Terminal tabs
 published: 2011-02-20
-tags: [snippets]
 summary: |
     To run several tasks in parallel and keep their output separated, run each
     one in its own shell. Doing so can be automated, and thus it should.

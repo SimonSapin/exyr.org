@@ -1,6 +1,5 @@
 title: Poor man’s NTP
 published: 2011-05-28
-tags: [ntp]
 summary: How to synchronize a Linux computer’s clock when NTP doesn’t work.
 
 The network where I live currently is heavily filtered. I believe that UDP

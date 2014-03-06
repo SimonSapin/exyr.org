@@ -1,6 +1,5 @@
 title: I’m going to FOSDEM
 published: 2012-02-01
-tags: [fosdem, kozea]
 summary: |
     I’m going to [FOSDEM](http://fosdem.org/2012/) this week-end.
     See you there!

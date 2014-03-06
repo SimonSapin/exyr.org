@@ -1,10 +1,5 @@
 title: Using Jinja2 in Django
 published: 2010-12-29
-tags:
-    - web-development
-    - django
-    - jinja
-    - snippets
 summary: >
     How to replace Django’s templating system by Jinja2 and still profit from
     it eg. in generic views.

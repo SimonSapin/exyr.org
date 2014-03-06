@@ -1,6 +1,5 @@
 title: Hashing passwords the Right Way
 published: 2011-12-05
-tags: [passwords, web-development, snippets]
 summary:
     Don’t store passwords in plain text. Don’t use a fast algorithm.
     And don’t forget the salt.
