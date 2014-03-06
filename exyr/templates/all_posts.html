@@ -1,7 +1,19 @@
 {% extends "layout.html" %}
-{% import 'utils.html' as utils %}
 
 {% block content %}
-  <h2>All posts</h2>
-  {{ utils.article_list(posts) }}
+  <section class=article_list>
+  {% for year, posts in posts_by_year %}
+    <h2 id="{{ year }}">{{ year }}</h2>
+    {% for page in posts %}
+      <article>
+        <h3>
+          <a href="{{ page.url() }}">{{ page.title }}</a>
+          <time pubdate datetime="{{ page.published.isoformat() }}">{{
+            page.published.isoformat() }}</time>
+        </h3>
+        {{ page.summary|markdown|safe }}
+      </article>
+    {% endfor %}
+  {% endfor %}
+  </section>
 {% endblock %}

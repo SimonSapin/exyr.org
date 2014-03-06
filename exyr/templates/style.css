@@ -95,7 +95,7 @@ footer p {
     padding: .5em 0 0;
 }
 
-header p, time {
+header p {
     font-style: italic;
 }
 
@@ -141,7 +141,14 @@ hr:before {
 }
 
 .article_list h3 {
-    margin-bottom: 0;
+    margin: 2em 0 0;
+    font-size: 1.15em;
+}
+
+.article_list h3 time {
+    margin-left: .5em;
+    font-weight: normal;
+    font-size: 90%;
 }
 
 .article_list p {

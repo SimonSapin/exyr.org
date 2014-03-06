@@ -1,5 +1,4 @@
 {% extends "layout.html" %}
-{% import 'utils.html' as utils %}
 
 {% block title %}{{ page.title }}{% endblock %}
 
@@ -8,7 +7,11 @@
   <article>
     <header>
       <h2>{{ page.title }}</h2>
-      <p>By Simon Sapin, on {{ utils.html5_date(page.published) }}</p>
+      <p>
+        Simon Sapin,
+        <time pubdate datetime="{{ page.published.isoformat() }}">{{
+          page.published.isoformat() }}</time>
+      </p>
     </header>
     {{ page.html|safe }}
   </article>
@@ -22,5 +25,4 @@
   </section>
   {% endif %}
 {% endif %}
-{{ utils.article_list(sub_pages|d) }}
 {% endblock %}

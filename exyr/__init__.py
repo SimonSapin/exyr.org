@@ -1,7 +1,6 @@
 import os
 import io
 import re
-import math
 import datetime
 import itertools
 
@@ -95,14 +94,16 @@ class Page(object):
         return self.meta.get('modified', self['published'])
 
 
-def by_date(articles):
-    return sorted(articles, reverse=True, key=lambda p: p['published'])
-
-
 @app.route('/')
 def home():
     return render_template(
-        'all_posts.html', posts=by_date(Page.all_articles()))
+        'all_posts.html',
+        posts_by_year=itertools.groupby(
+            sorted(
+                Page.all_articles(),
+                reverse=True,
+                key=lambda p: p['published']),
+            key=lambda p: p['published'].year))
 
 
 @app.route('/about/')
@@ -110,10 +111,12 @@ def about():
     return render_template('flatpage.html', page=Page.load('', 'about'))
 
 
-@app.route('/<int:year>/')
-def archives(year):
-    articles = by_date(Page.articles_by_year(str(year)))
-    return render_template('archives.html', **locals())
+@app.route('/.htaccess')
+def htaccess():
+    return '''
+        RedirectMatch /tags(/.*)?  /
+        RedirectMatch /(\d+)/?     /#$1
+    ''', 200, {'Content-Type': 'application/octet-stream'}
 
 
 @app.route('/<int:year>/<name>/')

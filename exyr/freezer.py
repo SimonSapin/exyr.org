@@ -13,12 +13,6 @@ freezer = Freezer(app)
 
 
 @freezer.register_generator
-def archives():
-    for year in Page.years():
-        yield {'year': int(year)}
-
-
-@freezer.register_generator
 def static_in_pages():
     for year in Page.years():
         for name in os.listdir(os.path.join(Page.root, year)):
