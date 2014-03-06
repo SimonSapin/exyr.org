@@ -1,21 +1,16 @@
-title: W3C Developer Meetup in Lyon
+title: WeasyPrint at W3C Developer Meetup in Lyon
 published: 2012-10-29
 summary: |
-    This is a  bit last minute, but I’m giving a talk tonight in the Lyon
-    city hall for the
-    [W3C Developer Meetup](http://www.w3.org/2012/10/TPAC/meetup-Lyon.html).
+    I gave a talk in the Lyon city hall for the
+    [W3C Developer Meetup](http://www.w3.org/2012/10/TPAC/meetup-Lyon.html),
+    presenting WeasyPrint, Kozea, and how we got there.
 
-This is a  bit last minute, but I’m giving a talk tonight in the Lyon
-city hall for the
-[W3C Developer Meetup](http://www.w3.org/2012/10/TPAC/meetup-Lyon.html).
-The title is ”<em>WeasyPrint: bring the web to PDF and paper</em>” but
+I gave a talk in the Lyon city hall for the
+[W3C Developer Meetup](http://www.w3.org/2012/10/TPAC/meetup-Lyon.html),
+titled “<em>WeasyPrint: bring the web to PDF and paper</em>” but
 (spoiler!) it’s also about W3C and how we got there.
 
-See you tonight!
-
-**Update 2012-10-30**
-
-Here are the slides:
+Here are the slides with some notes:
 
 <iframe
   src="embedder.html#slides.html"
