@@ -5,7 +5,8 @@ summary: |
     how does it relate to pycairo,
     and why did I build it?
 
-*Note:* cairocffi is kinda old news, but I was asked recently about it.
+*Note:* [cairocffi](http://pythonhosted.org/cairocffi/) is kinda old news,
+but I was asked recently about it.
 This is the anwser, [made public](http://blog.codinghorror.com/when-in-doubt-make-it-public/).
 
 [Cairo](http://cairographics.org/) is a 2D vector graphics library
