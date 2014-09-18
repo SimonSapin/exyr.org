@@ -25,7 +25,11 @@ PYGMENTS_CSS = (pygments.formatters.HtmlFormatter(style='tango')
 
 @app.template_filter()
 def markdown(text):
-    return markdown_module.markdown(text, ['codehilite'] + 2 * ['downheader'])
+    return markdown_module.markdown(
+        text,
+        ['codehilite', 'footnotes'] + 2 * ['downheader'],
+        extension_configs={'codehilite': {'linenums': False}},
+    )
 
 
 class Page(object):
