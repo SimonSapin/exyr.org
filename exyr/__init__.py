@@ -168,13 +168,3 @@ def stylesheet():
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html')
-
-
-for filename in ('index.php', 'MyID.php', '.htaccess'):
-    def openid(filename=filename):
-        return send_from_directory(
-            os.path.join(app.root_path, 'openid'), filename)
-    app.add_url_rule(
-        '/openid/' + filename,
-        'openid_' + filename.replace('.', '_'),
-        openid)

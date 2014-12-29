@@ -1,7 +1,0 @@
-RewriteEngine on
-RewriteCond %{HTTP:Authorization} !^$
-RewriteCond %{QUERY_STRING} openid.mode=authorize
-RewriteCond %{QUERY_STRING} !auth=
-RewriteCond %{REQUEST_METHOD} =GET
-RewriteRule (.*) %{REQUEST_URI}?%{QUERY_STRING}&auth=%{HTTP:Authorization} [L]
-
