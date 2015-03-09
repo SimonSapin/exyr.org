@@ -5,7 +5,8 @@ I’m a software engineer
 at [Mozilla Research](https://www.mozilla.org/en-US/research/)
 working on Servo.
 I also work on specs in [W3C’s CSS Working Group](http://www.w3.org/Style/CSS/)
-and eat [Python](http://python.org/) for breakfast.
+and eat [Python](http://python.org/) for breakfast,
+although these days I do more [Rust](http://www.rust-lang.org/).
 
 You can find me as *SimonSapin* [on GitHub](https://github.com/SimonSapin),
 [on Twitter](https://twitter.com/SimonSapin),
