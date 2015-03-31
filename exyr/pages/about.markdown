@@ -23,7 +23,7 @@ I’m the main developer of
 [cssselect](http://pythonhosted.org/cssselect/),
 [Frozen-Flask](http://pythonhosted.org/Frozen-Flask/),
 [rust-cssparser](https://github.com/servo/rust-cssparser), and
-[rust-url](https://github.com/servo/rust-cssparser).
+[rust-url](https://github.com/servo/rust-url).
 Among other things, I have worked on
 [Multicorn](http://multicorn.org/),
 [CairoSVG](http://cairosvg.org/),
