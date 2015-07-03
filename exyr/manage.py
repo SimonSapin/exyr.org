@@ -26,7 +26,7 @@ def freeze(serve=False):
 
 
 @manager.command
-def up(destination='hako:http/exyr.org/htdocs/'):
+def up(destination='hako:http/exyr.org/'):
     """Freezes and uploads the website."""
     push = subprocess.Popen(['git', 'push'], stdout=subprocess.PIPE,
                             stderr=subprocess.PIPE)

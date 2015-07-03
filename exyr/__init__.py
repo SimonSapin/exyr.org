@@ -115,14 +115,6 @@ def about():
     return render_template('flatpage.html', page=Page.load('', 'about'))
 
 
-@app.route('/.htaccess')
-def htaccess():
-    return '''
-        RedirectMatch /tags(/.*)?   /
-        RedirectMatch /(\d+)/?$     /#$1
-    ''', 200, {'Content-Type': 'application/octet-stream'}
-
-
 @app.route('/<int:year>/<name>/')
 def article(year, name):
     return render_template('flatpage.html', page=Page.load(str(year), name))
