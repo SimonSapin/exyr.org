@@ -142,13 +142,11 @@ hr:before {
 
 .article_list h3 {
     margin: 2em 0 0;
-    font-weight: normal;
     font-size: 1em;
 }
 
 .article_list h3 a {
     font-size: 1.15em;
-    font-weight: bold;
 }
 
 .article_list p {

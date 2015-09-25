@@ -3,7 +3,7 @@
 {% block content %}
   <section class=article_list>
   {% for year, posts in posts_by_year %}
-    <h2 id="{{ year }}">{{ year }}</h2>
+    <section id="{{ year }}">
     {% for page in posts %}
       <article>
         <h3>
@@ -14,6 +14,7 @@
         {{ page.summary|markdown|safe }}
       </article>
     {% endfor %}
+    </section>
   {% endfor %}
   </section>
 {% endblock %}
