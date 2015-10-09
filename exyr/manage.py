@@ -12,6 +12,7 @@ manager = Manager(app, with_default_commands=False)
 @manager.command
 def run():
     """Start a development server."""
+    app.config['EXYR_SHOW_DRAFTS'] = True
     app.run(debug=True)
 
 

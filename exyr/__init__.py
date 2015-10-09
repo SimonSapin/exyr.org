@@ -65,7 +65,9 @@ class Page(object):
             abort(404)
         for name in os.listdir(directory):
             if name.endswith(cls.suffix):
-                yield cls.load(year, name[:-len(cls.suffix)])
+                page = cls.load(year, name[:-len(cls.suffix)])
+                if app.config.get('EXYR_SHOW_DRAFTS') or not page.meta.get('draft'):
+                    yield page
 
     @classmethod
     def all_articles(cls):
