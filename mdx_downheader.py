@@ -5,14 +5,14 @@ A python markdown extension for reducing header level, h1 becomes h2, etc...
 Load it twice for reducing it twice, load it more for more.
 
 Author: Knx.corp
-Source: http://code.google.com/p/markdown-downheader/
+Source: https://github.com/gpichot/markdown-downheader
 """
 import markdown
 import re
 
-def makeExtension(configs=None) :
-    return DownHeaderExtension(configs=configs)
-    
+def makeExtension(*args, **kwargs) :
+    return DownHeaderExtension(*args, **kwargs)
+
 class DownHeaderExtension(markdown.Extension):
     def extendMarkdown(self, md, md_globals):
         if 'downheader' in md.treeprocessors.keys():
