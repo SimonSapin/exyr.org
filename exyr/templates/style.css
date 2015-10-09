@@ -12,7 +12,7 @@ body {
     background: #fff;
     color: #111;
     /* 18px/27px with the default of 16px */
-    font: 1.125em/1.5 Palatino, Georgia, serif;
+    font: 1.125em/1.5 "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 }
 
 header, h2, header p, footer p {
