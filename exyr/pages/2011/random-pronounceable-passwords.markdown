@@ -15,6 +15,9 @@ Everything else has strong unique passwords saved in my browser’s password man
     $ </dev/urandom tr -d -c 'a-zA-Z0-9' | head -c 32; echo
     g3liM01F2XYVJBD5bp2q1QWv3zzncZge
 
+That’s 190 bits of entropy,
+and adding more is really easy when there’s no need to memorize the whole thing!
+
 ----
 
 It is often advised that passwords should should be long (8 characters
