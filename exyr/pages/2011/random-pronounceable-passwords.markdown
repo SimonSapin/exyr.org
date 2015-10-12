@@ -145,3 +145,9 @@ passwords or about 43 bits of entropy; which I decided was good enough for me.
 Now [grab the 
 code](https://github.com/SimonSapin/snippets/blob/master/markov_passwords.py)
 and go change all those weak passwords!
+
+**Note:**
+If you want to use something like this in an automated system
+(rather than where you cherry-pick a few samples of the output),
+beware of [The Automated Curse Generator](
+http://thedailywtf.com/articles/The-Automated-Curse-Generator).
