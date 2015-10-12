@@ -5,6 +5,18 @@ summary: |
     passwords that are both random (and thus strong) and pronounceable
     (and thus easier to memorize.)
 
+**Update 2015-10-12:**
+These days I have *one* password that I memorize,
+generated with Markov chains as described below,
+used for the disk encryption and login of my laptop.
+Everything else has strong unique passwords saved in my browser’s password manager
+(I don’t even try to memorize them), generated with:
+
+    $ </dev/urandom tr -d -c 'a-zA-Z0-9' | head -c 32; echo
+    g3liM01F2XYVJBD5bp2q1QWv3zzncZge
+
+----
+
 It is often advised that passwords should should be long (8 characters
 is considered good) and contain various kinds of characters (not just lower-case
 letters.) Such a password is stronger against dictionary or brute-force
