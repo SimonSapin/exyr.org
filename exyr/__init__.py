@@ -99,6 +99,14 @@ class Page(object):
     def updated(self):
         return self.meta.get('modified', self['published'])
 
+@app.route('/.htaccess')
+def htaccess():
+    return '''
+        RedirectMatch /tags(/.*)?   /
+        RedirectMatch /(\d+)/?$     /#$1
+        RedirectMatch /2013/enumerated-types-python/slides.pdf /2013/algebraic-sum-types-python/slides.pdf
+    ''', 200, {'Content-Type': 'application/octet-stream'}
+
 
 @app.route('/')
 def home():
