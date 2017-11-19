@@ -1,11 +1,11 @@
-title: Poor man’s NTP
+title: Low-tech NTP
 published: 2011-05-28
 summary: How to synchronize a Linux computer’s clock when NTP doesn’t work.
 
 The network where I live currently is heavily filtered. I believe that UDP
 from or to the Internet is not allowed at all. As a result,
 [NTP](http://en.wikipedia.org/wiki/Network_Time_Protocol) doesn’t work and
-my computer’s clock does not synchronize itself. 
+my computer’s clock does not synchronize itself.
 [My favorite “VPN”](http://github.com/apenwarr/sshuttle) does not support UDP,
 and “real” VPNs that do usually use UDP themselves, so they wouldn’t help either.
 It’s been about a month and my machine already has more than a minute of drift.

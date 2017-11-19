@@ -106,6 +106,7 @@ def htaccess():
         RedirectMatch /tags(/.*)?   /
         RedirectMatch /(\d+)/?$     /#$1
         RedirectMatch /2013/enumerated-types-python/slides.pdf /2013/algebraic-sum-types-python/slides.pdf
+        RedirectMatch /2011/Poor-man-NTP/ /2011/low-tech-ntp/
         RedirectMatch /about/ /
     ''', 200, {'Content-Type': 'application/octet-stream'}
 
