@@ -46,7 +46,7 @@ class Page(object):
         page, old_mtime = cls._cache.get(filename, (None, None))
         if not page or mtime != old_mtime:
             with io.open(filename, encoding='utf8') as fd:
-                head = ''.join(itertools.takewhile(str.strip, fd))
+                head = ''.join(itertools.takewhile(lambda x: x.strip(), fd))
                 body = fd.read()
             page = cls(year, name, head, body)
             cls._cache[filename] = (page, mtime)
@@ -98,6 +98,7 @@ class Page(object):
 
     def updated(self):
         return self.meta.get('modified', self['published'])
+
 
 @app.route('/.htaccess')
 def htaccess():

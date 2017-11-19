@@ -2,7 +2,7 @@ import os
 import mimetypes
 
 from . import app, Page
-from flask.ext.frozen import Freezer, walk_directory
+from flask_frozen import Freezer, walk_directory
 
 
 # Seems to be available only on some systems...
