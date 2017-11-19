@@ -13,15 +13,15 @@ files.* Much cooler, uh?
 
 New links:
 
-* [Documentation](http://packages.python.org/Frozen-Flask/)
-* [PyPI page](http://pypi.python.org/pypi/Frozen-Flask)
+* [Documentation](https://packages.python.org/Frozen-Flask/)
+* [PyPI page](https://pypi.python.org/pypi/Frozen-Flask)
 * [Code](https://github.com/SimonSapin/Frozen-Flask)
 
 Other candidate names were *Flask-Cryogenics* and *Flask-OnTheRocks*.
 
 While I was at breaking API compatibility, I also changed a few objects names.
 For example the main class is now called `Freezer`. See the [brand new
-changelog](http://packages.python.org/Frozen-Flask/#changelog) for details.
+changelog](https://packages.python.org/Frozen-Flask/#changelog) for details.
 
 Now the only task left is to make a logo of the flask stuck in an ice cube.
 

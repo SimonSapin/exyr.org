@@ -17,7 +17,7 @@ app.jinja_env.undefined = jinja2.StrictUndefined
 app.jinja_env.globals['today'] = datetime.date.today
 
 # The atom.xml template uses url_for(..., _external=True)
-app.config['FREEZER_BASE_URL'] = 'http://exyr.org/'
+app.config['FREEZER_BASE_URL'] = 'https://exyr.org/'
 
 PYGMENTS_CSS = (pygments.formatters.HtmlFormatter(style='tango')
                 .get_style_defs('.codehilite'))

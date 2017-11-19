@@ -74,7 +74,7 @@ with its concepts and conventions.
 
 # Flask-FlatPages
 
-* [Documentation](http://packages.python.org/Flask-FlatPages/)
+* [Documentation](https://packages.python.org/Flask-FlatPages/)
 * [Code](https://github.com/SimonSapin/Flask-FlatPages)
 
 Flask-FlatPages gives easy access to a set of pages stored in a text files
@@ -83,7 +83,7 @@ Each file is a page made of meta-data and content separated by a blank line.
 I started by parsing `key: value` pairs myself but noticed this is valid
 [YAML](http://www.yaml.org/). So meta-data is YAML which gives us niceties
 such as list and date parsing for free. The default content format is
-[Markdown](http://daringfireball.net/projects/markdown/) with
+[Markdown](https://daringfireball.net/projects/markdown/) with
 [code highlighting](http://www.freewisdom.org/projects/python-markdown/CodeHilite)
 using [Pygments](http://pygments.org/), but can be configured to something
 else.
@@ -91,7 +91,7 @@ else.
 
 # <del>Flask-Static</del> <ins>Frozen-Flask</ins>
 
-* [Documentation](http://packages.python.org/Frozen-Flask/)
+* [Documentation](https://packages.python.org/Frozen-Flask/)
 * [Code](https://github.com/SimonSapin/Frozen-Flask)
 
 Flask-Static builds a static snapshot of a Flask application.

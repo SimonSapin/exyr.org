@@ -78,7 +78,7 @@ for westerners, but many foreign words are distorted in Japanese. For example,
 they use the international word “taxi”, but it’s pronounced more like
 *ta-ku-shi*.
 
-Anyway. Using [Markov chains](http://en.wikipedia.org/wiki/Markov_chain),
+Anyway. Using [Markov chains](https://en.wikipedia.org/wiki/Markov_chain),
 we can generate text that “sounds” Japanese. Markov chains have many
 interesting mathematical properties but the basics is that they represent
 a system that transits between states, and the next state depends only on the
@@ -135,7 +135,7 @@ It also makes the password easier to type.
 If we mix 26 lower case letters, as many upper case, ten digits and a dozen
 of other symbols, that’s 72 possible characters. Picking 8 of them at random
 gives 72<sup>8</sup> possible passwords, or about 49 bits of
-[entropy](http://en.wikipedia.org/wiki/Entropy_%28information_theory%29).
+[entropy](https://en.wikipedia.org/wiki/Entropy_%28information_theory%29).
 It is possible to calculate the exact entropy for a Markov chain, but the math
 is non-trivial. I guesstimated that this pseudo-japanese is about the same
 entropy as alternating 15-something consonants with 5 vowels. So for

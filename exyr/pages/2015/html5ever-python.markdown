@@ -32,7 +32,7 @@ This can be [very bad](http://heartbleed.com/).
 
 # Rust
 
-[Rust](http://doc.rust-lang.org/book/README.html) is a systems programming language
+[Rust](https://doc.rust-lang.org/book/README.html) is a systems programming language
 focused on three goals: safety, speed, and concurrency.
 It can be used in places that require the speed of C/C++,
 but has much less undefined behavior and the pesky memory safety issues that come with it.

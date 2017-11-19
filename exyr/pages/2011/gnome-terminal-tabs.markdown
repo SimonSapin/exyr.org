@@ -5,7 +5,7 @@ summary: |
     one in its own shell. Doing so can be automated, and thus it should.
     Here is how to open a GNOME Terminal window with multiple tabs from a script.
 
-Once in a while, [apticron](http://www.debian-administration.org/articles/491)
+Once in a while, [apticron](https://debian-administration.org/article/491)
 tells me that I should do package upgrades on my server. Easy enough:
 ssh into the server and run `sudo aptitude update && sudo aptitude safe-upgrade`.
 That’s a bit too much typing, so I have an alias in the server’s `.bashrc`:
@@ -58,7 +58,7 @@ password from being echoed on the terminal.
 Putting all this together is straightforward but one needs to be careful with
 quote escaping. However I want to be prepared for the day I have 3 or 30
 servers, and things should be
-[DRY](http://en.wikipedia.org/wiki/Don%27t_repeat_yourself) anyway.
+[DRY](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) anyway.
 Sticking with bash is doable, (think piping a `for` loop into `xargs`)
 but quote escaping gets *really* hairy. Trust me, I tried. Time to get a real
 programming language. Enter Python: short and sweet.

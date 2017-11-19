@@ -27,7 +27,7 @@ In a nutshell
 How it works
 ------------
 
-Mirroring with [Git](http://git-scm.com/) is pretty easy: just pull from or
+Mirroring with [Git](https://git-scm.com/) is pretty easy: just pull from or
 push to another repository. GitHub and Gitorious allow you to push
 to them or pull from them, but you can not make them push to somewhere else.
 You need something in the middle.

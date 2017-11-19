@@ -39,7 +39,7 @@ Here is an example of how this could be used. The “line reader” wraps the
     print 'Exit.'
     
 The heart of the loop is not much more than a
-[`select()`](http://docs.python.org/library/select.html#select.select) call
+[`select()`](https://docs.python.org/library/select.html#select.select) call
 with a well-chosen timeout.
 
 Be careful not to block for too long in a callback. Since we’re not using
@@ -54,8 +54,8 @@ Of course this is not new. To Unix gurus out there, `select()` is as obvious as
 fresh air and file descriptors. I just happen to have learned about it recently.
 Indeed, if you’re just waiting on two files without timers (or with a contsant
 timeout), plain `select()` is much simpler and thus better. There are also a
-few systems such as [asynchat](http://docs.python.org/library/asynchat.html)
-or the [Twisted framework](http://www.twistedmatrix.com/)
+few systems such as [asynchat](https://docs.python.org/library/asynchat.html)
+or the [Twisted framework](https://twistedmatrix.com/)
 built on this kind of techniques, but they often are much more network-oriented
 than what I need for this project.
 
@@ -79,7 +79,7 @@ reader, and is included in a [separate file](
 https://github.com/SimonSapin/snippets/blob/master/event_loop/packet_reader.py).
 
 Like many (if not all?) communication protocols, this kind of packet decoding
-can be modeled as a [state machine](http://en.wikipedia.org/wiki/State_machine).
+can be modeled as a [state machine](https://en.wikipedia.org/wiki/State_machine).
 In the simplest programs to do such decoding with blocking reads, the state
 in implicitly represented by the point in the code currently being executed.
 If however blocking is not allowed, we may have to stop in the middle of a
@@ -94,7 +94,7 @@ Other events
 
 `select()` can also wait for a file descriptor to be ready for writing.
 Support for this wouldn’t be too hard to add to the event loop but as they say,
-[You ain’t gonna need it](http://en.wikipedia.org/wiki/YAGNI).
+[You ain’t gonna need it](https://en.wikipedia.org/wiki/YAGNI).
 Writing to a serial port may block and take some time, but it’s much faster
 and more predictable than waiting for the next wireless packet. (Which could
 even be lost!) Also, I’m only sending short commands to my sensors. The

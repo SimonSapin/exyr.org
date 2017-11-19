@@ -5,20 +5,20 @@ summary: >
     it eg. in generic views.
     
 [Jinja2](http://jinja.pocoo.org/) is a templating language inspired by
-[Django](http://www.djangoproject.com/)’s, but that I find more powerful
-and less awkward.  You can just use it a library in a Django application,
+[Django](https://www.djangoproject.com/)’s, but that I find more powerful
+and less awkward. You can just use it a library in a Django application,
 but then other parts of Django such as generic views still use Django
 templates.
 
 However, Django 1.2 added the concept of “template loaders”. Though it was
 not the first reason they were added, these loaders allows us to plug other
 template languages into Django’s templating system. (This is even
-[documented](http://docs.djangoproject.com/en/dev/ref/templates/api/#using-an-alternative-template-language).)
+[documented](https://docs.djangoproject.com/en/1.7/ref/templates/api/#using-an-alternative-template-language).)
 
 Below is the Django 1.2+ template loader for Jinja2.
 
 I had also posted it to
-[djangosnippets.org](http://djangosnippets.org/snippets/2063/) a while ago,
+[djangosnippets.org](https://djangosnippets.org/snippets/2063/) a while ago,
 and more recently on
 [github](https://github.com/SimonSapin/snippets/blob/master/jinja2_for_django.py).
 
