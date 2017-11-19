@@ -88,4 +88,4 @@ but with `-e close_write` we say we’re only interested by files being closed
 after they were written to. This is better than any `write` event because
 it means you editor has finished writing the file.
 
-Please [let me know](/about/) if you think this can be improved!
+Please let me know if you think this can be improved!

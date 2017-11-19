@@ -33,7 +33,3 @@ Among other things, I have worked on
 [Rust](http://www.rust-lang.org/),
 [servo](https://github.com/mozilla/servo/), and
 [Gecko](https://developer.mozilla.org/en-US/docs/Mozilla/Gecko).
-
-----
-
-[See all blog posts →](/)

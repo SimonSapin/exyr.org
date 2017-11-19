@@ -20,7 +20,7 @@ def run():
 def freeze(serve=False):
     """Freezes the static version of the website."""
     if serve:
-        freezer.run(debug=True)
+        freezer.run(debug=True, reload=True)
     else:
         urls = freezer.freeze()
         print('Built %i files.' % len(urls))

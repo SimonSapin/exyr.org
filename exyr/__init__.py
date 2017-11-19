@@ -106,6 +106,7 @@ def htaccess():
         RedirectMatch /tags(/.*)?   /
         RedirectMatch /(\d+)/?$     /#$1
         RedirectMatch /2013/enumerated-types-python/slides.pdf /2013/algebraic-sum-types-python/slides.pdf
+        RedirectMatch /about/ /
     ''', 200, {'Content-Type': 'application/octet-stream'}
 
 
@@ -117,13 +118,12 @@ def home():
             sorted(
                 Page.all_articles(),
                 reverse=True,
-                key=lambda p: p['published']),
-            key=lambda p: p['published'].year))
-
-
-@app.route('/about/')
-def about():
-    return render_template('flatpage.html', page=Page.load('', 'about'))
+                key=lambda p: p['published'],
+            ),
+            key=lambda p: p['published'].year,
+        ),
+        about=Page.load('', 'about')
+    )
 
 
 @app.route('/<int:year>/<name>/')

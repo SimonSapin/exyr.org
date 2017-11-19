@@ -1,6 +1,10 @@
 {% extends "layout.html" %}
 
 {% block content %}
+  <section id=about>
+    {{ about.html|safe }}
+  </section>
+  <hr>
   <section class=article_list>
   {% for year, posts in posts_by_year %}
     <section id="{{ year }}">

@@ -75,6 +75,10 @@ nav img {
     padding: 0 25px;
 }
 
+#content {
+    margin-top: 2em;
+}
+
 * html #content, * html footer {
     /* IE6 does not support max-width */
     width: 740px;
