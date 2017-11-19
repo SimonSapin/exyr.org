@@ -108,7 +108,17 @@ def htaccess():
         RedirectMatch /2013/enumerated-types-python/slides.pdf /2013/algebraic-sum-types-python/slides.pdf
         RedirectMatch /2011/Poor-man-NTP/ /2011/low-tech-ntp/
         RedirectMatch /about/ /
+        ErrorDocument 410 /gone.html
     ''', 200, {'Content-Type': 'application/octet-stream'}
+
+
+@app.route('/gone.html')
+def gone():
+    return '''
+        <title>410 Gone</title>
+        <h1>Gone</h1>
+        Some things are not meant to stay.
+    '''
 
 
 @app.route('/')
