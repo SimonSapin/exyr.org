@@ -180,3 +180,13 @@ See `man ssh_config` for more stuff.
         # This helps when resuming the laptop from sleep with open connections,
         # the server might have dropped them in the meantime without the laptop knowing.
         ServerAliveInterval 10
+
+        # Whenever creating a new connection, keep it running in a background process
+        # so that other commands (ssh, rsync, git, …) can reuse it.
+        # With far-away servers this can save a couple seconds,
+        # since each new connection requires several network round-trips.
+        ControlMaster auto
+        ControlPath ~/.ssh/mux-%r@%h:%p
+
+        # Close these background connections when they haven’t been used for a while.
+        ControlPersist 1h
