@@ -22,12 +22,18 @@ app.config['FREEZER_BASE_URL'] = 'https://exyr.org/'
 PYGMENTS_CSS = (pygments.formatters.HtmlFormatter(style='tango')
                 .get_style_defs('.codehilite'))
 
+markdown_module.Markdown(extensions=['fenced_code'])
+Fenced = markdown_module.extensions.fenced_code.FencedBlockPreprocessor
+Fenced.FENCED_BLOCK_RE = re.compile(
+    Fenced.FENCED_BLOCK_RE.pattern.replace("and lang", "and lang\n(,\w+[ ]*)?"),
+    Fenced.FENCED_BLOCK_RE.flags,
+)
 
 @app.template_filter()
 def markdown(text):
     return markdown_module.markdown(
         text,
-        ['codehilite', 'footnotes'] + 2 * ['downheader'],
+        ['codehilite', 'footnotes', 'fenced_code'] + 2 * ['downheader'],
         extension_configs={'codehilite': {'linenums': False}},
     )
 
