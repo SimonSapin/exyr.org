@@ -114,6 +114,7 @@ def htaccess():
         RedirectMatch /2013/enumerated-types-python/slides.pdf /2013/algebraic-sum-types-python/slides.pdf
         RedirectMatch /2011/Poor-man-NTP/ /2011/low-tech-ntp/
         RedirectMatch /about/ /
+        Redirect gone /2011/hashing-passwords/
         Redirect gone /2012/csswg-invited-expert/
         ErrorDocument 410 /gone.html
     ''', 200, {'Content-Type': 'application/octet-stream'}
