@@ -79,7 +79,8 @@ so here they are, if only for me to find them next time.
 
 * **Install Python and cmake.**
   Some crates use them in their build scripts.
-  Run `choco install python2 cmake`, again in an administrative shell.
+  Run `choco install python2` and `choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'`,
+  again in an administrative shell.
   (Or find installers on their respective websites.)
 
 * **Install Rust**
