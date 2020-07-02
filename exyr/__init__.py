@@ -116,6 +116,10 @@ def htaccess():
         RedirectMatch /about/ /
         Redirect gone /2011/hashing-passwords/
         Redirect gone /2012/csswg-invited-expert/
+        Redirect gone /2011/git-mirrors/
+        Redirect gone /2011/virtualenv-HOWTO/
+        Redirect gone /2011/gedit-plugins-packaged/
+        Redirect gone /2012/weasyprint-is-bsd/
         ErrorDocument 410 /gone.html
     ''', 200, {'Content-Type': 'application/octet-stream'}
 
