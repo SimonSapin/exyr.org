@@ -1,12 +1,14 @@
 title: About
 
 Hi, I’m Simon Sapin.
-I work on [Servo](https://servo.org/) at [Mozilla Research](https://research.mozilla.org/),
-previously on [WeasyPrint](http://weasyprint.org) at [Kozea](https://www.kozea.fr/).
-I’ve also contributed to web standards
-at [W3C’s CSS Working Group](https://www.w3.org/Style/CSS/).
+I contribute to [Mercurial](https://www.mercurial-scm.org/)
+and [Rust](https://www.rust-lang.org/)
+at [Octobus](https://octobus.net/),
+previously [Servo](https://servo.org/)
+and web standards in [W3C’s CSS Working Group](https://www.w3.org/Style/CSS/)
+at [Mozilla Research](https://research.mozilla.org/),
+previously [WeasyPrint](http://weasyprint.org) at [Kozea](https://www.kozea.fr/).
 
 I’m `SimonSapin` on [GitHub](https://github.com/SimonSapin),
 [Twitter](https://twitter.com/SimonSapin), and Freenode.
-`@simonsapin:mozilla.org` on [Matrix](https://wiki.mozilla.org/Matrix).
 Email to `contact` at this domain also works.
