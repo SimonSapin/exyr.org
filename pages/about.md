@@ -1,5 +1,3 @@
-title: About
-
 Hi, I’m Simon Sapin.
 Pronouns are he/him (though I don’t mind the universal they/them).
 I contribute to [Mercurial](https://www.mercurial-scm.org/)

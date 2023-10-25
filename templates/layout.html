@@ -6,16 +6,15 @@
     Looking for the source? See https://github.com/SimonSapin/exyr.org
   -->
   <title>
-    {%- if self.title|d and self.title() -%}
+    {%- if self.title()|d and self.title() -%}
         {{ self.title()|striptags }} −
     {% endif -%}
     {{ self.site_title() -}}
   </title>
-  <link rel=stylesheet href="{{ url_for('stylesheet') }}">
-  <link rel=alternate href="{{ url_for('feed') }}" type="application/atom+xml"
+  <link rel=stylesheet href="/style.css">
+  <link rel=alternate href="/feed.atom" type="application/atom+xml"
     title="Article Feed">
-  <link rel="shortcut icon" href="{{
-    url_for('static', filename='favicon.png') }}" type="image/png" >
+  <link rel="shortcut icon" href="/static/favicon.png" type="image/png" >
   <link rel="openid.server" href="https://exyr.alwaysdata.net/openid/index.php">
   <link rel="openid.delegate" href="https://exyr.alwaysdata.net/openid/index.php">
 </head>
@@ -24,8 +23,8 @@
   <header>
     <h1>
         <a href="/">{% block site_title %}Exyr.org{% endblock %}</a>
-        <a href="{{ url_for('feed') }}"><img alt="Subscribe"
-          src="{{ url_for('static', filename='feed-icon.png') }}"></a>
+        <a href="/feed.atom"><img alt="Subscribe"
+          src="/static/feed-icon.png"></a>
     </h1>
   </header>
 
@@ -35,7 +34,7 @@
 
   <footer>
     {#- See <rights/> in atom.xml too #}
-    <p>© <a href="{{ url_for('home') }}">Simon Sapin</a>,
+    <p>© <a href="/">Simon Sapin</a>,
        content licensed under
        <a rel=license href="https://creativecommons.org/licenses/by-nc-sa/3.0/">
           Creative Commons BY-NC-SA</a>.</p>

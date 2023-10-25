@@ -3,7 +3,7 @@ published: 2010-12-29
 summary: >
     How to replace Django’s templating system by Jinja2 and still profit from
     it eg. in generic views.
-    
+
 [Jinja2](http://jinja.pocoo.org/) is a templating language inspired by
 [Django](https://www.djangoproject.com/)’s, but that I find more powerful
 and less awkward. You can just use it a library in a Django application,

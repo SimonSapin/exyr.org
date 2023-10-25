@@ -9,8 +9,8 @@
       <h2>{{ page.title }}</h2>
       <p>
         Simon Sapin,
-        <time pubdate datetime="{{ page.published.isoformat() }}">{{
-          page.published.isoformat() }}</time>
+        <time pubdate datetime="{{ page.published }}">{{
+          page.published }}</time>
       </p>
     </header>
     {{ page.html|safe }}

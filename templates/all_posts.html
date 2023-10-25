@@ -1,8 +1,10 @@
 {% extends "layout.html" %}
 
+{% block title %}{% endblock %}
+
 {% block content %}
   <section id=about>
-    {{ about.html|safe }}
+    {{ about|safe }}
   </section>
   <hr>
   <section class=article_list>
@@ -11,11 +13,11 @@
     {% for page in posts %}
       <article>
         <h3>
-          <time pubdate datetime="{{ page.published.isoformat() }}">{{
-            page.published.isoformat() }}</time>
-          − <a href="{{ page.url() }}">{{ page.title }}</a>
+          <time pubdate datetime="{{ page.published }}">{{
+            page.published }}</time>
+          − <a href="/{{ year }}/{{ page.slug }}/">{{ page.title }}</a>
         </h3>
-        {{ page.summary|markdown|safe }}
+        {{ page.summary_html|safe }}
       </article>
     {% endfor %}
     </section>

@@ -1,0 +1,194 @@
+    <p>Lately I’ve been working with Windows-specific APIs,
+so I needed to get a Windows dev environment.
+I’ve mostly used Linux for many years now,
+so for me programming on Windows feels very foreign.
+Getting to a point where I started being productive took a number of steps,
+so here they are, if only for me to find them next time.</p>
+<h3>Installing Windows 10</h3>
+<ul>
+<li>
+<p><strong>Buy Windows.</strong>
+  Or rather, a license / activation / product key.
+  You can do this and <em>activate</em> later,
+  the installer has a helpful <em>I don’t have a product key</em> button.</p>
+</li>
+<li>
+<p><strong>Obtain Windows.</strong>
+  This can be entirely separate from the above.
+  Search for <em>Windows 10 ISO</em> to download an official installer image from Microsoft.</p>
+</li>
+<li>
+<p><strong>Decide where to install Windows.</strong>
+  Virtual machines can be great,
+  but VirtualBox’s <em>Enable 3D acceleration</em> checkbox didn’t cut it for me for GPU programming.
+  (The <code>glutin</code> crate returned a <code>NoAvailablePixelFormat</code> error.)</p>
+</li>
+<li>
+<p><strong>Make an installer media.</strong>
+  This isn’t needed on a virtual machine (mount the ISO as a virtual optical drive)
+  or on Apple hardware
+  (macOS’s Boot Camp Assistant will do its magic if you tell it where find the <code>.iso</code> file).
+  Fortunately no Windows-only tool is required to make a bootable USB drive,
+  the <code>.iso</code> file can be copied directly onto the raw device (not on a partition).
+  The <em>Restore Disk Image</em> functionality of GNOME Disks works.</p>
+</li>
+<li>
+<p><strong>Run the installer.</strong>
+  Say no to Cortana, but it’ll still need to be disabled some more after the install.
+  In the full-screen <em>Sign in with Microsoft</em> page,
+  find the small <em>Offline account</em> button in the corner.
+  Then insist a couple more time that indeed, you do not want a Microsoft account.
+  Turn off everything on the <em>privacy settings</em> page.</p>
+</li>
+<li>
+<p><strong>Do the usual software update dance.</strong>
+  In case the last time you’ve used Windows was before 10, updates are in Settings.
+  That’s the gear icon in the Start menu.
+  It replaces the Control Panel,
+  but only sort of because of course the Control Panel is still there somewhere too.</p>
+</li>
+<li>
+<p><strong>Uninstall crapware.</strong>
+  Unfortunately even the official installer from Microsoft comes with some.
+  Fortunately most of them can be uninstalled in two clicks in Settings.
+  Stuff on the right-hand-side of the Start menu (especially the annoying rotating ones)
+  can be remove with right click and <em>unpin</em>.</p>
+</li>
+<li>
+<p><strong>Enable Developer Mode</strong> in Settings.
+  I don’t know if this is strictly necessary,
+  but it has a convenient button to change several settings at once like showing file extensions.</p>
+</li>
+</ul>
+<h3>Installing programming tools</h3>
+<ul>
+<li>
+<p><strong>Install Visual Studio Community.</strong>
+  That’s the free-of-charge one.
+  I don’t plan on writing a lot of C/C++ code, but Rust still needs a linker.
+  And some crates have C or C++ dependencies.
+  And I might need to compile Firefox later,
+  search for <em>build firefox windows</em> to find the MDN page that lists
+  which Visual Studio components to enable.</p>
+</li>
+<li>
+<p><strong>Install Chocolatey.</strong>
+  Clicking <em>Next</em>, <em>Next</em>, <em>Next</em> on a GUI installer
+  and checking yet another checkbox to accept the GPL again gets old really fast.
+  This is a command-line package manager.
+  Don’t forget to run the shell as <em>Administrator</em>, follow instructions, then close that shell.
+  This one won’t have the modified <code>PATH</code> environment variable.</p>
+</li>
+<li>
+<p><strong>Install Python and cmake.</strong>
+  Some crates use them in their build scripts.
+  Run <code>choco install python2</code> and <code>choco install cmake --installargs 'ADD_CMAKE_TO_PATH=System'</code>,
+  again in an administrative shell.
+  (Or find installers on their respective websites.)</p>
+</li>
+<li>
+<p><strong>Install Rust</strong>
+  once Visual Studio has finished installing.
+  Rustup’s default install method and configuration are fine.</p>
+</li>
+<li>
+<p><strong>Install Git for Windows,</strong>
+  which is a separate thing from the Git project’s own Windows builds.
+  It comes with a terminal that runs <code>bash</code> in a Unix-like environment,
+  which can be a lifesaver after many years of working on Linux.
+  I hear good things about PowerShell,
+  but I don’t feel like investing time in learning something completely different for this.</p>
+</li>
+<li>
+<p><strong>Configure bash.</strong>
+  At the moment my <code>~/.bash_profile</code> on Windows is as below.
+  Without the first two lines, I get colored output from Cargo but not from rustc 1.25.0.
+  <code>RUSTFLAGS</code> tells rustc to use color even as it thinks the output is not a terminal.
+  This is arguably a bug in rustc,
+  when running on Windows it only checks for the presence of a Windows console.
+  <code>TERMINFO</code> lets it know where to find data about how this terminal works.
+  Finally, <code>autocd</code> implicitly runs <code>cd</code> when typing only the path to a directory.</p>
+<div class="codehilite"><pre><span></span><span class="nb">export</span> <span class="nv">RUSTFLAGS</span><span class="o">=</span><span class="s2">&quot;--color always&quot;</span>
+<span class="nb">export</span> <span class="nv">TERMINFO</span><span class="o">=</span><span class="k">$(</span>cygpath -w /usr/share/terminfo<span class="k">)</span>
+<span class="nb">shopt</span> -s autocd
+</pre></div>
+
+
+</li>
+</ul>
+<h3>Accessing Windows remotely</h3>
+<p>Even when I’m sitting next to the machine running Windows,
+I prefer to use my usual keyboard and text editor on my main laptop
+and accessing other machines through the network.
+The fundamental component of that is of course SSH.</p>
+<p>There are a few different ways to run an OpenSSH server on Windows.
+I’ve had the most success with Chocolatey:</p>
+<div class="codehilite"><pre><span></span>choco install openssh -params <span class="s1">&#39;&quot;/SSHServerFeature /SSHServerPort:2210&quot;&#39;</span>
+</pre></div>
+
+
+<p>I don’t understand the nested quotes, but Chocolatey seems to be picky about them.
+Using an alternative port number is easier because Windows might already be using port 22,
+and it helps my client not freak out about different server keys
+when connecting at the same IP address to the other dual-boot operating system.</p>
+<p>After connect with a ssh:// URL in Nautilus,
+through GNOME’s integration of SFTP/SSH I can edit remote files as if they were local.
+For Linux or macOS remote hosts I also run <code>ssh</code> in a local terminal to get a remote shell
+and do most of my work there,
+but on Windows I get a <code>cmd.exe</code>-like shell and haven’t yet figured out how to run <code>bash</code> there.</p>
+<p>So I’ll need remote GUI access, and will be using it a lot.
+Both VNC servers I tried were pretty bad, with video latency above one second on a local network.
+(The VNC servers on macOS or Linux on the same network from the same client did not have that problem.)
+Remote Desktop turned out to work much better, and support copy/pasting across machines.
+As to clients:</p>
+<ul>
+<li><code>rdesktop</code> couldn’t connect to my Windows 10’s native Remote Desktop server</li>
+<li><code>Vinagre</code> would randomly get its keyboard input in a broken state, until I disconnect and reconnect.
+  (<em>Have you tried turning it off and on again?</em>)</li>
+<li><code>xfreerdp</code> works pretty well for me.</li>
+</ul>
+<p>xfreerdp is started from the command-line (or a script) and accepts many options.
+Some notable ones are:</p>
+<ul>
+<li><code>/d: /u:$USER /p:$RDP_PASSWORD</code> so it doesn’t prompt for credentials.</li>
+<li><code>/w:1920 /h:2031</code> The remote “screen size” is determined by the client!
+  This size is half of a 4k monitor,
+  leaving enough vertical space for GNOME 3’s top bar and window decoration.</li>
+<li><code>/scale:180</code> Speaking of high DPI,
+  this tells the remote application to use a scale factor other than 100%.
+  I ended up not using it because it sort of broke Windows’s window manager for me.
+  I configured the terminal to use a large font instead.</li>
+<li><code>/smart-sizing</code> Another one I didn’t use, because I prefer sharp text.
+  This does client-side scaling based on the size of the local window.</li>
+<li><code>+font</code> Enable font anti-aliasing (ClearType)</li>
+</ul>
+<h3>OpenSSH client configuration</h3>
+<p>This is not specific to Windows, but the usual SSH tricks apply.
+The interesting parts of my client-side (on the Linux laptop) <code>~/.ssh/config</code> file are below.
+See <code>man ssh_config</code> for more stuff.</p>
+<div class="codehilite"><pre><span></span>Host windows
+    Hostname <span class="m">10</span>.11.12.13
+    Port <span class="m">2210</span>
+
+<span class="c1"># When not on the same network, connect through an intermediate SSH server</span>
+Match host windows <span class="nb">exec</span> <span class="s2">&quot;ip addr|grep -qv &#39;inet 10\.11\.12\.&#39;&quot;</span>
+    ProxyCommand ssh -W %h:%p jumphost
+
+Host *
+    <span class="c1"># When a connection is otherwise inactive ping the server regularly.</span>
+    <span class="c1"># If it’s unresponsive, drop the connection after ~30 seconds.</span>
+    <span class="c1"># (ServerAliveCountMax defaults to 3.)</span>
+    <span class="c1"># This helps when resuming the laptop from sleep with open connections,</span>
+    <span class="c1"># the server might have dropped them in the meantime without the laptop knowing.</span>
+    ServerAliveInterval <span class="m">10</span>
+
+    <span class="c1"># Whenever creating a new connection, keep it running in a background process</span>
+    <span class="c1"># so that other commands (ssh, rsync, git, …) can reuse it.</span>
+    <span class="c1"># With far-away servers this can save a couple seconds,</span>
+    <span class="c1"># since each new connection requires several network round-trips.</span>
+    ControlMaster auto
+    ControlPath ~/.ssh/mux-%r@%h:%p
+
+    <span class="c1"># Close these background connections when they haven’t been used for a while.</span>
+    ControlPersist 1h
+</pre></div>

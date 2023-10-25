@@ -1,0 +1,23 @@
+    <p>I was at PyConFR in Paris on September 15th and 16th.
+I <a href="http://www.pycon.fr/2012/schedule/presentation/16/">gave a talk</a>
+on <a href="http://weasyprint.org/">WeasyPrint</a> and CSS for print.</p>
+<p><strong>Update 2012-09-12</strong>:
+I made <a href="PyConFR_2012_schedule.pdf">a PDF version</a> of
+<a href="http://www.pycon.fr/2012/schedule/">the schedule</a> for printing, of course
+dogfooding WeasyPrint. There is <a href="print.css">a bit of CSS</a> to remove irrelevant
+navigation links, fix some brokenness of the original page, and generally
+make it look nice on A4. You can regenerate the same PDF with:</p>
+<div class="codehilite"><pre><span></span>weasyprint http://www.pycon.fr/2012/schedule/ PyConFR_2012_schedule.pdf <span class="se">\</span>
+  -s http://exyr.org/2012/weasyprint-at-pyconfr/print.css
+</pre></div>
+
+
+<p><strong>Update 2012-09-17</strong>:
+I think the talk was a success although I forgot a few details. The slides
+are below (or <a href="embedder.html#slides.html">fullscreen</a>), with notes
+paraphrasing what I said “on stage”.
+The talk and slides were in French (this is PyCon<strong>FR</strong>,
+after all) but you, dear international reader, get the English ones.</p>
+<iframe
+  src="embedder.html#slides.html"
+  width="736" height="750" style="border: 2px solid black"></iframe>

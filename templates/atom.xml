@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+	<title>exyr.org</title>
+	<id>https://exyr.org/</id>
+	<link href="https://exyr.org/feed.atom" rel="self" />
+	<link href="https://exyr.org/" />
+	<icon>https://exyr.org/static/favicon.png</icon>
+	<updated>{{ feed_updated }}T00:00:00Z</updated>
+	<author>
+		<name>Simon Sapin</name>
+	</author>
+	<rights type="html">
+		&lt;p&gt;© Copyright {{ latest_year }} by Simon Sapin.&lt;/p&gt;
+        &lt;p&gt;Content licensed under a Creative Commons
+          Attribution-NonCommercial-ShareAlike License.&lt;/p&gt;
+	</rights>
+	{% for article in articles %}
+	<entry>
+		<id>{{ article.url }}</id>
+		<title>{{ article.title }}</title>
+		<updated>{{ article.updated }}T00:00:00Z</updated>
+		<published>{{ article.published }}T00:00:00Z</published>
+		<author>
+			<name>Simon Sapin</name>
+		</author>
+		<link href="{{ article.url }}" />
+		<content type="html">
+			{{ article.html }}
+		</content>
+	</entry>
+	{% endfor %}
+</feed>
