@@ -7,6 +7,7 @@ Things I’ve worked on include
 web standards in [W3C’s CSS Working Group](https://www.w3.org/Style/CSS/),
 and [WeasyPrint](http://weasyprint.org).
 
-I’m `SimonSapin` on [GitHub](https://github.com/SimonSapin),
-[Twitter](https://twitter.com/SimonSapin), and Freenode.
+I’m `SimonSapin` on [GitHub](https://github.com/SimonSapin)
+and [Twitter](https://twitter.com/SimonSapin),
+`@simon@tutut.delire.party` on <a rel="me" href="https://tutut.delire.party/@simon">Mastodon</a>.
 Email to `contact` at this domain also works.
