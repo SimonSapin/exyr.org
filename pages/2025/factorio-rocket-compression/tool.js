@@ -34,7 +34,8 @@ const recipes = data.recipes.filter(
 // UI
 //
 
-const { link, style, p, span, input, table, colgroup, thead, tbody, tr, th, td, strong } = van.tags;
+const { link, style, p, br, mark, span, input, table, colgroup, thead, tbody, tr, th, td, strong } =
+  van.tags;
 
 const iconWithName = (itemOrRecipe) => [
   span({ class: `icon icon-${itemOrRecipe.icon || itemOrRecipe.id}` }),
@@ -53,7 +54,7 @@ const formatWeight = (weight) => `${Math.ceil(weight * 10) / 10} kg`;
 const weightCell = (formattedWeight, bold) =>
   td({ class: "data weight" }, bold ? strong(formattedWeight) : formattedWeight);
 
-const itemList = (itemAmounts, padTo) => {
+const itemList = (itemAmounts, padTo, prodFactor) => {
   const components = [];
   const entries = Object.entries(itemAmounts);
   const cells = entries.map(([id, amount]) => {
@@ -68,25 +69,25 @@ const itemList = (itemAmounts, padTo) => {
             })
           )
         : td();
-    amount = Math.round(amount * 10000) / 10000;
+    const amountWithProd = () => Math.round(amount * prodFactor() * 10000) / 10000;
     const item = items[id];
-    const itemCell = td({ class: "data" }, icon(item), " ", amount);
+    const itemCell = td({ class: "data" }, icon(item), " ", amountWithProd);
     const barrelItem = items[`${id}-barrel`];
     const shipmentCell = item.stack
       ? itemCell
-      : td({ class: "data" }, icon(barrelItem), " ", amount / 50);
+      : td({ class: "data" }, icon(barrelItem), " ", () => amountWithProd() / 50);
     const fluidCell = item.stack ? td() : itemCell;
     const cap = item.stack ? item.rocketCapacity || 0 : (barrelItem?.rocketCapacity || 0) * 50;
-    const weight = (amount * 1000) / cap;
+    const weight = () => (amountWithProd() * 1000) / cap;
     components.push([checked, weight]);
     const bold = padTo == 1;
-    return [weightCell(formatWeight(weight), bold), checkbox, shipmentCell, fluidCell];
+    return [weightCell(() => formatWeight(weight()), bold), checkbox, shipmentCell, fluidCell];
   });
   for (const _ of Array(padTo - entries.length)) {
     cells.push([td(), td(), td(), td()]);
   }
   const total = van.derive(() =>
-    components.reduce((acc, [checked, weight]) => (checked.val ? acc + weight : acc), 0)
+    components.reduce((acc, [checked, weight]) => (checked.val ? acc + weight() : acc), 0)
   );
   if (padTo > 1) {
     const formattedTotal = van.derive(() => formatWeight(total.val));
@@ -96,6 +97,7 @@ const itemList = (itemAmounts, padTo) => {
 };
 
 const searchTerm = van.state("");
+const prodBonus = van.state(0);
 
 const elements = [
   link({ rel: "stylesheet", href: "style.css" }),
@@ -103,6 +105,19 @@ const elements = [
     data.icons
       .map((icon) => `.icon-${icon.id}::before { background-position: ${icon.position} }\n`)
       .join("")
+  ),
+  p(
+    "Productivity bonus: ",
+    input({
+      type: "number",
+      value: 0,
+      min: 0,
+      step: 5,
+      oninput: (e) => (prodBonus.val = parseFloat(e.target.value)),
+    }),
+    "% ",
+    () =>
+      prodBonus.val > 0 ? span(mark("*"), " Some recipes do not apply productivity bonus") : span()
   ),
   p(
     "🔎︎ ",
@@ -125,19 +140,28 @@ const elements = [
       )
     ),
     recipes.map((recipe, i) => {
-      const ingredients = Object.keys(recipe.in);
-      const products = Object.keys(recipe.out);
-      const max = Math.max(ingredients.length, products.length);
+      const productivityDisallowed = recipe.disallowedEffects?.includes("productivity");
+      const prodFactor = () => (productivityDisallowed ? 1 : 1 + prodBonus.val / 100);
+      const max = Math.max(Object.keys(recipe.in).length, Object.keys(recipe.out).length);
       // additional row for the total weight
       const rowSpan = max == 1 ? 1 : max + 1;
-      const { cells: iCells, total: iWeight } = itemList(recipe.in, max);
-      const { cells: pCells, total: pWeight } = itemList(recipe.out, max);
+      const { cells: iCells, total: iWeight } = itemList(recipe.in, max, () => 1);
+      const { cells: pCells, total: pWeight } = itemList(recipe.out, max, prodFactor);
       const [firstIngredient, ...otherIngredients] = iCells;
       const [firstProduct, ...otherProducts] = pCells;
       return tbody(
         { hidden: () => !recipe.name.toLowerCase().includes(searchTerm.val) },
         tr(
-          td({ rowSpan }, iconWithName(recipe)),
+          td(
+            { rowSpan },
+            iconWithName(recipe),
+            productivityDisallowed
+              ? () =>
+                  prodBonus.val > 0
+                    ? mark({ title: "Productivity bonus does not apply" }, "*")
+                    : span()
+              : []
+          ),
           td({ rowSpan }, strong(van.derive(() => (iWeight.val / pWeight.val).toFixed(2)))),
           firstIngredient,
           firstProduct

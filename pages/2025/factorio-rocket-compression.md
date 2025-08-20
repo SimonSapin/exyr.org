@@ -24,6 +24,7 @@ we define the **weight compression** of every recipe as
 the weight of its ingredients divided by the weight of its products.
 Compression greater than 1 means it’s cheaper to launch finished products.
 
+-----
 
 <div id=tool><em>Loading…</em></div>
 <script type=module src=tool.js></script>
