@@ -100,7 +100,7 @@ pub(crate) fn build() -> anyhow::Result<()> {
                 markdown::render(body)?
             };
 
-            let meta: FrontMatter = serde_yaml::from_str(&meta)?;
+            let meta: FrontMatter = serde_yaml::from_str(meta)?;
             let page = Page {
                 url: format!("https://exyr.org/{year}/{slug}/"),
                 slug: slug.to_owned(),
@@ -210,7 +210,7 @@ fn minify_css(mut css: String) -> anyhow::Result<String> {
 }
 
 fn copy_dir(source_dir: &PathBuf, dest_dir: &PathBuf) -> anyhow::Result<()> {
-    fs::create_dir_all(&dest_dir)?;
+    fs::create_dir_all(dest_dir)?;
     for result in fs::read_dir(source_dir)? {
         let entry = result?;
         let dest = dest_dir.join(entry.file_name());

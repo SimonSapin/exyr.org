@@ -8,6 +8,7 @@ pub(crate) fn render(markdown: &str) -> anyhow::Result<String> {
     let parser = pulldown_cmark::Parser::new_ext(markdown, options);
     let mut code_lang = None;
     let error = None;
+    #[allow(clippy::unnecessary_filter_map)]
     let events = parser.filter_map(|event| match event {
         Event::Start(tag) => {
             if let Tag::CodeBlock(CodeBlockKind::Fenced(lang)) = &tag {
