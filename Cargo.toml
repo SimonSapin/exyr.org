@@ -7,7 +7,7 @@ publish = false
 [dependencies]
 anyhow = "1.0.75"
 minijinja = { version = "1.0.9", features = ["loader"] }
-pulldown-cmark = { version = "0.9.3", default-features = false }
+pulldown-cmark = "0.13.0"
 regex-lite = "0.1.5"
 serde = { version = "1.0.189", features = ["derive"] }
 serde_yaml = "0.9.25"
