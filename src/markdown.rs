@@ -5,7 +5,7 @@ use pulldown_cmark::Tag;
 use pulldown_cmark::TagEnd;
 
 pub(crate) fn render(markdown: &str) -> anyhow::Result<String> {
-    let options = pulldown_cmark::Options::ENABLE_FOOTNOTES;
+    let options = pulldown_cmark::Options::ENABLE_FOOTNOTES | pulldown_cmark::Options::ENABLE_MATH;
     let parser = pulldown_cmark::Parser::new_ext(markdown, options);
     // let mut code_lang = None;
     let error = None;
