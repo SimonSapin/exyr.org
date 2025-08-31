@@ -1,10 +1,1 @@
-This is the source code generating the website at https://exyr.org/
-See https://exyr.org/2010/Flask-Static/ for details.
-
-To install, run
-
-    pip install -e .
-
-in a virtualenv. To build, run
-
-    exyr-manage build
+Moved to https://codeberg.org/SimonSapin/exyr.org
